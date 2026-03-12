@@ -2,6 +2,15 @@
 
 All smells from the Refactoring.Guru *Code Smells* list, with Java-oriented detection tips and common refactoring moves.
 
+## Contents
+
+- [Bloaters](#bloaters): Long Method, Large Class, Primitive Obsession, Long Parameter List, Data Clumps
+- [Object-Orientation Abusers](#object-orientation-abusers): Alternative Classes with Different Interfaces, Refused Bequest, Switch Statements, Temporary Field
+- [Change Preventers](#change-preventers): Divergent Change, Shotgun Surgery, Parallel Inheritance Hierarchies
+- [Dispensables](#dispensables): Comments, Duplicate Code, Lazy Class, Data Class, Dead Code, Speculative Generality
+- [Couplers](#couplers): Feature Envy, Inappropriate Intimacy, Message Chains, Middle Man
+- [Other smells](#other-smells): Incomplete Library Class
+
 ## How to read each smell entry
 
 - **Signals**: how to notice it quickly.

@@ -46,9 +46,13 @@ skills/
 │   └── assets/        (report template)
 ├── java-refactoring/
 │   ├── SKILL.md
-│   └── reference.md
+│   └── references/
+│       ├── code-smells-catalog.md
+│       └── solid-principles.md
 └── java-21-refactor-assessor/
-    └── SKILL.md
+    ├── SKILL.md
+    └── references/
+        └── java-21-best-practices.md
 ```
 
 ## Usage

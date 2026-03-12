@@ -1,31 +1,38 @@
 ---
 name: java-refactoring
-description: Review Java code for maintainability issues, code smells, and SOLID violations. Use when refactoring Java code, reviewing for code smells, improving testability, reducing coupling, or creating a behavior-preserving refactoring plan.
+description: Review Java code for maintainability issues, code smells, and SOLID violations.
+  Use when the user asks to "refactor this Java code", "find code smells", "review for
+  SOLID violations", "improve testability", "reduce coupling", or "create a refactoring plan".
+  Do not use for TypeScript, Python, or non-Java languages.
+license: MIT
+compatibility: Java projects (8+). Works best with repository access and ability to run
+  build/test commands (Maven, Gradle). Framework-aware for Spring, Jakarta EE, Quarkus,
+  Micronaut.
+metadata:
+  author: ByAxe
+  version: 2.0.0
+  category: software-development
+  tags: [java, refactoring, code-smells, solid, maintainability, testability]
 ---
 
-# Java Refactoring Skill: Code Smells + SOLID
+# Java Refactoring: Code Smells + SOLID
 
-A practical, Java-focused reference and operating procedure for:
-- Recognizing **all code smells** listed in Refactoring.Guru's *Code Smells* catalog (Bloaters, Object-Orientation Abusers, Change Preventers, Dispensables, Couplers, plus Incomplete Library Class).
-- Applying **SOLID** principles (SRP, OCP, LSP, ISP, DIP) to refactor safely.
-- Turning "smelly" legacy Java into code that is easier to extend, test, and maintain.
+Diagnose Java code smells and SOLID violations, then refactor safely while preserving behavior.
 
-> **Important:** This is a condensed, paraphrased "field guide." It is not a copy of the original Refactoring.Guru text.
+## Important
 
----
+- Preserve behavior: refactoring != rewriting. Keep functionality identical unless explicitly told otherwise.
+- Small reversible steps: one smell per commit, compilation green after each.
+- Add characterization tests before deep changes to capture current behavior.
+- Prefer IDE refactorings (move/rename/extract) to avoid missed references.
+- Don't mix style changes and logic changes in the same diff.
+- Prioritize hotspots: code that changes most or causes most bugs.
 
-## When to use this skill
+## Instructions
 
-Use this skill when you need to:
-- Review Java code for maintainability issues and refactoring opportunities.
-- Turn a "works but messy" implementation into a design that is easier to evolve.
-- Reduce risk/cost of change by addressing high-impact smells first.
-- Improve testability (usually by reducing coupling and clarifying responsibilities).
-- Create a refactoring plan that stays behavior-preserving.
+### Step 1: Gather Context
 
----
-
-## Inputs you should gather first (to avoid wrong refactors)
+Before refactoring, gather:
 
 1. **Java version** (8/11/17/21+) and constraints (Android? server?).
 2. **Frameworks** involved (Spring, Jakarta EE, Quarkus, Micronaut, etc.).
@@ -36,182 +43,95 @@ Use this skill when you need to:
 
 If any of these are unknown, refactor more conservatively (internal-only changes, add tests first).
 
----
+### Step 2: Detect Smells
 
-## Refactoring safety rules (Java)
+Scan target code against the smell catalog.
 
-1. **Preserve behavior**: refactoring != rewriting. Keep functionality identical unless explicitly told otherwise.
-2. **Make changes in small, reversible steps**:
-   - One smell/one concept per commit.
-   - Keep compilation green after each step.
-3. **Add characterization tests** before deep changes:
-   - Capture current behavior (even if it's weird).
-4. **Prefer IDE refactorings** (move/rename/extract) to avoid missed references.
-5. **Avoid mixed concerns during refactor**:
-   - Don't "improve style" and "change logic" in the same diff.
-6. **Measure impact** in hotspots:
-   - Improve the areas that change most often (or cause most bugs) first.
+- Full catalog: `references/code-smells-catalog.md`
+- Augment with IDE inspections and static analysis (SonarLint, Checkstyle, PMD, SpotBugs)
 
----
+Name each smell, cite evidence, note risk level.
 
-## SOLID principles in Java (what to do, what to avoid)
+### Step 3: Map Smells to SOLID Violations
 
-SOLID is not a checklist to "implement." It's a set of heuristics for minimizing the cost of change.
+| Principle | Signal | Primary Tactic |
+|---|---|---|
+| **SRP** | God classes, many unrelated methods, constant churn | Split by use case; extract collaborators |
+| **OCP** | switch/if ladders on type, repeated conditionals | Polymorphism (Strategy/State/Command) |
+| **LSP** | Subclasses throw UnsupportedOperationException | Composition over inheritance |
+| **ISP** | Fat interfaces, no-op implementations, testing pain | Role-based interfaces |
+| **DIP** | `new` everywhere, hard-to-test code, deep framework coupling | Depend on interfaces; constructor injection |
 
-### S — Single Responsibility Principle (SRP)
+Full SOLID with Java code examples: `references/solid-principles.md`
 
-**Idea:** A class/module should have one primary reason to change.
-**Signals of SRP violations:** "God classes", many unrelated methods, lots of feature flags, constant churn.
+### Step 4: Plan Micro-Steps
 
-**Java tactics**
-- Split responsibilities by **use case** / **feature** rather than by "technical layer only".
-- Extract cohesive collaborators (e.g., `Validator`, `Mapper`, `Policy`, `Calculator`, `Repository`).
-- Prefer immutable data where possible (records/value objects) to simplify reasoning.
+- Pick the refactoring target: prefer code that changes often, breaks often, or blocks new features.
+- Stabilize with tests: add characterization tests if needed.
+- Choose the smallest sequence of safe refactorings.
 
-```java
-// BEFORE: OrderService does everything.
-class OrderService {
-  void placeOrder(OrderRequest req) { /* validate + price + persist + notify */ }
-}
+### Step 5: Apply Refactorings
 
-// AFTER: Responsibilities split.
-class OrderPlacer {
-  private final OrderValidator validator;
-  private final PricingService pricing;
-  private final OrderRepository repo;
-  private final NotificationService notifications;
+- Keep compilation green; run tests frequently.
+- Re-evaluate SOLID after each change: responsibilities, extension points, substitutability, interface size, dependency direction.
 
-  void placeOrder(OrderRequest req) { /* orchestration only */ }
-}
-```
+### Step 6: Verify and Report
 
-### O — Open/Closed Principle (OCP)
+- Remove dead code, simplify names, update docs where they explain *why*.
+- Confirm no behavior change unless requested; tests cover main flows.
+- Check: reduced complexity in hotspots, clearer responsibilities, no new "god objects", public API changes justified, dependencies flow inward, naming communicates intent.
 
-**Idea:** You can add new behavior by extension (new classes/strategies), without editing lots of existing logic.
+## Output Contract
 
-**Signals:** `switch/if` ladders on "type", repeated conditionals, frequent edits in central dispatcher classes.
+1. **Smells found** — name, evidence, risk, SOLID mapping
+2. **Refactor plan** — ordered micro-steps with verification checkpoints
+3. **Changes** — code with explanation of why each change improves design
+4. **Verification** — exact commands and what success looks like
+5. **Follow-ups** — deferred improvements (optional)
 
-**Java tactics**
-- Replace type switches with **polymorphism** (Strategy/State/Command).
-- Use **enums with behavior** or **sealed hierarchies** for controlled extension.
-- Prefer composition over inheritance for variation points.
+## Smell Navigation
 
-```java
-interface DiscountPolicy { BigDecimal discount(Order o); }
+- Code smells catalog (all categories): `references/code-smells-catalog.md`
+- SOLID principles with Java examples: `references/solid-principles.md`
 
-final class VipDiscount implements DiscountPolicy { /* ... */ }
-final class RegularDiscount implements DiscountPolicy { /* ... */ }
-```
+## Examples
 
-### L — Liskov Substitution Principle (LSP)
+### Example 1: Full code review
+User: "Review this Java service for code smells."
+Action: Gather context, scan catalog, map to SOLID, produce ordered refactoring plan
+with before/after code.
 
-**Idea:** If `B` is a subtype of `A`, you can use `B` anywhere you use `A` without breaking correctness.
+### Example 2: Targeted smell fix
+User: "This OrderService is 800 lines. Help me break it up."
+Action: Diagnose Large Class / SRP violation, identify seams, extract collaborators
+in small commits, verify tests after each.
 
-**Signals:** subclasses that throw `UnsupportedOperationException`, violate invariants, or require special casing.
+### Example 3: Testability improvement
+User: "I can't unit test this PaymentProcessor."
+Action: Diagnose DIP violation, introduce interfaces at boundaries, constructor injection,
+demonstrate test with mock.
 
-**Java tactics**
-- Don't use inheritance just for code reuse; use it for **true substitutability**.
-- Use smaller interfaces, composition, and delegation when behavior diverges.
-- Document behavioral contracts (pre/postconditions) and keep them consistent.
+## Troubleshooting
 
-### I — Interface Segregation Principle (ISP)
+### "This class is too big"
+Identify seams: validation, persistence, notification, mapping, domain logic.
+Extract SRP order: value objects, then collaborators, then orchestrator.
 
-**Idea:** Clients shouldn't depend on methods they don't use.
+### "Adding a feature requires changes everywhere"
+Diagnose Shotgun Surgery / tight coupling. Consolidate behavior near data/policy.
 
-**Signals:** "fat" interfaces, many no-op methods in implementations, testing pain, frequent breaking changes.
+### "I can't test this code"
+Identify concrete dependencies. Apply DIP: interfaces at boundaries, constructor injection.
 
-**Java tactics**
-- Split interfaces into **role-based** interfaces.
-- Avoid "one interface for all use cases"; create focused ports.
-- Prefer `default` methods only when they truly reduce duplication without bloating clients.
+## Trigger Test Suite
 
-```java
-interface Reader { String read(); }
-interface Writer { void write(String s); }
-// instead of one huge ReadWriteManageEverything interface
-```
+Should trigger:
+- "Review this Java code for code smells"
+- "Refactor this Java class, it's too large"
+- "Find SOLID violations in my Java code"
+- "Create a refactoring plan"
 
-### D — Dependency Inversion Principle (DIP)
-
-**Idea:** High-level policy depends on abstractions, not details. Details depend on abstractions.
-
-**Signals:** business logic instantiates concrete implementations (`new` everywhere), hard-to-test code, deep framework coupling.
-
-**Java tactics**
-- Depend on interfaces (ports) and inject implementations (adapters).
-- Use constructor injection for mandatory dependencies.
-- Keep infrastructure (HTTP, DB, filesystem) at the edges.
-
-```java
-interface PaymentGateway { Receipt charge(Money amount); }
-
-class CheckoutService {
-  private final PaymentGateway gateway;
-  CheckoutService(PaymentGateway gateway) { this.gateway = gateway; }
-}
-```
-
----
-
-## Smell → SOLID "common links" (quick mapping)
-
-| Smell | Often relates to |
-|---|---|
-| Long Method, Large Class, Divergent Change | **SRP** |
-| Switch Statements, Duplicate Code (case logic), Type Codes | **OCP** |
-| Refused Bequest, "special-cased" subclasses | **LSP** |
-| Fat APIs, Alternative Classes w/ Different Interfaces | **ISP** |
-| Message Chains, Inappropriate Intimacy, Shotgun Surgery | **DIP/decoupling** |
-| Primitive Obsession, Data Clumps | SRP + design clarity (better domain model) |
-
----
-
-## Code smells catalog
-
-For the complete catalog of all code smells (Bloaters, Object-Orientation Abusers, Change Preventers, Dispensables, Couplers, and other smells) with detection signals, costs, fix strategies, and ignore-when guidance, see [reference.md](reference.md).
-
----
-
-## Refactoring workflow (recommended)
-
-1. **Pick the refactoring target**
-   - Prefer code that changes often, breaks often, or blocks new features.
-2. **Stabilize with tests**
-   - Add characterization tests if needed.
-3. **Detect smells**
-   - Use IDE inspections + static analysis (SonarLint/SonarQube, Checkstyle, PMD, SpotBugs).
-4. **Plan micro-steps**
-   - Choose the smallest sequence of safe refactorings.
-5. **Apply refactorings**
-   - Keep compilation green; run tests frequently.
-6. **Re-check design**
-   - Re-evaluate SOLID: responsibilities, extension points, substitutability, interface size, dependency direction.
-7. **Finalize**
-   - Remove dead code, simplify names, update docs where they explain *why*.
-
----
-
-## Code review checklist (Java)
-
-- [ ] No behavior change unless requested; tests cover main flows.
-- [ ] Reduced cyclomatic complexity in hotspot methods.
-- [ ] Responsibilities are clearer and boundaries are explicit.
-- [ ] No new "god objects" created in the process.
-- [ ] Public API changes are justified and documented.
-- [ ] Dependencies flow inward (domain/policy doesn't import infrastructure).
-- [ ] Naming communicates intent; comments explain *why*, not *what*.
-
----
-
-## Prompt template (if you use an LLM with this skill)
-
-When asking for help, include:
-- Java version + framework + constraints
-- A code snippet or file(s)
-- What you want: "refactor only" vs "refactor + behavior change"
-- Any API that must remain stable
-
-Example request:
-
-> Analyze this Java code for Refactoring.Guru code smells and SOLID violations.
-> List smells with evidence (methods/classes), propose a step-by-step refactor plan (small commits), and show the final refactored code with notes on why each change improves SRP/OCP/LSP/ISP/DIP.
+Should NOT trigger:
+- "Write a SQL migration"
+- "Refactor this TypeScript component"
+- "Help me with Python code"
