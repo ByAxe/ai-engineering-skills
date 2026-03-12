@@ -55,6 +55,36 @@ skills/
         └── java-21-best-practices.md
 ```
 
+## Updating
+
+Re-run the install command to pull the latest version:
+
+```bash
+npx skills add ByAxe/ai-engineering-skills
+```
+
+To update a single skill:
+
+```bash
+npx skills add ByAxe/ai-engineering-skills --skill java-refactoring
+```
+
+### Manual update
+
+If you installed skills by copying files directly, sync from the repo:
+
+```bash
+git clone https://github.com/ByAxe/ai-engineering-skills.git /tmp/ai-skills
+
+# Claude Code (~/.claude/skills/)
+cp -r /tmp/ai-skills/skills/* ~/.claude/skills/
+
+# Codex (~/.codex/skills/)
+cp -r /tmp/ai-skills/skills/* ~/.codex/skills/
+
+rm -rf /tmp/ai-skills
+```
+
 ## Usage
 
 Skills activate automatically based on conversation context. You can also invoke them explicitly:
