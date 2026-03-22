@@ -28,6 +28,7 @@ npx skills add ByAxe/ai-engineering-skills --skill reflect
 | **frontend-typescript-code-smells** | Identifies and refactors frontend TypeScript code smells in React, Angular, Vue, or vanilla TS. Covers re-renders, effect bugs, unsafe `any`, state/data flow, component boundaries, and type strengthening. |
 | **java-refactoring** | Review Java code for maintainability issues, code smells, and SOLID violations. Creates behavior-preserving refactoring plans. |
 | **java-21-refactor-assessor** | Assesses and refactors Java 21 codebases into idiomatic, maintainable Java. Removes Pythonic anti-patterns, improves architecture, concurrency, testing, and error handling. |
+| **figma-to-flutter** | Converts Figma designs to pixel-perfect Flutter code using figma-console-mcp. Extracts design metadata, exports assets, implements UI, and iteratively validates. Requires figma-console-mcp server. |
 
 ## Structure
 
@@ -49,10 +50,17 @@ skills/
 │   └── references/
 │       ├── code-smells-catalog.md
 │       └── solid-principles.md
-└── java-21-refactor-assessor/
+├── java-21-refactor-assessor/
+│   ├── SKILL.md
+│   └── references/
+│       └── java-21-best-practices.md
+└── figma-to-flutter/
     ├── SKILL.md
     └── references/
-        └── java-21-best-practices.md
+        ├── figma-mcp-tools.md
+        ├── flutter-implementation.md
+        ├── testing-comparison.md
+        └── troubleshooting.md
 ```
 
 ## Updating
@@ -92,6 +100,7 @@ Skills activate automatically based on conversation context. You can also invoke
 - `/reflect` - Run reflection analysis on the current conversation
 - Ask Claude to "review this TypeScript for code smells"
 - Ask Claude to "refactor this Java code"
+- Ask Claude to "convert this Figma design to Flutter" or "/figma-to-flutter"
 
 ## License
 
