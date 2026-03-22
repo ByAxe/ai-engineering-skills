@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature Demo Recorder"
+  short_description: "Record, trim, and publish feature demos"
+  default_prompt: "Use $feature-demo-recorder to capture a short demo of the completed feature and attach it to the GitHub PR."
