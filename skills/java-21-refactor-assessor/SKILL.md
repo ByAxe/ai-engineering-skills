@@ -5,12 +5,11 @@ description: Assesses and refactors Java 21 codebases into idiomatic, maintainab
   "refactor Python-to-Java port", "remove Pythonic anti-patterns", or "improve Java
   architecture". Do not use for pure Python-only repositories or projects not written in Java.
 license: MIT
-compatibility: Java 21 projects using Maven or Gradle. Works best with repository access
-  and ability to run build/test commands.
 metadata:
   author: ByAxe
   version: 2.0.0
   category: software-development
+  environment: Java 21 projects using Maven or Gradle. Works best with repository access and ability to run build/test commands.
   tags: [java, java-21, refactoring, assessment, python-to-java, virtual-threads,
          concurrency, architecture]
 ---

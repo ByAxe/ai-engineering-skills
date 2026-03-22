@@ -2,11 +2,11 @@
 name: frontend-typescript-code-smells
 description: Identifies and refactors frontend TypeScript code smells in React, Angular, Vue, or vanilla TS. Use when the user asks to clean up or refactor UI code, reduce re-renders, fix effect or subscription bugs, remove unsafe any usage, untangle state and data flow, improve component boundaries, or strengthen TypeScript types without changing behavior.
 license: MIT
-compatibility: Frontend TypeScript projects using TS or TSX. Works best with repository access and ability to run npm scripts for lint, typecheck, test, and build.
 metadata:
   author: ByAxe
   version: 1.0.0
   category: software-development
+  environment: Frontend TypeScript projects using TS or TSX. Works best with repository access and ability to run npm scripts for lint, typecheck, test, and build.
   tags:
     - typescript
     - frontend
@@ -189,4 +189,3 @@ These should not trigger:
 - "Help me with backend Java code"
 - "Summarize this article"
 - "Plan a vacation itinerary"
-

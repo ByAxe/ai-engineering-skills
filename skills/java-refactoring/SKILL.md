@@ -5,13 +5,11 @@ description: Review Java code for maintainability issues, code smells, and SOLID
   SOLID violations", "improve testability", "reduce coupling", or "create a refactoring plan".
   Do not use for TypeScript, Python, or non-Java languages.
 license: MIT
-compatibility: Java projects (8+). Works best with repository access and ability to run
-  build/test commands (Maven, Gradle). Framework-aware for Spring, Jakarta EE, Quarkus,
-  Micronaut.
 metadata:
   author: ByAxe
   version: 2.0.0
   category: software-development
+  environment: Java projects (8+). Works best with repository access and ability to run build/test commands (Maven, Gradle). Framework-aware for Spring, Jakarta EE, Quarkus, Micronaut.
   tags: [java, refactoring, code-smells, solid, maintainability, testability]
 ---
 

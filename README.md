@@ -20,6 +20,22 @@ Install a specific skill:
 npx skills add ByAxe/ai-engineering-skills --skill reflect
 ```
 
+## Validation
+
+This repo includes a repo-managed pre-commit hook that validates all skills with the same quick checks used from `skill-creator`.
+
+Enable the hook path once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Run the validator manually:
+
+```bash
+./scripts/run_skill_validation.sh
+```
+
 ## Skills
 
 | Skill | Description |
