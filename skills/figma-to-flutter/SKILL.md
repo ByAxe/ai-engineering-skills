@@ -4,7 +4,7 @@ description: Converts Figma designs to pixel-perfect Flutter code using figma-co
 license: MIT
 metadata:
   author: ByAxe
-  version: 2.0.1
+  version: 2.1.0
   mcp-server: figma-console
   category: workflow
   tags: [figma, flutter, design-to-code, ui-implementation, mcp, pixel-perfect]
@@ -18,6 +18,7 @@ Convert Figma designs into pixel-perfect Flutter code via figma-console-mcp. Ext
 
 - CRITICAL: Verify figma-console-mcp connection before starting any workflow
 - Always use `figma_get_status` first to confirm Figma Desktop is connected and the correct file is open
+- For pixel-perfect visual work, prefer plugin-backed/Desktop Bridge tools even when REST-backed Figma calls are available
 - If Desktop Bridge is connected but REST-backed Figma calls return `403 Token expired`, keep going with plugin-backed/live Desktop tools instead of treating MCP as unavailable
 - In that case, use `figma_list_open_files`, `figma_navigate`, `figma_get_selection`, `figma_capture_screenshot`, and `figma_execute` to continue the workflow
 - Only ask the user to reconnect the plugin if `figma_get_status` actually shows disconnected
@@ -56,8 +57,9 @@ Run these figma-console-mcp calls to gather all design information. Execute inde
 - Call `figma_get_selection` to confirm the correct node is selected
 
 **2b. Capture design screenshot (visual reference):**
-- Call `figma_take_screenshot` with `scale: 2` for high quality
-- Save the returned image URL to `.ui-workspace/$FEATURE/figma_screenshots/`
+- Prefer `figma_capture_screenshot` for the exact live Desktop/plugin state of the selected node
+- Use `figma_take_screenshot` only when you explicitly need the REST-backed image path
+- Save the returned screenshot to `.ui-workspace/$FEATURE/figma_screenshots/`
 
 **2c. Extract design data (run in parallel):**
 - Call `figma_get_file_data` to get the full node tree with layout, constraints, and hierarchy
@@ -73,6 +75,10 @@ Run these figma-console-mcp calls to gather all design information. Execute inde
 - Call `figma_get_variables` to get design tokens (colors, spacing, typography scales)
 - Call `figma_get_token_values` for resolved token values across modes (light/dark)
 
+**2f. For visual parity disputes, extract exact node geometry from the Desktop Bridge:**
+- Use `figma_execute` to inspect the target node and capture the frame sizes/positions actually used in Figma
+- When there is disagreement between existing app goldens and the live Figma frame, treat the live Desktop Bridge node as authoritative
+
 Save all extracted data to `.ui-workspace/$FEATURE/design_data/` as JSON for reference.
 
 ### Step 3: Implement Flutter UI
@@ -87,6 +93,8 @@ Save all extracted data to `.ui-workspace/$FEATURE/design_data/` as JSON for ref
 - Copy exported images to the app's asset directory following existing conventions
 - Update `pubspec.yaml` asset declarations
 - Maintain an asset mapping in `.ui-workspace/$FEATURE/design_data/asset_mapping.json`
+- If a composite illustration/background must remain pixel-perfect while text/chips stay dynamic in Flutter, use `figma_execute` to clone the node, remove the dynamic text layers, and export only the visual background/art
+- Prefer that clone/remove/export path over stacking compensating transforms in Flutter when the direct vector/layout translation produces clipping or framing errors
 
 **3c. Implement the Flutter code:**
 - Use extracted data as reference for exact values:
@@ -122,6 +130,12 @@ adb shell screencap -p > .ui-workspace/$FEATURE/app_screenshots/ss_$(date +%Y-%m
 **4d. Create golden tests:**
 - Write golden tests matching Figma design dimensions
 - Consult `references/testing-comparison.md` for golden test patterns and device sizes
+- For disputed visuals, use a failure-first loop:
+  1. update/add the golden target to the correct Figma-backed appearance
+  2. confirm the current implementation fails
+  3. fix the widget
+  4. rerun until the new golden passes
+- Do not preserve goldens that merely approve the current broken layout
 
 ### Step 5: Iterate Until Pixel-Perfect
 
@@ -146,6 +160,16 @@ Consult `references/testing-comparison.md` for the detailed comparison checklist
 - Verify the correct file with `figma_list_open_files`
 - Continue using plugin-backed/live Desktop tools such as `figma_capture_screenshot`, `figma_execute`, `figma_navigate`, and `figma_get_selection`
 - Ask the user to reconnect the plugin only if the Desktop Bridge itself is disconnected
+
+### Existing goldens or PR demos disagree with live Figma
+- Do not assume the app-side golden is correct just because it passes
+- Capture the live node with `figma_capture_screenshot` and use that as the comparison source
+- Replace the golden target first, make the implementation fail, then fix the widget until the Figma-backed golden passes
+
+### Direct asset export produces the wrong crop or framing
+- Use `figma_execute` to clone the source node, delete the text/content layers that should stay dynamic in Flutter, and export only the visual background/art
+- Use the exported background as the Flutter asset and keep the localized text/chips in Flutter layout
+- This is preferable to piling on ad hoc translation/scale constants when the composition itself is what should be rasterized
 
 ### Wrong file connected
 - Call `figma_list_open_files` to see all connected files
