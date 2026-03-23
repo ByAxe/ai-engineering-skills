@@ -42,6 +42,16 @@
 3. Call `figma_reconnect` from Claude
 4. Verify with `figma_get_status`
 
+### Bridge is connected, but REST-backed Figma calls fail with `403 Token expired`
+
+**Cause:** The Desktop/WebSocket bridge is healthy, but the REST token used by some Figma API calls has expired.
+
+**Solution:**
+1. Verify the bridge is actually connected with `figma_get_status`
+2. Confirm the correct file with `figma_list_open_files`
+3. Continue using plugin-backed/live Desktop tools such as `figma_capture_screenshot`, `figma_execute`, `figma_navigate`, and `figma_get_selection`
+4. Only ask the user to reconnect the plugin if `figma_get_status` shows disconnected
+
 ## Data Extraction Issues
 
 ### figma_get_file_data returns empty or partial data

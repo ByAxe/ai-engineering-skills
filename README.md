@@ -44,7 +44,7 @@ Run the validator manually:
 | **frontend-typescript-code-smells** | Identifies and refactors frontend TypeScript code smells in React, Angular, Vue, or vanilla TS. Covers re-renders, effect bugs, unsafe `any`, state/data flow, component boundaries, and type strengthening. |
 | **java-refactoring** | Review Java code for maintainability issues, code smells, and SOLID violations. Creates behavior-preserving refactoring plans. |
 | **java-21-refactor-assessor** | Assesses and refactors Java 21 codebases into idiomatic, maintainable Java. Removes Pythonic anti-patterns, improves architecture, concurrency, testing, and error handling. |
-| **figma-to-flutter** | Converts Figma designs to pixel-perfect Flutter code using figma-console-mcp. Extracts design metadata, exports assets, implements UI, and iteratively validates. Requires figma-console-mcp server. |
+| **figma-to-flutter** | Converts Figma designs to pixel-perfect Flutter code using figma-console-mcp. Extracts design metadata, exports assets, implements UI, and iteratively validates. Uses live Desktop Bridge tools when REST-backed Figma calls hit `403 Token expired`. |
 | **feature-demo-recorder** | Records, trims, and publishes a short reviewer-facing demo of a completed feature. Produces GIF/MP4 assets, uploads them to GitHub, updates the PR `## Demo` section, and cleans local scratch artifacts. |
 
 ## Structure

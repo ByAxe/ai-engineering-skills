@@ -4,7 +4,7 @@ description: Converts Figma designs to pixel-perfect Flutter code using figma-co
 license: MIT
 metadata:
   author: ByAxe
-  version: 2.0.0
+  version: 2.0.1
   mcp-server: figma-console
   category: workflow
   tags: [figma, flutter, design-to-code, ui-implementation, mcp, pixel-perfect]
@@ -18,6 +18,9 @@ Convert Figma designs into pixel-perfect Flutter code via figma-console-mcp. Ext
 
 - CRITICAL: Verify figma-console-mcp connection before starting any workflow
 - Always use `figma_get_status` first to confirm Figma Desktop is connected and the correct file is open
+- If Desktop Bridge is connected but REST-backed Figma calls return `403 Token expired`, keep going with plugin-backed/live Desktop tools instead of treating MCP as unavailable
+- In that case, use `figma_list_open_files`, `figma_navigate`, `figma_get_selection`, `figma_capture_screenshot`, and `figma_execute` to continue the workflow
+- Only ask the user to reconnect the plugin if `figma_get_status` actually shows disconnected
 - Never copy generated/reference code directly into production — use it for values only (colors, sizes, spacing)
 - Write Flutter code following the app's existing conventions
 - Test incrementally, not at the end
@@ -28,6 +31,7 @@ Convert Figma designs into pixel-perfect Flutter code via figma-console-mcp. Ext
 
 1. Check figma-console-mcp connection:
    - Call `figma_get_status` — must show `Connected` status and correct file name
+   - If the bridge is connected but REST tools fail with `403 Token expired`, note the token expiry and continue on the plugin-backed path
    - If not connected, ask user to open the Figma file and run the Figma Console MCP plugin
    - If connection fails, consult `references/troubleshooting.md`
 
@@ -136,6 +140,12 @@ Consult `references/testing-comparison.md` for the detailed comparison checklist
 2. Ensure the Figma Console MCP plugin is running (green "MCP ready" indicator)
 3. Call `figma_reconnect` to re-establish connection
 4. See `references/troubleshooting.md` for detailed diagnostics
+
+### REST-backed Figma calls fail with `403 Token expired`
+- This does **not** mean figma-console-mcp is unavailable if `figma_get_status` is still connected
+- Verify the correct file with `figma_list_open_files`
+- Continue using plugin-backed/live Desktop tools such as `figma_capture_screenshot`, `figma_execute`, `figma_navigate`, and `figma_get_selection`
+- Ask the user to reconnect the plugin only if the Desktop Bridge itself is disconnected
 
 ### Wrong file connected
 - Call `figma_list_open_files` to see all connected files
