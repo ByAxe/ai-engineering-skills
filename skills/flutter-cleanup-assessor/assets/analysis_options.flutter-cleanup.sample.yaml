@@ -1,0 +1,20 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "build/**"
+
+linter:
+  rules:
+    # Add project-specific Dart lints here if needed.
+    # Keep the list small and intentional.
+
+bloc:
+  rules:
+    # Enable bloc rules when bloc/cubit is central to the project.
+    - avoid_flutter_imports
+    - avoid_public_bloc_methods
+    - prefer_void_public_cubit_methods
+    - prefer_file_naming_conventions

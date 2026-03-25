@@ -45,6 +45,7 @@ Run the validator manually:
 | **java-refactoring** | Review Java code for maintainability issues, code smells, and SOLID violations. Creates behavior-preserving refactoring plans. |
 | **java-21-refactor-assessor** | Assesses and refactors Java 21 codebases into idiomatic, maintainable Java. Removes Pythonic anti-patterns, improves architecture, concurrency, testing, and error handling. |
 | **figma-to-flutter** | Converts Figma designs to pixel-perfect Flutter code using figma-console-mcp. Extracts design metadata, exports assets, implements UI, and iteratively validates. Uses live Desktop Bridge tools when REST-backed Figma calls hit `403 Token expired`. |
+| **flutter-cleanup-assessor** | Assesses and refactors Flutter/Dart codebases into idiomatic, maintainable Flutter. Covers bloc/cubit, clean architecture, rebuilds, layering, testing, accessibility, localization, and package hygiene. |
 | **feature-demo-recorder** | Records, trims, and publishes a short reviewer-facing demo of a completed feature. Produces GIF/MP4 assets, uploads them to GitHub, updates the PR `## Demo` section, and cleans local scratch artifacts. |
 
 ## Structure
@@ -71,6 +72,10 @@ skills/
 │   ├── SKILL.md
 │   └── references/
 │       └── java-21-best-practices.md
+├── flutter-cleanup-assessor/
+│   ├── SKILL.md
+│   ├── references/    (15 reference files)
+│   └── assets/        (assessment template, analysis_options sample)
 ├── feature-demo-recorder/
 │   ├── SKILL.md
 │   ├── agents/
@@ -127,6 +132,7 @@ Skills activate automatically based on conversation context. You can also invoke
 - Ask Claude to "review this TypeScript for code smells"
 - Ask Claude to "refactor this Java code"
 - Ask Claude or Codex to "record a short feature demo and attach it to the PR"
+- Ask Claude to "clean up this Flutter code" or "assess this Flutter codebase for smells"
 - Ask Claude to "convert this Figma design to Flutter" or "/figma-to-flutter"
 
 ## License
