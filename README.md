@@ -58,6 +58,12 @@ Run the validator manually:
 | **java-refactoring** | Review Java code for maintainability issues, code smells, and SOLID violations. Creates behavior-preserving refactoring plans. |
 | **java-21-refactor-assessor** | Assesses and refactors Java 21 codebases into idiomatic, maintainable Java. Removes Pythonic anti-patterns, improves architecture, concurrency, testing, and error handling. |
 
+### Kotlin / JVM
+
+| Skill | Description |
+|---|---|
+| **quarkus-kotlin-cleanup-assessor** | Assesses and refactors Kotlin server-side Quarkus codebases into idiomatic, maintainable Quarkus and Kotlin. Covers CDI, REST, config, Panache, coroutines, virtual threads, testing, security, observability, native-readiness, and Spring-to-Quarkus migration. |
+
 ### General
 
 | Skill | Description |
@@ -100,6 +106,12 @@ skills/
 │   ├── SKILL.md
 │   └── references/
 │       └── java-21-best-practices.md
+│
+│ # Kotlin / JVM
+├── quarkus-kotlin-cleanup-assessor/
+│   ├── SKILL.md
+│   ├── references/    (18 reference files)
+│   └── assets/        (assessment template, detekt config, editorconfig samples)
 │
 │ # General
 ├── reflect/
@@ -156,6 +168,7 @@ Skills activate automatically based on conversation context. You can also invoke
 - **Flutter** — "convert this Figma design to Flutter" or `/figma-to-flutter` · "clean up this Flutter code" or "assess this Flutter codebase for smells"
 - **Frontend** — "review this TypeScript for code smells"
 - **Java** — "refactor this Java code" · "modernize this Java 21 codebase"
+- **Kotlin / JVM** — "clean up this Quarkus Kotlin service" · "assess this Quarkus codebase for Spring-shaped anti-patterns"
 - **General** — `/reflect` · "record a short feature demo and attach it to the PR"
 
 ## License
