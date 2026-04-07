@@ -123,11 +123,14 @@ skills/
 ├── gastown-guru/
 │   ├── SKILL.md
 │   └── references/
-│       ├── formula-hierarchy.md
-│       ├── setup-pitfalls.md
+│       ├── agent-configuration.md
+│       ├── community-insights.md
+│       ├── concepts-glossary.md
 │       ├── convoy-orchestration.md
-│       ├── spec-to-code-pipeline.md
-│       └── community-insights.md
+│       ├── formula-hierarchy.md
+│       ├── infrastructure.md
+│       ├── setup-pitfalls.md
+│       └── spec-to-code-pipeline.md
 │
 │ # General
 ├── reflect/

@@ -135,3 +135,52 @@ gt polecat list --all     # must show no active workers
 ```
 
 Only then is it safe to run `gt doctor --fix` or modify infrastructure files.
+
+## Non-Claude Agent (Codex/Gemini) Sits at Blank Prompt
+
+### Symptom
+After `gt sling`, the polecat shows "working" but the agent (Codex/Gemini) sits at its prompt doing nothing. No work context loaded.
+
+### Cause
+Non-Claude agents don't support GT's SessionStart hooks. Without hooks, `gt prime --hook` is never called, so the agent has no idea what work is assigned.
+
+### Fix
+Install wrapper scripts and configure GT to use them:
+
+```bash
+# Install wrappers
+cd ~/gt && gt install --wrappers --force
+
+# Point the agent to the wrapper (critical step!)
+gt config agent set codex "$HOME/bin/gt-codex"
+
+# Verify
+gt config agent get codex
+# Should show: Type: custom, Command: /Users/.../bin/gt-codex
+```
+
+The wrapper calls `gt prime` before launching the agent, injecting Gas Town context.
+
+### Common Mistake
+Setting `gt config default-agent codex` without installing and configuring the wrapper. GT will launch bare `codex` which starts with zero context.
+
+## Convoy Launch Tracking Warnings
+
+### Symptom
+`gt convoy stage --launch` shows "Warning: could not track tt-xxx in convoy" for every bead. Convoy creates but tracking doesn't connect.
+
+### Cause
+Cross-prefix routing issue. The HQ beads database (prefix `hq-`) can't resolve `tt-` prefixed beads from the rig database. Often caused by stale prefix config from a removed rig.
+
+### Fix
+Check and fix the HQ database prefix:
+```bash
+cd ~/gt/.dolt-data/hq && dolt sql -q "SELECT * FROM config WHERE \`key\` = 'issue_prefix';"
+# If it shows a wrong prefix (e.g., 'dwa' from a deleted rig):
+dolt sql -q "UPDATE config SET value = 'hq' WHERE \`key\` = 'issue_prefix';"
+```
+
+If convoy auto-dispatch doesn't work, sling Wave 1 manually:
+```bash
+cd ~/gt && gt sling <wave-1-bead> <rig> --create
+```
