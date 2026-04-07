@@ -64,6 +64,12 @@ Run the validator manually:
 |---|---|
 | **quarkus-kotlin-cleanup-assessor** | Assesses and refactors Kotlin server-side Quarkus codebases into idiomatic, maintainable Quarkus and Kotlin. Covers CDI, REST, config, Panache, coroutines, virtual threads, testing, security, observability, native-readiness, and Spring-to-Quarkus migration. |
 
+### Multi-Agent Orchestration
+
+| Skill | Description |
+|---|---|
+| **gastown-guru** | Expert guide for Gas Town (gt) multi-agent orchestration — setup, rig management, formula workflows (shiny, shiny-enterprise, TDD), convoy orchestration, quality pipelines, and troubleshooting. Covers the full spec-to-code pipeline with parallel agent dispatch. |
+
 ### General
 
 | Skill | Description |
@@ -112,6 +118,16 @@ skills/
 │   ├── SKILL.md
 │   ├── references/    (18 reference files)
 │   └── assets/        (assessment template, detekt config, editorconfig samples)
+│
+│ # Multi-Agent Orchestration
+├── gastown-guru/
+│   ├── SKILL.md
+│   └── references/
+│       ├── formula-hierarchy.md
+│       ├── setup-pitfalls.md
+│       ├── convoy-orchestration.md
+│       ├── spec-to-code-pipeline.md
+│       └── community-insights.md
 │
 │ # General
 ├── reflect/
@@ -169,6 +185,7 @@ Skills activate automatically based on conversation context. You can also invoke
 - **Frontend** — "review this TypeScript for code smells"
 - **Java** — "refactor this Java code" · "modernize this Java 21 codebase"
 - **Kotlin / JVM** — "clean up this Quarkus Kotlin service" · "assess this Quarkus codebase for Spring-shaped anti-patterns"
+- **Multi-Agent** — "set up a Gas Town rig" · "launch a convoy with shiny-enterprise" · "fix gt doctor issues" · "what formula should I use?"
 - **General** — `/reflect` · "record a short feature demo and attach it to the PR"
 
 ## License
