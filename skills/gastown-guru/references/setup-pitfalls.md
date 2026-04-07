@@ -184,3 +184,77 @@ If convoy auto-dispatch doesn't work, sling Wave 1 manually:
 ```bash
 cd ~/gt && gt sling <wave-1-bead> <rig> --create
 ```
+
+## Convoy Auto-Dispatch and Mountain-Eater
+
+### Waves don't auto-dispatch after polecat completes
+
+**Symptom:** A polecat finishes its bead, calls `gt done`, goes idle, but no new work is dispatched. The next wave's beads show as ready in `gt ready` but no polecat picks them up.
+
+**Cause:** The convoy tracking didn't connect (cross-prefix routing issue) so the ConvoyManager doesn't know when to dispatch next waves. The Witness may also have stale state about which beads are hooked.
+
+**Fix — use Mountain-Eater for autonomous grinding:**
+```bash
+cd ~/gt && gt mountain <epic-id> --force
+```
+
+Mountain activates:
+- **ConvoyManager** auto-feeds subsequent waves when current ones complete
+- **Deacon** audits progress every ~10 minutes, detects stalls
+- **Witness** monitors polecat health and handles recovery
+- Skip-after-N-failures prevents infinite loops on broken beads
+
+If Mountain launch fails to sling beads that are already assigned ("bead is already being slung"), that's expected — it means polecats are already working on them.
+
+**Monitor the mountain:**
+```bash
+gt mountain status <convoy-id>
+gt polecat list --all
+```
+
+### Manual wave dispatch as fallback
+
+If Mountain-Eater can't connect tracking due to cross-prefix routing, dispatch waves manually:
+
+```bash
+# Check what's ready
+gt ready
+
+# Sling ready beads to the rig (each gets its own polecat)
+cd ~/gt && gt sling <bead-1> <rig> --create
+cd ~/gt && gt sling <bead-2> <rig> --create
+```
+
+### Rig config commands must use `gt rig config set`
+
+**Symptom:** Gate commands (test, lint, build) not picked up by polecats. Manual edits to `settings/config.json` are ignored.
+
+**Cause:** GT reads gate commands from the bead layer, not from the settings JSON file.
+
+**Fix — use the proper command:**
+```bash
+gt rig config set <rig> default_formula shiny-enterprise --global
+gt rig config set <rig> setup_command "pnpm install" --global
+gt rig config set <rig> test_command "pnpm -r run test" --global
+gt rig config set <rig> typecheck_command "pnpm -r run typecheck" --global
+gt rig config set <rig> lint_command "pnpm -r run lint" --global
+gt rig config set <rig> build_command "pnpm -r run build" --global
+
+# Verify
+gt rig config show <rig>
+```
+
+### Removing a rig leaves stale data
+
+**Symptom:** After `gt rig remove`, doctor finds broken worktrees, orphan databases, stale agent beads, and the HQ database retains the old rig's prefix.
+
+**Fix — clean up in order:**
+1. `gt rig remove <name>` — unregister from rigs.json
+2. `rm -rf ~/gt/<name>` — delete rig files
+3. Remove broken worktrees in `~/gt/deacon/dogs/*/` if they reference the deleted rig
+4. `cd ~/gt && gt doctor --fix` — clean orphan databases, stale beads, broken sessions
+5. Fix HQ prefix if needed:
+   ```bash
+   cd ~/gt/.dolt-data/hq && dolt sql -q \
+     "UPDATE config SET value = 'hq' WHERE \`key\` = 'issue_prefix';"
+   ```

@@ -82,30 +82,45 @@ gt synthesis close <convoy-id>    # close synthesis
 
 ## Mountain-Eater (Autonomous Grinding)
 
-For large epics, activate Mountain for enhanced monitoring:
+For large epics, **always use Mountain-Eater** for autonomous multi-wave grinding:
+
 ```bash
-gt mountain <epic-id>             # stage + label + launch
-gt mountain status <epic-id>      # progress
-gt mountain pause/resume <epic-id>
-gt mountain cancel <epic-id>
+gt mountain <epic-id> --force     # stage + label + launch (--force skips tracking warnings)
+gt mountain status <convoy-id>    # progress
+gt mountain pause <convoy-id>     # stop dispatching
+gt mountain resume <convoy-id>    # resume
+gt mountain cancel <convoy-id>    # remove mountain label, keep convoy
 ```
 
-Mountain adds:
-- Enhanced stall detection
-- Skip-after-N-failures
-- Active progress monitoring
-- Witness audit tracking
+Mountain activates three autonomous systems:
+- **ConvoyManager** — auto-dispatches next waves when current ones complete
+- **Deacon** — audits progress every ~10 minutes, detects stalls
+- **Witness** — monitors polecat health, handles recovery (nudge or handoff)
+- **Skip-after-N-failures** — prevents infinite retry loops on broken beads
+
+### Mountain vs Manual Convoy
+
+| Feature | `gt convoy stage --launch` | `gt mountain` |
+|---|---|---|
+| Wave 1 dispatch | Yes | Yes |
+| Auto-dispatch next waves | Only if tracking connects | Yes, via ConvoyManager |
+| Stall detection | No | Yes, via Deacon (~10 min) |
+| Failure handling | Manual | Skip-after-N-failures |
+| Health monitoring | Basic Witness | Enhanced Witness audit |
+
+**Recommendation:** Always use Mountain for multi-wave epics. Use plain convoys only for single-wave batch dispatch.
+
+### Cross-Prefix Tracking Warnings
+
+Mountain launch may show "Warning: could not track tt-xxx in convoy" for every bead. This happens when the HQ beads database (`hq-*` prefix) can't resolve rig-prefixed beads (`tt-*`). The mountain still works — the ConvoyManager dispatches based on the bead dependency graph in the rig database, not the tracking relations.
+
+If Mountain can't sling beads that are already assigned, it reports "bead is already being slung" — this is expected and harmless.
 
 ## Convoy + Formula Integration
 
-Polecats in a convoy run the formula specified at launch time or the rig's `default_formula`:
+Polecats run the rig's `default_formula`. Set it before launching:
 
 ```bash
-# All polecats use shiny-enterprise
-gt convoy stage <epic-id> --launch --formula shiny-enterprise
-```
-
-Or set the rig default:
-```bash
-gt config set rigs.my_project.default_formula shiny-enterprise
+gt rig config set my_project default_formula shiny-enterprise --global
+gt rig config show my_project    # verify
 ```
