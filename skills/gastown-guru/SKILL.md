@@ -4,7 +4,7 @@ description: Expert guide for Gas Town (gt) multi-agent orchestration — setup,
 license: MIT
 metadata:
   author: ByAxe
-  version: 1.1.0
+  version: 1.2.0
   category: software-development
   environment: Gas Town (gt) installed via Homebrew with a configured HQ workspace. Requires tmux, Dolt, and optionally one or more AI agent CLIs (Claude Code, Codex, Gemini).
   tags:
@@ -25,6 +25,8 @@ Expert guide for Gas Town (gt) — the multi-agent workspace manager that coordi
 ## Important
 
 - **Never modify GT config files while polecats are running.** Changing `.beads/redirect`, `routes.jsonl`, Dolt databases, or `rigs.json` while agents are active kills their sessions and loses all progress. Always check `gt polecat list --all` first.
+- **Verify the real HQ before any repair or dispatch.** In adopted or symlinked rigs, running `gt` inside the repo can show a stale or partial shadow town while the live Mayor/Witness/Refinery sessions actually run under `~/gt`. Compare `gt status` in the current directory with `cd ~/gt && gt status`, and perform `gt up`, `gt doctor`, `gt dolt`, `gt convoy`, `gt mountain`, and `gt sling` from the HQ that has the live tmux sessions and real Dolt data directory.
+- **Fix explicit routing before staging convoys.** In `routing.mode: explicit`, missing HQ `.beads/routes.jsonl` entries cause `no-rig`, missing tracking, and convoy/mountain staging failures even when `rigs.json` has the correct prefix.
 - GT requires expert supervision. Configure rig test commands before launching convoys.
 - Prefer `shiny-enterprise` over raw `mol-polecat-work` for production-quality code.
 - Always run `gt doctor --fix` after infrastructure changes, but only when no polecats are working.
@@ -38,10 +40,15 @@ Check for existing HQ, create if needed, verify health. See `references/setup-pi
 
 ```bash
 ls ~/gt/mayor/town.json                          # check HQ exists
+gt status                                        # current directory view
+cd ~/gt && gt status                             # HQ view (source of truth)
+cd ~/gt && gt polecat list --all                 # confirm where live sessions are
 gt install ~/gt --git --shell --wrappers          # create HQ if needed
 cd ~/gt && gt doctor                              # verify health
 cd ~/gt && gt doctor --fix                        # auto-fix (no running polecats!)
 ```
+
+If the repo path and `~/gt` disagree on Mayor/Deacon/Witness/Refinery/Dolt state, treat `~/gt` as authoritative and do lifecycle operations there.
 
 ### Step 2: Initialize a Rig
 
@@ -62,6 +69,7 @@ Initialize Dolt, install shell integration, start services. See `references/infr
 cd ~/gt && gt dolt init-rig hq && gt dolt init-rig project_name && gt dolt start
 gt shell install && source ~/.zshrc
 cd ~/gt && gt up
+cat ~/gt/.beads/routes.jsonl                     # explicit routing must map rig prefixes
 ```
 
 ### Step 4: Configure the Agent Runtime

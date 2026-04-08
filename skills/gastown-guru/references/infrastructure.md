@@ -20,6 +20,19 @@ cd ~/gt && gt up          # starts all services idempotently
 cd ~/gt && gt up --restore  # also restarts crew and pinned polecats
 ```
 
+## Verify the Real HQ First
+
+When a rig is adopted or symlinked into `~/gt`, the repo path can accumulate a stale shadow town. Before restarting services or launching work, compare both views:
+
+```bash
+gt status
+cd ~/gt && gt status
+cd ~/gt && gt polecat list --all
+cd ~/gt && gt dolt status
+```
+
+If the repo path and `~/gt` disagree, use the root that has the live tmux sessions and the real Dolt data directory as the control plane. Do not start, stop, or repair Dolt from the shadow town.
+
 ## Dolt Server Setup
 
 Dolt provides the SQL database backing all beads (work items).

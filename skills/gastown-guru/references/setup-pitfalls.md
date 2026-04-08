@@ -185,6 +185,29 @@ If convoy auto-dispatch doesn't work, sling Wave 1 manually:
 cd ~/gt && gt sling <wave-1-bead> <rig> --create
 ```
 
+### Missing `routes.jsonl` in explicit routing mode
+
+**Symptom:** `gt convoy stage` or `gt mountain` fails with errors like:
+- `bead tt-ng5 has no valid rig (prefix not mapped in routes.jsonl)`
+- `no route found for prefix "tt-"`
+
+**Cause:** The HQ `.beads/config.yaml` is set to `routing.mode: "explicit"` but the HQ `.beads/routes.jsonl` file is missing or incomplete. `rigs.json` alone is not enough for staging/tracking.
+
+**Fix:** Ensure HQ routing includes both HQ prefixes and the rig prefix:
+```bash
+cat > ~/gt/.beads/routes.jsonl <<'EOF'
+{"prefix":"hq-","path":"."}
+{"prefix":"hq-cv-","path":"."}
+{"prefix":"tt-","path":"time_tracker"}
+EOF
+```
+
+Re-run:
+```bash
+cd ~/gt && gt doctor --fix
+cd ~/gt && gt mountain --force <epic-id>
+```
+
 ## Convoy Auto-Dispatch and Mountain-Eater
 
 ### Waves don't auto-dispatch after polecat completes
@@ -225,6 +248,25 @@ cd ~/gt && gt sling <bead-1> <rig> --create
 cd ~/gt && gt sling <bead-2> <rig> --create
 ```
 
+### Epic looks related but `gt mountain` says "no slingable tasks in DAG"
+
+**Symptom:** `gt mountain <epic-id>` reports `no slingable tasks in DAG` even though the follow-on tasks clearly belong to the epic.
+
+**Cause:** The tasks were linked to the epic as normal blocking dependencies or malformed `parent` edges instead of GT's expected parent-child relation. This makes the epic appear empty to staging even when the tasks exist.
+
+**Fix:** Convert the epic links into proper parent-child edges:
+```bash
+cd ~/gt/<rig>
+bd dep remove <task-id> <epic-id>
+bd update <task-id> --parent <epic-id>
+bd children <epic-id>      # verify tasks appear under the epic
+```
+
+Then retry:
+```bash
+cd ~/gt && gt mountain --force <epic-id>
+```
+
 ### Rig config commands must use `gt rig config set`
 
 **Symptom:** Gate commands (test, lint, build) not picked up by polecats. Manual edits to `settings/config.json` are ignored.
@@ -258,3 +300,31 @@ gt rig config show <rig>
    cd ~/gt/.dolt-data/hq && dolt sql -q \
      "UPDATE config SET value = 'hq' WHERE \`key\` = 'issue_prefix';"
    ```
+
+## Shadow Town vs Real HQ
+
+### Symptom
+Commands run from the project repo show a town that looks plausible, but the live UI, tmux sessions, polecats, or Dolt server are actually elsewhere. You may see:
+- one town root reporting no sessions while another has active Mayor/Witness/Refinery sessions
+- recovery work performed in the repo path not affecting the real running town
+- local convoys or mountains that do not exist in the actual HQ
+
+### Cause
+The rig was adopted or symlinked into `~/gt`, and the repo path accumulated a shadow runtime or stale town metadata. GT commands then operate on the wrong root.
+
+### Fix
+Always compare the current directory with the HQ:
+```bash
+gt status
+cd ~/gt && gt status
+cd ~/gt && gt polecat list --all
+cd ~/gt && gt dolt status
+```
+
+Use the root that has the live tmux sessions and real Dolt data directory as the control plane. Perform all lifecycle operations there:
+- `gt up`
+- `gt doctor --fix`
+- `gt dolt start|stop|restart`
+- `gt convoy ...`
+- `gt mountain ...`
+- `gt sling ...`
