@@ -94,6 +94,7 @@ gt sling <bead> <rig> --agent claude    # use claude for this specific task
 - Full hook support — context injected automatically on session start
 - Best GT integration, no wrapper needed
 - Supports `gt tap` hook handlers for signal processing
+- **Must be used for infrastructure agents** (Mayor, Deacon, Witness, Refinery) — these need hooks for patrol molecules
 
 ### Codex (OpenAI)
 - No hook support — requires `gt-codex` wrapper
@@ -101,7 +102,13 @@ gt sling <bead> <rig> --agent claude    # use claude for this specific task
 - Context window and model shown in status line
 - MCP server configuration via `~/.codex/config.toml`
 - Some MCP servers may fail to start (e.g., android-emulator) — non-blocking
+- **Rate limit risk**: GPT-5.4 can hit "model at capacity" during heavy usage. Codex CLI does NOT auto-retry — the polecat sits at the prompt doing nothing. Fix: unsling and re-sling with `--agent claude`, or wait and send a message to the tmux pane.
+- **Do NOT use for infrastructure agents** — Codex gets stuck at trust prompts, doesn't load patrol context, breaks the Mountain-Eater audit loop
 
 ### Gemini
 - No hook support — requires wrapper
 - Similar wrapper pattern to Codex
+- Same infrastructure agent caveat as Codex
+
+### Recommended Split
+Use **Claude Code for infrastructure** (Mayor, Deacon, Witness, Refinery) and **Codex/Gemini for worker polecats**. This gives you hooks where they're critical and choice of model for the actual coding work. If Codex hits rate limits, fall back to Claude for workers too.
