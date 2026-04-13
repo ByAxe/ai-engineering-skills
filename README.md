@@ -45,6 +45,12 @@ Run the validator manually:
 | **figma-to-flutter** | Converts Figma designs to pixel-perfect Flutter code using figma-console-mcp. Extracts design metadata, exports assets, implements UI, and iteratively validates. Uses live Desktop Bridge tools when REST-backed Figma calls hit `403 Token expired`. |
 | **flutter-cleanup-assessor** | Assesses and refactors Flutter/Dart codebases into idiomatic, maintainable Flutter. Covers bloc/cubit, clean architecture, rebuilds, layering, testing, accessibility, localization, and package hygiene. |
 
+### Go
+
+| Skill | Description |
+|---|---|
+| **go-code-smells** | Identifies and refactors Go code smells in libraries, services, CLIs, and modules. Covers package/API design, interfaces, errors, context, goroutines, channels, testing, and performance. |
+
 ### Frontend
 
 | Skill | Description |
@@ -94,6 +100,13 @@ skills/
 │   ├── SKILL.md
 │   ├── references/    (15 reference files)
 │   └── assets/        (assessment template, analysis_options sample)
+│
+│ # Go
+├── go-code-smells/
+│   ├── SKILL.md
+│   ├── references/    (16 reference files)
+│   ├── scripts/       (quality gates, profiling)
+│   └── assets/        (code review + refactor report templates)
 │
 │ # Frontend
 ├── frontend-typescript-code-smells/
@@ -185,6 +198,7 @@ rm -rf /tmp/ai-skills
 Skills activate automatically based on conversation context. You can also invoke them explicitly:
 
 - **Flutter** — "convert this Figma design to Flutter" or `/figma-to-flutter` · "clean up this Flutter code" or "assess this Flutter codebase for smells"
+- **Go** — "find code smells in this Go package" · "refactor this Go service" · "fix context misuse or goroutine leaks"
 - **Frontend** — "review this TypeScript for code smells"
 - **Java** — "refactor this Java code" · "modernize this Java 21 codebase"
 - **Kotlin / JVM** — "clean up this Quarkus Kotlin service" · "assess this Quarkus codebase for Spring-shaped anti-patterns"
