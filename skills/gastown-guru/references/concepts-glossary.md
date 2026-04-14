@@ -8,9 +8,6 @@ Top-level workspace directory (typically `~/gt/`). Contains all rigs, services, 
 ### Rig
 Project container wrapping a git repository. Each rig has its own polecats, witness, refinery, crew, and beads database. Created with `gt init` + `gt rig add`.
 
-### Crew Member
-Persistent human workspace within a rig. A full clone where you work directly. Created with `gt crew add`.
-
 ## Agents
 
 ### Mayor
@@ -28,8 +25,17 @@ Per-rig merge queue processor. Validates polecat work through quality gates and 
 ### Polecat
 Ephemeral worker agent with persistent identity. Spawned on demand for specific tasks, cleaned up after merge. Each gets its own git worktree.
 
+### Boot
+Deacon watchdog. Monitors the Deacon itself to keep the supervision chain healthy. Managed by `gt boot`.
+
 ### Daemon
 Go background process providing heartbeats (every 3 min), event routing, and service coordination.
+
+### Dog
+Reusable cross-rig infrastructure worker. Unlike polecats (ephemeral, single-rig), dogs are persistent, have worktrees into every rig, and return to idle state after completing work. Kennel at `~/gt/deacon/dogs/`. Managed by `gt dog`.
+
+### Crew Member
+Persistent human workspace within a rig. A full git clone (not a worktree) where you work directly. Named with recognizable names (dave, emma, fred). Created with `gt crew add`.
 
 ## Work Tracking
 
@@ -93,3 +99,42 @@ Step where polecat rebases onto the target branch and runs the full gate suite. 
 
 ### Stamps
 Portable reputation attestation earned on work completion. Multi-dimensional: quality, reliability, creativity, confidence levels.
+
+## Service Lifecycle
+
+### gt down
+Reversible pause — stops all services but keeps worktrees and polecat branches intact. Resume with `gt up`.
+
+### gt shutdown
+Permanent cleanup — stops services AND removes polecat worktrees/branches. Polecats with uncommitted work are skipped (protected). Use `--nuclear` to force cleanup (dangerous).
+
+### gt estop (Emergency Stop)
+Freezes all agent sessions with SIGTSTP. Mayor and overseers are exempt. Resume with `gt thaw`.
+
+### Scheduler
+Capacity-controlled dispatch system. When `scheduler.max_polecats` is set (e.g., 5), excess work is deferred and dispatched as slots become available. Default (-1) means direct dispatch with no limit.
+
+## Federation
+
+### Wasteland
+DoltHub-based federation for sharing work across Gas Towns. Join communities (`gt wl join`), post work, claim tasks, earn reputation through stamps. Each participant maintains a sovereign rig fork of the shared commons database.
+
+## Diagnostics
+
+### Feed
+Real-time TUI dashboard showing agent tree, convoy panel, and event stream. Use `gt feed -p` (problems view) to surface stuck agents via GUPP violations (hooked work + 30 minutes no progress).
+
+### Seance
+Spawns a Claude subprocess resuming a predecessor session with full context. Useful for interrogating what happened in a crashed or completed session. `gt seance --talk <session-id>`.
+
+### Audit
+Query provenance data across git commits, beads, and events. Shows unified timeline for an actor. `gt audit --actor <address> --since 1h`.
+
+### Costs
+Session cost tracking. Shows token usage and model-specific pricing. `gt costs --today --by-role --by-rig`.
+
+### Warrant
+Controlled termination for stuck/unresponsive agents. Boot picks up warrants during triage cycles. `gt warrant file <agent>`.
+
+### KRC (Key Record Chronicle)
+Manages TTL-based lifecycle for Level 0 ephemeral data (patrol heartbeats, status checks). Auto-prunes expired records.

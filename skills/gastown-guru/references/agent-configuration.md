@@ -112,3 +112,17 @@ gt sling <bead> <rig> --agent claude    # use claude for this specific task
 
 ### Recommended Split
 Use **Claude Code for infrastructure** (Mayor, Deacon, Witness, Refinery) and **Codex/Gemini for worker polecats**. This gives you hooks where they're critical and choice of model for the actual coding work. If Codex hits rate limits, fall back to Claude for workers too.
+
+## Quota Management
+
+When running many parallel polecats, Claude accounts can hit rate limits. GT has built-in quota rotation:
+
+```bash
+gt quota status                 # show all accounts and their quota state
+gt quota scan                   # detect blocked sessions
+gt quota rotate                 # rotate to an available account
+gt quota watch                  # continuously monitor and auto-rotate
+gt quota clear                  # clear quota state
+```
+
+Configure multiple accounts with `gt account` to enable rotation across them.

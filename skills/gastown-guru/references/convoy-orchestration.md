@@ -67,6 +67,17 @@ Use `--max-concurrent` on batch sling to limit parallel polecat spawns:
 gt sling <bead-1> <bead-2> <bead-3> my_project --max-concurrent 3
 ```
 
+### Scheduler (Capacity Control)
+For persistent capacity limits, use the dispatch scheduler:
+```bash
+gt config set scheduler.max_polecats 5   # enable deferred dispatch (limit to 5)
+gt scheduler status                       # show queue state
+gt scheduler pause                        # pause dispatch
+gt scheduler resume                       # resume dispatch
+gt scheduler clear                        # clear queue
+```
+When `max_polecats` is set, excess work is queued and dispatched as slots free up. Default (-1) means direct dispatch with no limit.
+
 ## Auto-Convoy
 
 When you sling a single bead, GT auto-creates a convoy for dashboard visibility. Disable with `--no-convoy`.

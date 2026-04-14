@@ -4,9 +4,9 @@ description: Expert guide for Gas Town (gt) multi-agent orchestration — setup,
 license: MIT
 metadata:
   author: ByAxe
-  version: 1.2.0
+  version: 1.3.0
   category: software-development
-  environment: Gas Town (gt) installed via Homebrew with a configured HQ workspace. Requires tmux, Dolt, and optionally one or more AI agent CLIs (Claude Code, Codex, Gemini).
+  environment: Gas Town (gt) v1.0.0+ installed via Homebrew with a configured HQ workspace. Requires tmux, Dolt, and optionally one or more AI agent CLIs (Claude Code, Codex, Gemini).
   tags:
     - gastown
     - multi-agent
@@ -132,6 +132,25 @@ tmux -L <socket> attach -t <session>              # live output (Ctrl+B D to det
 gt trail                                          # recent activity
 gt convoy status <convoy-id>                      # convoy progress
 gt ready                                          # unblocked work
+gt feed                                           # real-time TUI dashboard (j/k, tab, q)
+gt feed --plain                                   # plain event stream (no TUI)
+gt dashboard --open                               # web dashboard (convoy tracking)
+gt vitals                                         # unified health dashboard
+gt costs --today --by-role                         # session costs breakdown
+gt audit --actor <agent> --since 1h               # provenance timeline for an agent
+gt health                                         # data plane health (Dolt, DBs, backups)
+```
+
+### Step 9: Stop or Pause Services
+
+See `references/infrastructure.md` for details on each stop mode.
+
+```bash
+cd ~/gt && gt down                                # reversible pause (keeps worktrees)
+cd ~/gt && gt down --all                          # full pause with orphan cleanup
+cd ~/gt && gt shutdown --force                    # permanent cleanup (removes worktrees)
+cd ~/gt && gt estop --reason "investigating bug"  # emergency freeze (SIGTSTP)
+cd ~/gt && gt thaw                                # resume after estop
 ```
 
 ## Key Concepts
@@ -150,3 +169,9 @@ See `references/concepts-glossary.md` for full definitions of all Gas Town compo
 | **Witness** | Per-rig polecat health monitor |
 | **Refinery** | Per-rig merge queue processor |
 | **Mayor** | Global cross-rig coordinator |
+| **Deacon** | Town-level watchdog (monitors Mayor + Witnesses) |
+| **Boot** | Deacon watchdog (monitors the Deacon itself) |
+| **Dog** | Reusable cross-rig infrastructure worker |
+| **Crew** | Persistent human workspace (full clone, not worktree) |
+| **Scheduler** | Capacity-controlled dispatch (`max_polecats` limit) |
+| **Wasteland** | DoltHub federation for cross-town work sharing |

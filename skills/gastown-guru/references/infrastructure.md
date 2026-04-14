@@ -10,6 +10,7 @@ Gas Town runs several long-lived services that must be operational before dispat
 | **Daemon** | Go background process, heartbeats, event routing | `gt daemon start/stop` |
 | **Mayor** | Global work coordinator (Claude/Codex session) | `gt up` |
 | **Deacon** | Town-level watchdog monitoring Mayor and Witnesses | `gt up` |
+| **Boot** | Deacon watchdog (monitors the Deacon itself) | `gt up` |
 | **Witness** | Per-rig polecat health monitor | `gt up` |
 | **Refinery** | Per-rig merge queue processor | `gt up` |
 
@@ -104,10 +105,48 @@ cd ~/gt && gt dolt status     # Dolt server health
 
 ## Stopping Services
 
+Three stop modes with increasing permanence:
+
+| Command | Effect | Reversible? |
+|---|---|---|
+| `gt down` | Pause all services, keep worktrees | Yes (`gt up`) |
+| `gt down --all` | Pause + orphan cleanup + verification | Yes (`gt up`) |
+| `gt shutdown --force` | Stop + remove worktrees + delete branches | No (polecats lost) |
+| `gt estop` | SIGTSTP freeze all agents (Mayor exempt) | Yes (`gt thaw`) |
+
 ```bash
-cd ~/gt && gt down            # stop all services
-cd ~/gt && gt dolt stop       # stop Dolt only
-cd ~/gt && gt shutdown        # full shutdown with cleanup
+cd ~/gt && gt down                                # reversible pause
+cd ~/gt && gt down --polecats                     # also stop polecat sessions
+cd ~/gt && gt down --nuke                         # also kill shared tmux server
+cd ~/gt && gt down --dry-run                      # preview what would stop
+cd ~/gt && gt shutdown --force                    # permanent: stop + cleanup worktrees
+cd ~/gt && gt shutdown --all --force              # also stop crew sessions
+cd ~/gt && gt shutdown --graceful                 # let agents save state first
+cd ~/gt && gt shutdown --polecats-only            # only stop polecats
+cd ~/gt && gt estop --reason "investigating bug"  # emergency freeze
+cd ~/gt && gt estop --rig my_project              # freeze single rig
+cd ~/gt && gt thaw                                # resume after estop
+cd ~/gt && gt thaw --rig my_project               # thaw single rig
+cd ~/gt && gt dolt stop                           # stop Dolt only
+```
+
+**Warning:** `gt shutdown --nuclear` forces cleanup even with uncommitted polecat work. Only use if you're sure nothing valuable is in-flight.
+
+## Monitoring and Diagnostics
+
+```bash
+cd ~/gt && gt feed                  # real-time TUI (j/k scroll, tab panels, q quit)
+cd ~/gt && gt feed --plain          # plain event stream
+cd ~/gt && gt feed -p               # problems view (stuck agents via GUPP)
+cd ~/gt && gt dashboard --open      # web dashboard (convoy tracking, auto-refresh)
+cd ~/gt && gt vitals                # unified health dashboard
+cd ~/gt && gt health                # data plane: Dolt, DBs, backups, zombies
+cd ~/gt && gt health --json         # machine-readable health
+cd ~/gt && gt costs --today         # today's session costs
+cd ~/gt && gt costs --by-role       # costs by agent role
+cd ~/gt && gt audit --actor <addr>  # provenance timeline for an agent
+cd ~/gt && gt seance --recent       # list recent sessions
+cd ~/gt && gt seance --talk <id>    # interrogate a predecessor session
 ```
 
 ## After Reboot

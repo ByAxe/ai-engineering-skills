@@ -91,4 +91,4 @@ gt config default-agent codex      # global default
 gt sling <bead> <rig> --agent claude  # per-task override
 ```
 
-Available built-in agents: claude, codex, gemini, copilot, cursor, amp, auggie, opencode, omp, pi.
+Available built-in agents: claude, codex, gemini, copilot, cursor, amp. Non-Claude agents require wrapper scripts (see agent-configuration reference).
