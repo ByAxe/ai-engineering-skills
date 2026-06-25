@@ -1,103 +1,88 @@
 ---
 name: reflect
-description: Analyze conversation for learnings and update project instructions (CLAUDE.md) and persistent memory with confidence-scored, evidence-backed patterns. Use when user says "reflect", "what did we learn", "update instructions", "capture learnings", or at the end of significant work sessions.
+description: Use this skill to reflect on a completed or interrupted work session, extract durable evidence-backed learnings, and update project instruction files (CLAUDE.md, AGENTS.md, or equivalent) plus persistent memory without duplicating existing guidance. Trigger when the user says "reflect", "what did we learn", "update instructions", "capture learnings", or asks to remember process, tool, or project lessons.
 metadata:
   author: ByAxe
-  version: 2.0.0
+  version: "2.1.0"
   category: workflow
-  tags: [reflection, learning, instructions, memory, continuous-improvement, confidence-scoring]
+  tags: "reflection, learning, instructions, memory, continuous-improvement, confidence-scoring"
 ---
 
 # Reflect
 
-Evidence-based conversation analysis that extracts learnings, scores their confidence, and persists them where they matter. Inspired by claude-flow's uncertainty ledger and evolution pipeline.
+Turn a work session into durable guidance. Capture only lessons that would prevent future mistakes or speed future work.
 
-## Important
+## Non-Negotiables
 
-- Quality over quantity: 2-3 sharp, evidence-backed insights beat 10 vague ones
-- Every learning must cite its evidence from the conversation
-- Score confidence honestly — uncertain findings are valuable when labeled as such
-- Never overwrite established high-confidence rules without explicit user approval
-- Never duplicate: always check existing CLAUDE.md and memory before proposing
+- Quality over quantity: 2-3 sharp, evidence-backed insights beat 10 vague ones.
+- Every learning must cite its evidence from the conversation.
+- Never duplicate: check existing instruction files and memory before writing.
+- Persist durable patterns, not task status, timestamps, or one-off facts available in git/logs.
+- Prefer updating or superseding an existing entry over adding another entry.
+- If the user explicitly asked to reflect or update memory, apply confirmed, non-contested memory changes directly. Ask before broad instruction-file edits, contested changes, or confidence below 0.5.
 
 ## Instructions
 
-### Step 1: Trace the Conversation
+### Step 1: Build the Trace
 
-Review the conversation as a sequence of trace events, not just outcomes. For each significant event, note:
+Review the conversation as trace events, not just outcomes. For each significant event, note:
 
 **Event type**: correction, discovery, success, failure, backtrack, user-feedback
 **Evidence**: the specific quote, error message, file path, or command output
 **Impact**: did it change approach, reveal a constraint, or confirm a pattern?
 
-Categorize into three buckets:
-
-**Effective Patterns** — approaches that worked well
-- What tool/technique was used?
-- Why did it succeed? (reproducible insight, not luck)
-- How many times did this pattern succeed in the session? (frequency = confidence)
-
-**Corrections** — where the user corrected you or you had to backtrack
-- What was the original mistake?
-- What was the fix?
-- Is this a recurring pattern? (check claude-mem for similar past corrections)
-
-**Discoveries** — new information about the project, tools, or environment
-- Technical constraints or behaviors not documented anywhere
-- Workarounds that resolved blockers
-- Integration details between components
+Classify candidates as Effective Pattern, Correction, or Discovery. Read [reflection-categories.md](references/reflection-categories.md) when classification or target choice is not obvious.
 
 ### Step 2: Score Confidence
 
-For each finding, assign a confidence level using evidence weight:
+For each candidate, assign a confidence band and default target:
 
-| Level | Label | Criteria | Persistence Target |
-|-------|-------|----------|-------------------|
-| 0.8-1.0 | **Confirmed** | Repeated in session + user validated, or reproduced with evidence | CLAUDE.md (direct add) |
-| 0.5-0.79 | **Probable** | Single strong signal, logical inference from evidence | CLAUDE.md (propose) or Memory |
-| 0.2-0.49 | **Uncertain** | Edge case, might not generalize, limited evidence | Memory file only (with caveat) |
-| 0.0-0.19 | **Speculative** | Hunch, no hard evidence | Mention to user, do not persist |
+| Band | Default target |
+|---|---|
+| Confirmed (0.8-1.0) | Instruction file or memory |
+| Probable (0.5-0.79) | Memory, or proposed instruction-file edit |
+| Uncertain (0.2-0.49) | Memory only, with caveat |
+| Speculative (0.0-0.19) | Mention only; do not persist |
 
-**Evidence weight factors:**
-- User explicitly stated it (+0.3)
-- Error message / stack trace confirms it (+0.2)
-- Reproduced multiple times in session (+0.2)
-- Contradicts no existing guidance (+0.1)
-- Aligns with existing patterns (+0.1)
-- Single occurrence, no corroboration (+0.0)
-
-Consult `references/confidence-scoring.md` for detailed scoring examples.
+Read [confidence-scoring.md](references/confidence-scoring.md) when a score is ambiguous, a learning may edit an instruction file, or existing guidance may be superseded.
 
 ### Step 3: Check Existing Knowledge (Anti-Forgetting)
 
 Before proposing updates, scan for conflicts with established guidance:
 
-1. Read the current `CLAUDE.md` in the project root
-2. Search memory files:
+1. Read the current project's authoritative instruction files (`CLAUDE.md`, `AGENTS.md`, or equivalent), including the nearest nested file that governs the touched area.
+2. Search the current agent's memory files:
    ```
-   Grep pattern="relevant term" path="~/.claude/projects/<current-project>/memory/" glob="*.md"
+   Grep pattern="relevant term" path="<current-agent-memory-dir>" glob="*.md"
    ```
-3. If claude-mem is available:
+3. If a semantic memory MCP is available:
    ```
    search(query="relevant term", limit=10, project="<current-project>")
    ```
 
 **Anti-forgetting rules** (adapted from EWC++ consolidation):
-- Entries marked CRITICAL in CLAUDE.md are protected — never weaken or remove
+- Entries marked CRITICAL in instruction files are protected — never weaken or remove
 - If a new learning conflicts with an existing rule, mark it as CONTESTED and present both to the user with evidence for each side
-- High-frequency patterns (referenced in multiple CLAUDE.md sections) have higher importance — require stronger evidence to modify
+- High-frequency patterns (referenced in multiple instruction sections) have higher importance — require stronger evidence to modify
 - When updating an entry, preserve the original intent while refining the details
 
 Mark each finding: NEW | UPDATE | CONTESTED | SKIP
 
-### Step 4: Propose Changes as Evolution Proposals
+### Step 4: Choose Target and Proposal Shape
 
-For each NEW, UPDATE, or CONTESTED item, format as a structured proposal:
+Use [update-targets.md](references/update-targets.md) for the decision matrix. Default target choices:
+
+- Project-wide durable workflow or architecture rule -> current project instruction file.
+- Tool, environment, or project quirk -> memory file; also save to semantic memory if important.
+- User preference or communication pattern -> memory only.
+- One-off task status or facts already in git/logs -> SKIP.
+
+For items that require review, use this proposal format:
 
 ```
 ## Proposal: [Short title]
 
-Target: CLAUDE.md > [Section Name]  |  Memory > [filename]
+Target: [instruction file] > [Section Name]  |  Memory > [filename]
 Action: ADD | UPDATE | SUPERSEDE
 Confidence: [0.0-1.0] ([Confirmed|Probable|Uncertain])
 Evidence:
@@ -115,24 +100,21 @@ For CONTESTED items, present both sides:
 ```
 ## Contested: [Title]
 
-Existing rule: [current CLAUDE.md text]
+Existing rule: [current instruction-file text]
 Evidence for existing: [why it was added]
 New finding: [what this session suggests]
 Evidence for new: [conversation evidence]
 Recommendation: [keep existing | replace | merge | ask user]
 ```
 
-Consult `references/update-targets.md` for the decision matrix on persistence targets.
-Consult `references/reflection-categories.md` for category definitions.
+### Step 5: Apply Changes
 
-### Step 5: Apply Approved Changes
+If the user asked for proposals only, stop after Step 4. Otherwise:
 
-After user approval:
-
-1. **CLAUDE.md edits** — place in correct section, match existing style
-2. **Memory files** — write to the project's memory directory (`~/.claude/projects/<current-project>/memory/`) with frontmatter (name, description, type). Include confidence level in the content.
+1. **Instruction-file edits** — place in the correct section, match existing style, and keep the addition short.
+2. **Memory files** — write to the current agent's project memory directory with frontmatter (name, description, type). Include confidence level in the content.
 3. **MEMORY.md index** — update if new memory files were created
-4. **claude-mem** — save confirmed/probable discoveries:
+4. **Semantic memory** — save confirmed/probable discoveries when the MCP is available:
    ```
    save_memory(text="[learning with evidence]", title="[title]", project="<current-project>")
    ```
@@ -147,17 +129,9 @@ After user approval:
 **Report to user:**
 ```
 Reflection Summary:
-- [N] confirmed learnings persisted to CLAUDE.md
+- [N] confirmed learnings persisted to instruction files
 - [N] probable learnings saved to memory
 - [N] uncertain findings noted (not persisted)
 - [N] contested items resolved
 - [N] existing entries updated/superseded
 ```
-
-## Performance Notes
-
-- Take your time to do this thoroughly
-- Quality is more important than speed
-- Do not skip confidence scoring — it prevents low-quality guidance from polluting CLAUDE.md
-- When confidence is below 0.5, ask the user before persisting
-- Prefer updating existing entries over adding new ones to prevent guidance bloat

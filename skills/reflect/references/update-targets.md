@@ -6,7 +6,7 @@ Where each type of learning should be persisted.
 
 ```
 Is it project-specific?
-  YES -> Does CLAUDE.md already have a relevant section?
+  YES -> Does a current project instruction file already have a relevant section?
     YES -> UPDATE that section
     NO  -> Is it important enough for a new section?
       YES -> ADD new subsection under the closest parent
@@ -14,15 +14,17 @@ Is it project-specific?
   NO  -> Is it about user preferences or communication style?
     YES -> Memory file (type: feedback or user)
     NO  -> Is it about a tool/MCP that's used across projects?
-      YES -> Memory file (type: reference) + relevant project CLAUDE.md
+      YES -> Memory file (type: reference) + relevant project instruction file if it affects workflow
       NO  -> Memory file (type: project or reference)
 ```
 
-## Target: CLAUDE.md
+## Target: Project Instruction Files
 
 **Best for:** Technical constraints, architectural decisions, workflow rules, known limitations, common mistakes, CI patterns, testing requirements.
 
-**CLAUDE.md Section Map:**
+Use the instruction file the current project actually loads (`CLAUDE.md`, `AGENTS.md`, or equivalent). Read the root file and any more specific nested file before editing.
+
+**Section Map:**
 
 | Learning Type | Target Section |
 |---|---|
@@ -49,7 +51,7 @@ Is it project-specific?
 
 **Best for:** Cross-project learnings, user preferences, tool knowledge, external references.
 
-**File location:** `~/.claude/projects/<current-project>/memory/`
+**File location:** Use the current agent's project memory directory. Common defaults include `~/.claude/projects/<current-project>/memory/` and `~/.codex/projects/<current-project>/memory/`.
 
 **Format:**
 ```markdown
@@ -64,11 +66,11 @@ Content with Why and How to apply lines for feedback/project types.
 
 **After creating:** Add entry to MEMORY.md index.
 
-## Target: claude-mem
+## Target: Semantic Memory MCP
 
 **Best for:** Significant discoveries, debugging breakthroughs, architectural decisions that future sessions should know about.
 
-**When to use:** In addition to (not instead of) CLAUDE.md or memory files. claude-mem provides searchable cross-session context.
+**When to use:** In addition to (not instead of) instruction files or memory files. A semantic memory MCP provides searchable cross-session context.
 
 **Format:**
 ```
@@ -85,4 +87,4 @@ save_memory(
 
 **When to use:** Only if the learning is substantial enough to warrant a doc update. Use a documentation-focused subagent for this if available.
 
-**NOT a target for:** Quick tips, workarounds, or configuration details (those go in CLAUDE.md).
+**NOT a target for:** Quick tips, workarounds, or configuration details (those go in project instruction files).

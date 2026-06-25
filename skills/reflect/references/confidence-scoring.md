@@ -14,7 +14,7 @@ Multiple evidence sources agree. Pattern reproduced. User validated.
 - User explicitly said "always do X" (confidence: 0.9)
 - `make test` failed consistently until specific fix applied (confidence: 0.85)
 
-**Persistence:** Direct addition to CLAUDE.md. These are reliable rules.
+**Persistence:** Eligible for instruction-file or memory updates. Still check scope and duplicates first.
 
 ### Probable (0.5 - 0.79)
 
@@ -26,7 +26,7 @@ Single strong signal or logical inference from solid evidence.
 - User implied preference but didn't state it explicitly (confidence: 0.55)
 - Documentation gap found — behavior differs from what docs suggest (confidence: 0.65)
 
-**Persistence:** Propose to CLAUDE.md (user reviews) or save to memory file.
+**Persistence:** Save to memory, or propose an instruction-file edit for user review.
 
 ### Uncertain (0.2 - 0.49)
 
@@ -38,7 +38,7 @@ Edge case, limited evidence, might not generalize.
 - Applies only to a specific file/function, unclear if broader (confidence: 0.4)
 - Timing-dependent behavior that might not reproduce (confidence: 0.35)
 
-**Persistence:** Memory file with explicit caveat. NOT CLAUDE.md.
+**Persistence:** Memory file with explicit caveat. NOT instruction files.
 
 ### Speculative (0.0 - 0.19)
 
@@ -63,7 +63,7 @@ Adapted from claude-flow's EvidencePointer system.
 | no-contradiction | 0.10 | Does not conflict with existing guidance |
 | pattern-alignment | 0.10 | Aligns with related existing patterns |
 | single-observation | 0.00 | Observed once, no corroboration (base weight) |
-| contradicts-existing | -0.15 | Conflicts with established CLAUDE.md entry |
+| contradicts-existing | -0.15 | Conflicts with established instruction-file entry |
 | context-specific | -0.10 | Only applies in a narrow context |
 
 **Scoring formula:** Sum applicable weights, clamp to [0.0, 1.0].
@@ -81,7 +81,7 @@ Each learning has a validity window:
 | **version-specific** | Tied to specific library/tool version | Dependency update |
 | **session-specific** | Only relevant to this debugging session | Do NOT persist |
 
-When reviewing existing CLAUDE.md entries during reflection:
+When reviewing existing instruction-file entries during reflection:
 - Flag entries whose referenced code/files no longer exist
 - Note entries tied to specific versions that may have been upgraded
 - Suggest retirement of stale guidance with evidence
@@ -110,7 +110,7 @@ Adapted from claude-flow's EWC++ (Elastic Weight Consolidation).
 
 | Tier | Signal | Protection |
 |---|---|---|
-| **Critical** | Marked CRITICAL in CLAUDE.md, or in completion checklist | Cannot modify without user confirmation + strong evidence |
+| **Critical** | Marked CRITICAL in an instruction file, or in completion checklist | Cannot modify without user confirmation + strong evidence |
 | **High** | Referenced in multiple sections, or has ## header | Require confidence >= 0.8 to modify |
 | **Normal** | Standard bullet point entry | Require confidence >= 0.5 to modify |
 | **Low** | In Known Limitations or contextual notes | Can update freely with evidence |

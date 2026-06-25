@@ -17,7 +17,7 @@ Learnings about code, architecture, tools, and infrastructure.
 - Configuration details not in official docs
 - Tool behavior that surprised you
 
-**Where they go:** CLAUDE.md > Known Limitations, Common Mistakes, or relevant component section
+**Where they go:** Project instruction file > Known Limitations, Common Mistakes, or relevant component section
 
 ## Process Patterns
 
@@ -33,7 +33,7 @@ Learnings about workflows, methodology, and development practices.
 - Steps that had to be repeated because prerequisites were missed
 - Workflow sequences that proved effective
 
-**Where they go:** CLAUDE.md > Development Practices, Key Patterns, or Completion Checklist
+**Where they go:** Project instruction file > Development Practices, Key Patterns, or Completion Checklist
 
 ## Communication Patterns
 
@@ -65,7 +65,7 @@ Learnings unique to this codebase, its quirks, and its constraints.
 - Integration points between components that aren't obvious
 - Environment-specific behaviors
 
-**Where they go:** CLAUDE.md > relevant architecture/component section, or Known Limitations
+**Where they go:** Project instruction file > relevant architecture/component section, or Known Limitations
 
 ## Trace Event Mapping
 
@@ -87,7 +87,7 @@ When analyzing a conversation, look for these event patterns:
 - **Obvious things**: "Python uses indentation" — derivable from reading code
 - **Ephemeral state**: "Currently debugging test_api.py" — belongs in tasks, not memory
 - **Git-trackable facts**: "Last commit fixed the preview bug" — use `git log`
-- **Documented behavior**: If it's in the project docs already, don't duplicate to CLAUDE.md
+- **Documented behavior**: If it's in the project docs already, don't duplicate to instruction files
 - **One-off fixes**: A typo correction doesn't need documentation
 - **Speculative learnings**: Confidence below 0.2 should not be persisted anywhere
 - **Session-specific context**: Temporary file paths, debug ports, one-time env vars
