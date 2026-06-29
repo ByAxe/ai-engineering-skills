@@ -166,9 +166,10 @@ skills/
     ├── SKILL.md
     ├── agents/
     │   └── openai.yaml
-    ├── evals/        (4 OpenSpec bugfix scenarios)
+    ├── evals/        (6 OpenSpec bugfix scenarios)
     └── references/
-        └── bugfix-spec-workflow.md
+        ├── bugfix-spec-workflow.md
+        └── investigation-quality-gates.md
 ```
 
 ## Updating

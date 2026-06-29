@@ -22,9 +22,10 @@ Use this skill for defect work that must preserve existing behavior while changi
 
 1. Read the repository's local instructions first: `AGENTS.md`, `CLAUDE.md`, `README.md`, OpenSpec docs, test guidelines, or nearest area-specific instructions.
 2. Read [bugfix-spec-workflow](references/bugfix-spec-workflow.md) before creating or changing OpenSpec bugfix artifacts, designing regression coverage, or deciding a bug is simple enough to fix without a change.
-3. Reproduce or characterize the bug before editing. If reproduction is impossible, record the attempted commands/routes and narrow the claim.
-4. Capture three contracts before implementation: current broken behavior, expected corrected behavior, and unchanged behavior that must continue to work.
-5. Implement the smallest defensible fix, then verify the defect, the correction, and protected unchanged behavior.
+3. For production-facing, security/auth/payment/data, cross-module, regression-prone, or unclear-root-cause bugs, read [investigation-quality-gates](references/investigation-quality-gates.md) before implementation.
+4. Reproduce or characterize the bug before editing. If reproduction is impossible, record the attempted commands/routes and narrow the claim.
+5. Capture three contracts before implementation: current broken behavior, expected corrected behavior, and unchanged behavior that must continue to work.
+6. Implement the smallest defensible fix, then verify the defect, the correction, and protected unchanged behavior.
 
 Core contract:
 

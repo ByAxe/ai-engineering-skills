@@ -1,0 +1,56 @@
+{
+  "context": "Checks whether the agent avoids fake root-cause certainty and broad refactors during a risky unresolved bug investigation.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Risk routing",
+      "description": "The plan routes the production auth/checkout defect to the investigation quality gates before implementation.",
+      "max_score": 10
+    },
+    {
+      "name": "Evidence ledger",
+      "description": "The plan records what evidence is needed for defect existence, root cause, fix scope, and regression guard.",
+      "max_score": 14
+    },
+    {
+      "name": "Unproven root cause",
+      "description": "The plan avoids claiming a root cause before reproduction and keeps at least two plausible hypotheses with decisive checks.",
+      "max_score": 14
+    },
+    {
+      "name": "Broad refactor rejected",
+      "description": "The plan explains why typed-module migration, profile/header rewrites, and checkout state-machine changes are not justified without root-cause evidence.",
+      "max_score": 12
+    },
+    {
+      "name": "Behavior contract",
+      "description": "The plan captures current disabled CTA behavior, expected recovery after hosted identity-provider return, and unchanged auth, checkout, profile, and header behavior.",
+      "max_score": 10
+    },
+    {
+      "name": "Edge-case hunt",
+      "description": "The plan checks nearby branches such as bfcache/history restore, missing query params, session mismatch, delayed provider return, and responsive route state.",
+      "max_score": 10
+    },
+    {
+      "name": "Regression matrix",
+      "description": "The plan defines defect proof, correction proof, unchanged behavior proof, and relevant edge-case proof before completion.",
+      "max_score": 10
+    },
+    {
+      "name": "Validation gates",
+      "description": "The plan names repository instruction checks, targeted browser or Playwright proof, OpenSpec validation when a change exists, and local skill validation boundaries where relevant.",
+      "max_score": 8
+    },
+    {
+      "name": "Residual uncertainty",
+      "description": "The plan states what remains unknown if reproduction cannot be obtained and narrows any completion claim accordingly.",
+      "max_score": 7
+    },
+    {
+      "name": "Adversarial checkpoint",
+      "description": "The plan includes a short adversarial review or checkpoint readout focused on supported findings, not forced nitpicks.",
+      "max_score": 5
+    }
+  ]
+}

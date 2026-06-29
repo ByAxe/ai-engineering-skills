@@ -89,6 +89,48 @@
       "original_snippets": "Main specs should contain the durable corrected behavior and any protected unchanged behavior. The archived change should preserve observed broken behavior, root cause, goals and non-goals, design decisions, regression strategy, task proof, and verification evidence.",
       "relevant_when": "Choosing between spec sync and archive for bugfix completion",
       "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Route production-facing, security/auth/payment/data, cross-module, regression-prone, or unclear-root-cause defects to investigation quality gates before implementation.",
+      "original_snippets": "For production-facing, security/auth/payment/data, cross-module, regression-prone, or unclear-root-cause bugs, read investigation-quality-gates before implementation.",
+      "relevant_when": "Starting high-risk or unclear defect work",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use the lightest investigation depth that fits the risk: fast path for obvious local bugs, evidence path for unclear bugs, and review path for critical or broad-risk bugs.",
+      "original_snippets": "Choose the lightest path that fits the risk: Fast path, Evidence path, Review path.",
+      "relevant_when": "Selecting bug investigation depth",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Keep an evidence ledger for defect existence, root cause, fix scope, and regression guard before making strong completion claims.",
+      "original_snippets": "Before naming root cause, record enough proof to make the claim reviewable.",
+      "relevant_when": "Investigating defects with uncertain proof",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Maintain competing hypotheses for unclear defects until cheap decisive checks eliminate them.",
+      "original_snippets": "For unclear defects, keep at least two hypotheses until evidence eliminates them.",
+      "relevant_when": "Root cause is unclear",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Run readiness checks before implementation on high-risk defects: contracts, changed capability, non-goals, bounded root-cause evidence, regression matrix, and repository verification commands.",
+      "original_snippets": "Do not start code changes on a high-risk defect until these are clear.",
+      "relevant_when": "Before implementing high-risk bugfixes",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Hunt edge cases near the fix branch rather than expanding into broad product-wide test suites.",
+      "original_snippets": "Check the branches near the fix, not the whole product.",
+      "relevant_when": "Planning regression coverage",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Use a short adversarial review and checkpoint readout for review-path bugs, keeping only findings supported by code, tests, data, or documented contracts.",
+      "original_snippets": "Assume the fix is wrong or too broad. Keep only findings supported by code, tests, data, or documented contracts.",
+      "relevant_when": "Final review of critical or broad-risk bugfixes",
+      "why_given": "new knowledge"
     }
   ]
 }

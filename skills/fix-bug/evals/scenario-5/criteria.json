@@ -1,0 +1,56 @@
+{
+  "context": "Checks whether the agent stops unsupported implementation and completion claims for a high-risk payment defect under pressure.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Review path selected",
+      "description": "The plan classifies the duplicate-charge report as a payment/production review-path bug requiring investigation gates before implementation.",
+      "max_score": 10
+    },
+    {
+      "name": "No unsupported fix claim",
+      "description": "The plan refuses to mark the bug fixed or name a root cause without provider, webhook, order-row, browser, or test evidence.",
+      "max_score": 15
+    },
+    {
+      "name": "Evidence ledger",
+      "description": "The plan lists the missing evidence needed for defect existence, root cause, fix scope, and regression guard, with concrete sources such as provider event IDs, webhook logs, order rows, browser checkout events, or tests.",
+      "max_score": 15
+    },
+    {
+      "name": "Competing hypotheses",
+      "description": "The plan keeps at least two plausible causes alive, such as duplicate client submission, webhook retry/idempotency failure, stale return state, or manual/order reconciliation issue, and names decisive checks for each.",
+      "max_score": 13
+    },
+    {
+      "name": "Button-only fix challenged",
+      "description": "The plan explains why simply disabling the checkout button harder is not a proven smallest fix until the payment duplicate path is located.",
+      "max_score": 10
+    },
+    {
+      "name": "Behavior contract",
+      "description": "The plan captures current reported duplicate-charge behavior, expected exactly-once paid-order creation/entitlement behavior, and unchanged successful checkout, webhook, manual review, and entitlement behavior.",
+      "max_score": 10
+    },
+    {
+      "name": "Readiness stop",
+      "description": "The plan states that code changes should not begin until current/expected/unchanged contracts, changed capability, non-goals, bounded root-cause evidence, regression matrix, and repository verification commands are ready.",
+      "max_score": 10
+    },
+    {
+      "name": "Edge-case hunt",
+      "description": "The plan checks nearby payment edge cases such as duplicate webhook delivery, browser back/refresh, delayed provider event, idempotency key reuse, expired checkout session, and already-paid order state.",
+      "max_score": 8
+    },
+    {
+      "name": "Adversarial review",
+      "description": "The plan includes a supported-only adversarial pass focused on whether the proposed fix is too broad, client-only, or misses server/provider idempotency.",
+      "max_score": 5
+    },
+    {
+      "name": "Narrow verification claim",
+      "description": "The plan defines targeted verification and residual gaps, and says any completion claim must be limited to evidence actually collected.",
+      "max_score": 4
+    }
+  ]
+}
