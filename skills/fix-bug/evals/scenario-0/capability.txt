@@ -1,1 +1,1 @@
-Plan an OpenSpec-compatible copy bugfix with regression protection.
+Plan an OpenSpec-compatible account-access copy bugfix with regression protection.

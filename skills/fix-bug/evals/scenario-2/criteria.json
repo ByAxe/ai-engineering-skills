@@ -24,7 +24,7 @@
     },
     {
       "name": "Unchanged behavior protected",
-      "description": "The contract preserves localized auth pages, existing hosted AuthKit start behavior, signed-out/error messages, account-switch flows where present, and payment/profile scripts.",
+      "description": "The contract preserves localized auth pages, existing hosted identity-provider start behavior, signed-out/error messages, account-switch flows where present, and payment/profile scripts.",
       "max_score": 14
     },
     {

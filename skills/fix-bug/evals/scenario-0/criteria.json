@@ -9,7 +9,7 @@
     },
     {
       "name": "Current behavior captured",
-      "description": "The plan states the duplicated signed-out title/body copy as the current defect with route or state context.",
+      "description": "The plan states the duplicated signed-out title/body copy as the current defect with page or state context.",
       "max_score": 10
     },
     {
@@ -19,12 +19,12 @@
     },
     {
       "name": "Unchanged behavior protected",
-      "description": "The plan explicitly preserves auth, checkout, entitlement, provider, login redirect, and access-summary behavior.",
+      "description": "The plan explicitly preserves auth, checkout, entitlement, provider, login redirect, and access summary behavior.",
       "max_score": 14
     },
     {
       "name": "Modified requirement chosen",
-      "description": "The capability delta tightens an existing Access state requirement instead of inventing a new capability.",
+      "description": "The capability delta tightens an existing account-access state requirement instead of inventing a new capability.",
       "max_score": 10
     },
     {
@@ -44,7 +44,7 @@
     },
     {
       "name": "Verification gates named",
-      "description": "The plan includes repository verification commands, OpenSpec validation, and targeted Access settings tests.",
+      "description": "The plan includes repository verification commands, OpenSpec validation, and targeted account-access tests.",
       "max_score": 10
     }
   ]

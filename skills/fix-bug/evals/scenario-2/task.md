@@ -1,6 +1,6 @@
 # Task
 
-The user shares a draft bugfix idea: "The auth page submit buttons sometimes stay disabled after returning from hosted AuthKit. Let's migrate all auth, profile, header, and payment inline scripts to typed modules, redesign the auth page, and add a new logout endpoint while we are there."
+The user shares a draft bugfix idea: "The auth page submit buttons sometimes stay disabled after returning from a hosted identity provider. Let's migrate all auth, profile, header, and payment inline scripts to typed modules, redesign the auth page, and add a new logout endpoint while we are there."
 
 The user asks whether this is the right bugfix scope for OpenSpec.
 

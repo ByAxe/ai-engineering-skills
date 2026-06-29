@@ -9,7 +9,7 @@
     },
     {
       "name": "Defect reproduction",
-      "description": "The plan includes reproducing the crafted paid advisory route with no orderId or trusted order status.",
+      "description": "The plan includes reproducing the crafted paid advisory result state with no trusted order identifier or trusted order status.",
       "max_score": 10
     },
     {
@@ -39,7 +39,7 @@
     },
     {
       "name": "Surgical fix",
-      "description": "The design scopes the fix to advisory clamping or initial state handling and avoids provider, D1, webhook, or entitlement changes unless proven necessary.",
+      "description": "The design scopes the fix to advisory clamping or initial state handling and avoids provider, database, webhook, or entitlement changes unless proven necessary.",
       "max_score": 10
     },
     {
