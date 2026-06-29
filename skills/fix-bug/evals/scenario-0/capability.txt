@@ -1,0 +1,1 @@
+Plan an OpenSpec-compatible copy bugfix with regression protection.

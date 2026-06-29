@@ -1,0 +1,94 @@
+{
+  "instructions": [
+    {
+      "instruction": "Use local OpenSpec artifacts for complex, critical, regression-prone, or explicitly requested bugfixes instead of Kiro-specific files.",
+      "original_snippets": "Do not create Kiro-specific artifacts by default. Adapt the bugfix-spec concepts into local OpenSpec files.",
+      "relevant_when": "Creating or updating a bugfix spec",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Capture current broken behavior, expected corrected behavior, and unchanged behavior before implementation.",
+      "original_snippets": "Capture three contracts before implementation: current broken behavior, expected corrected behavior, and unchanged behavior that must continue to work.",
+      "relevant_when": "Starting defect analysis",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Reproduce or characterize the bug before editing code.",
+      "original_snippets": "Reproduce or characterize the bug before editing.",
+      "relevant_when": "Any bugfix implementation",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Keep fixes surgical and exclude adjacent refactors unless root cause and design justify them.",
+      "original_snippets": "Implement the smallest defensible fix.",
+      "relevant_when": "Designing and implementing the fix",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Map OpenSpec bugfixes to proposal, design, tasks, and capability delta spec files.",
+      "original_snippets": "Keep bugfix OpenSpec changes under `openspec/changes/<change-id>/` with `proposal.md`, `design.md`, `tasks.md`, and `specs/<capability>/spec.md`.",
+      "relevant_when": "Creating OpenSpec bugfix artifacts",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Write desired durable behavior in spec deltas and keep broken behavior in proposal or design.",
+      "original_snippets": "Do not write the broken current behavior as a target OpenSpec requirement.",
+      "relevant_when": "Authoring capability specs",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Cover defect proof, correctness proof, and unchanged behavior proof with tests or evidence.",
+      "original_snippets": "Treat tests as the executable bugfix spec: one check proves the defect, one proves the fix, and one protects unchanged behavior.",
+      "relevant_when": "Planning regression coverage",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Run repository verification commands and OpenSpec validation for bugfix changes.",
+      "original_snippets": "Before declaring the bug fixed, run the repository's surfaced verification commands, run `openspec validate <change-id> --strict` when an OpenSpec change exists.",
+      "relevant_when": "Verification and completion",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Analyze bugfix contracts for ambiguity, conflicts, missing edge cases, and undefined terms before design when risk is high.",
+      "original_snippets": "Analyze the bugfix contract before design when ambiguity is costly: look for conflicting constraints, undefined terms, missing failure modes, and edge cases.",
+      "relevant_when": "Reviewing complex or critical bugfix specs",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Make non-trivial bugfix tasks dependency-aware with Depends, Blocks, and Verify lines.",
+      "original_snippets": "Use `Depends`, `Blocks`, and `Verify` lines when the task graph is non-trivial.",
+      "relevant_when": "Writing tasks.md for multi-step fixes",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use property-style checks for universal contracts such as validators, parsers, reducers, state machines, sanitizers, and generated route matrices.",
+      "original_snippets": "Consider property-style checks when the bug concerns URL/path validators, parsers, serializers, mappers, or reducers.",
+      "relevant_when": "Designing regression coverage",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use browser QA or responsive viewport evidence for browser-visible reports.",
+      "original_snippets": "If the report is browser-visible, pair this skill with browser QA when available.",
+      "relevant_when": "Layout, visual, or screenshot-reported bugs",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Name residual reproduction or verification gaps instead of claiming unproven success.",
+      "original_snippets": "If reproduction is impossible, report the attempts and block or narrow the claim.",
+      "relevant_when": "Bug cannot be reproduced or a gate cannot run",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Archive completed OpenSpec bugfixes to preserve the bugfix history; use sync-only only as an interim operation while a change remains active.",
+      "original_snippets": "For a completed OpenSpec bugfix, prefer archiving the change over running only `openspec-sync-specs`.",
+      "relevant_when": "Finishing or promoting a completed OpenSpec bugfix",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Keep main specs focused on durable corrected and protected unchanged behavior, while archived change artifacts preserve root cause, broken behavior, decisions, tasks, and verification evidence.",
+      "original_snippets": "Main specs should contain the durable corrected behavior and any protected unchanged behavior. The archived change should preserve observed broken behavior, root cause, goals and non-goals, design decisions, regression strategy, task proof, and verification evidence.",
+      "relevant_when": "Choosing between spec sync and archive for bugfix completion",
+      "why_given": "new knowledge"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "context": "Checks whether the agent preserves completed bugfix history instead of treating spec sync as the final step.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Archive preferred for completion",
+      "description": "The response says a completed OpenSpec bugfix should be archived rather than only synced.",
+      "max_score": 15
+    },
+    {
+      "name": "Sync-only scoped as interim",
+      "description": "The response treats `openspec-sync-specs` as an interim operation for active changes, not the final history-preserving step for completed bugfixes.",
+      "max_score": 15
+    },
+    {
+      "name": "Main spec content bounded",
+      "description": "The response says main specs should receive only durable corrected behavior and protected unchanged behavior that belongs in the capability contract.",
+      "max_score": 15
+    },
+    {
+      "name": "Archived history retained",
+      "description": "The response keeps observed broken behavior, root cause, goals and non-goals, design decisions, regression strategy, task proof, and verification evidence in archived change artifacts.",
+      "max_score": 15
+    },
+    {
+      "name": "Broken behavior not promoted",
+      "description": "The response does not copy the broken pre-fix behavior into the main capability spec as a target requirement.",
+      "max_score": 10
+    },
+    {
+      "name": "Validation before completion",
+      "description": "The response requires OpenSpec validation plus targeted regression and repository verification before calling the bugfix complete.",
+      "max_score": 10
+    },
+    {
+      "name": "Change remains auditable",
+      "description": "The response explains that archiving preserves the reviewable bugfix trail after main specs are updated.",
+      "max_score": 10
+    },
+    {
+      "name": "No unrelated workflow expansion",
+      "description": "The response does not propose root AGENTS bloat, Kiro-only files, or unrelated release-process changes as required bugfix completion steps.",
+      "max_score": 10
+    }
+  ]
+}

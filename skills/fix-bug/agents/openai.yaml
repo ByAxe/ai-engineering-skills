@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fix Bug"
+  short_description: "Create surgical OpenSpec bugfix workflows"
+  default_prompt: "Use $fix-bug to investigate a reported defect, write an OpenSpec-compatible bugfix spec, implement the smallest fix, and verify regression coverage."

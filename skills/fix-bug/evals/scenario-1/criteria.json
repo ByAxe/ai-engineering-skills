@@ -1,0 +1,56 @@
+{
+  "context": "Checks whether the agent protects security/payment invariants while planning a focused bugfix.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Server truth invariant",
+      "description": "The plan states that paid success can only come from trusted server verification, never URL advisory state.",
+      "max_score": 15
+    },
+    {
+      "name": "Defect reproduction",
+      "description": "The plan includes reproducing the crafted paid advisory route with no orderId or trusted order status.",
+      "max_score": 10
+    },
+    {
+      "name": "Expected behavior",
+      "description": "The plan states that the crafted route must render blocked or pending-safe guidance and no paid state.",
+      "max_score": 10
+    },
+    {
+      "name": "Unchanged flows",
+      "description": "The plan protects pending polling, canceled, failed, retry, delayed-webhook, and manual check behavior.",
+      "max_score": 11
+    },
+    {
+      "name": "Capability delta",
+      "description": "The plan modifies the payment result/recovery requirement with scenarios for crafted advisory and unchanged delayed-webhook behavior.",
+      "max_score": 12
+    },
+    {
+      "name": "Regression matrix",
+      "description": "The tests cover defect proof, correctness proof, and unchanged behavior proof.",
+      "max_score": 11
+    },
+    {
+      "name": "Property candidates considered",
+      "description": "The plan considers table-driven or property-style tests for advisory-state clamping and hostile query/status inputs while retaining the original repro case.",
+      "max_score": 7
+    },
+    {
+      "name": "Surgical fix",
+      "description": "The design scopes the fix to advisory clamping or initial state handling and avoids provider, D1, webhook, or entitlement changes unless proven necessary.",
+      "max_score": 10
+    },
+    {
+      "name": "Analytics protected",
+      "description": "The plan ensures crafted paid advisories do not emit paid success analytics while server-confirmed paid analytics remain intact.",
+      "max_score": 8
+    },
+    {
+      "name": "Verification gates",
+      "description": "The plan names OpenSpec validation, targeted payment-result tests, and repository verification commands.",
+      "max_score": 6
+    }
+  ]
+}

@@ -82,6 +82,7 @@ Run the validator manually:
 |---|---|
 | **reflect** | Analyze conversation for learnings and update project instructions with confidence-scored, evidence-backed patterns. Integrates claude-flow concepts: uncertainty ledger, EWC++ anti-forgetting, temporal validity, evolution proposals. |
 | **feature-demo-recorder** | Records, trims, and publishes a short reviewer-facing demo of a completed feature. Produces GIF/MP4 assets, uploads them to GitHub, updates the PR `## Demo` section, and cleans local scratch artifacts. |
+| **fix-bug** | Fixes, debugs, or specifies defects in OpenSpec-style repositories. Captures current, expected, and unchanged behavior, identifies root cause, adds regression coverage, and maps complex bugfixes into OpenSpec proposal/design/tasks/spec artifacts. |
 
 ## Structure
 
@@ -152,7 +153,7 @@ skills/
 │       ├── confidence-scoring.md
 │       ├── reflection-categories.md
 │       └── update-targets.md
-└── feature-demo-recorder/
+├── feature-demo-recorder/
     ├── SKILL.md
     ├── agents/
     │   └── openai.yaml
@@ -161,6 +162,13 @@ skills/
     └── scripts/
         ├── make_demo_assets.sh
         └── publish_pr_demo.py
+└── fix-bug/
+    ├── SKILL.md
+    ├── agents/
+    │   └── openai.yaml
+    ├── evals/        (4 OpenSpec bugfix scenarios)
+    └── references/
+        └── bugfix-spec-workflow.md
 ```
 
 ## Updating
@@ -203,7 +211,7 @@ Skills activate automatically based on conversation context. You can also invoke
 - **Java** — "refactor this Java code" · "modernize this Java 21 codebase"
 - **Kotlin / JVM** — "clean up this Quarkus Kotlin service" · "assess this Quarkus codebase for Spring-shaped anti-patterns"
 - **Multi-Agent** — "set up a Gas Town rig" · "launch a convoy with shiny-enterprise" · "fix gt doctor issues" · "what formula should I use?"
-- **General** — `/reflect` · "record a short feature demo and attach it to the PR"
+- **General** — `/reflect` · "record a short feature demo and attach it to the PR" · "fix this bug with an OpenSpec-compatible spec"
 
 ## License
 

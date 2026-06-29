@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent can turn a small user-visible copy defect into a surgical OpenSpec bugfix plan.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "OpenSpec artifacts used",
+      "description": "The plan uses proposal.md, design.md, tasks.md, and a capability delta spec rather than Kiro-only files.",
+      "max_score": 12
+    },
+    {
+      "name": "Current behavior captured",
+      "description": "The plan states the duplicated signed-out title/body copy as the current defect with route or state context.",
+      "max_score": 10
+    },
+    {
+      "name": "Expected behavior captured",
+      "description": "The plan states that title and body must be distinct localized copy with concise post-login context.",
+      "max_score": 10
+    },
+    {
+      "name": "Unchanged behavior protected",
+      "description": "The plan explicitly preserves auth, checkout, entitlement, provider, login redirect, and access-summary behavior.",
+      "max_score": 14
+    },
+    {
+      "name": "Modified requirement chosen",
+      "description": "The capability delta tightens an existing Access state requirement instead of inventing a new capability.",
+      "max_score": 10
+    },
+    {
+      "name": "Broken behavior not normalized",
+      "description": "The spec delta describes the desired corrected contract and keeps the old duplicated wording out of target requirements.",
+      "max_score": 10
+    },
+    {
+      "name": "Regression tests direct",
+      "description": "The test plan asserts the replacement RU/EN body copy and rejects the old duplicated wording.",
+      "max_score": 14
+    },
+    {
+      "name": "Surgical implementation",
+      "description": "The implementation scope is limited to the localized copy and existing signed-out state tests, with no redesign.",
+      "max_score": 10
+    },
+    {
+      "name": "Verification gates named",
+      "description": "The plan includes repository verification commands, OpenSpec validation, and targeted Access settings tests.",
+      "max_score": 10
+    }
+  ]
+}
