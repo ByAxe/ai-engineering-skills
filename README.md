@@ -36,6 +36,18 @@ Run the validator manually:
 ./scripts/run_skill_validation.sh
 ```
 
+Run Tessl standards and eval checks for a changed skill when relevant:
+
+```bash
+tessl skill review --threshold 90 skills/reflect
+```
+
+Tessl evals require a local Tessl project link (`tessl project create` or `tessl project link`):
+
+```bash
+tessl eval skills/reflect/evals --context skills/reflect --runs 1 --label reflect-check --yes --json
+```
+
 ## Skills
 
 ### Flutter
@@ -80,7 +92,7 @@ Run the validator manually:
 
 | Skill | Description |
 |---|---|
-| **reflect** | Analyze conversation for learnings and update project instructions with confidence-scored, evidence-backed patterns. Integrates claude-flow concepts: uncertainty ledger, EWC++ anti-forgetting, temporal validity, evolution proposals. |
+| **reflect** | Analyze work-session learnings and route evidence-backed guidance to the right durable surface: memory, instructions, specs, hooks, skills, docs, prompts, templates, or automation. |
 | **feature-demo-recorder** | Records, trims, and publishes a short reviewer-facing demo of a completed feature. Produces GIF/MP4 assets, uploads them to GitHub, updates the PR `## Demo` section, and cleans local scratch artifacts. |
 | **fix-bug** | Fixes, debugs, or specifies defects in OpenSpec-style repositories. Captures current, expected, and unchanged behavior, identifies root cause, adds regression coverage, and maps complex bugfixes into OpenSpec proposal/design/tasks/spec artifacts. |
 
@@ -149,6 +161,7 @@ skills/
 │ # General
 ├── reflect/
 │   ├── SKILL.md
+│   ├── evals/        (5 reflection routing scenarios)
 │   └── references/
 │       ├── confidence-scoring.md
 │       ├── reflection-categories.md

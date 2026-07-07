@@ -1,0 +1,52 @@
+{
+  "instructions": [
+    {
+      "instruction": "Reflect over every durable persistence surface, not only memory and instruction files.",
+      "original_snippets": "The user asks for hooks, lifecycle hooks, OpenSpec YAML/prompts, subagent prompts, skills, and other steering artifacts.",
+      "relevant_when": "Choosing where learnings should be stored",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Explain why each candidate belongs in its selected target and why nearby targets were rejected.",
+      "original_snippets": "The user asks to decide where insights should go and what harness or feedback/feed-forward mechanism should capture them.",
+      "relevant_when": "Writing reflection recommendations",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Respect research-only requests by stopping at recommendations without applying changes.",
+      "original_snippets": "The user says the result should be research results, not changes yet.",
+      "relevant_when": "The user asks for exploration, research, or proposals only",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Promote repeated misses into enforceable automation or workflow artifacts when feasible.",
+      "original_snippets": "The user asks for hooks, git hooks, lifecycle hooks, and feedback mechanisms to avoid forgetting.",
+      "relevant_when": "A learning is about repeated process failures or missed verification",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Keep final persistence repo-agnostic unless local project evidence proves the rule is project-specific.",
+      "original_snippets": "The user asks for a reusable Reflect skill in a sibling skills repo.",
+      "relevant_when": "Improving or applying the reflect skill across projects",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Highlight significant content changes while filtering facts that were already present.",
+      "original_snippets": "The user corrects that preface and module 0 were already open, but module 1 free access and the GitHub repository link were new.",
+      "relevant_when": "Reflecting on changelog or release-note updates",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Treat stale dates and changelog timestamps as part of content-change hygiene.",
+      "original_snippets": "The user asks to update portal and class page dates to the changelog update date.",
+      "relevant_when": "Reflecting on content or changelog maintenance",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Run an independent reviewer subagent after most reflection changes are drafted, before final verification, when the client supports subagents.",
+      "original_snippets": "The user asks to embed an independent review with a sub-agent step in the sequence.",
+      "relevant_when": "Changing broad instruction/spec/hook/skill surfaces or Reflect itself",
+      "why_given": "preference"
+    }
+  ]
+}

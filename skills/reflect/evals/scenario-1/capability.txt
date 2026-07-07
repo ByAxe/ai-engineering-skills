@@ -1,0 +1,1 @@
+Respect proposal-only reflection mode while still producing a complete target audit.

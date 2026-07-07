@@ -1,0 +1,46 @@
+{
+  "context": "Checks whether Reflect routes durable learnings across all relevant persistence surfaces instead of defaulting to memory.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Multiple surfaces considered",
+      "description": "The report explicitly considers instruction files, memory, semantic memory, OpenSpec artifacts, skills, hooks/git hooks, docs/runbooks, and CI or local verification gates.",
+      "max_score": 16
+    },
+    {
+      "name": "Target rationale included",
+      "description": "Each recommended update explains why that target is better than nearby alternatives.",
+      "max_score": 14
+    },
+    {
+      "name": "Automation promoted",
+      "description": "Repeated missed verification is routed to enforceable hooks or lifecycle checks when feasible, not only to memory.",
+      "max_score": 14
+    },
+    {
+      "name": "Reviewer rule routed",
+      "description": "The independent-reviewer learning is routed to the verify workflow or skill instructions, with memory only as secondary context if used.",
+      "max_score": 12
+    },
+    {
+      "name": "Generated artifact side effect routed",
+      "description": "The dirty generated-assets finding is treated as tool/project behavior and routed to a runbook, skill, hook guard, or memory with a clear confidence caveat.",
+      "max_score": 12
+    },
+    {
+      "name": "No low-value persistence",
+      "description": "One-off timestamps, PR numbers, and transient branch state are skipped or marked as non-durable.",
+      "max_score": 12
+    },
+    {
+      "name": "Evidence required",
+      "description": "The report cites user corrections, hook messages, command failures, or changed files as evidence for each candidate.",
+      "max_score": 10
+    },
+    {
+      "name": "Actionable output",
+      "description": "The report separates apply-now, propose-for-review, and do-not-persist items.",
+      "max_score": 10
+    }
+  ]
+}

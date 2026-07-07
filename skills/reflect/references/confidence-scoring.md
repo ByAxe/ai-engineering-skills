@@ -14,7 +14,7 @@ Multiple evidence sources agree. Pattern reproduced. User validated.
 - User explicitly said "always do X" (confidence: 0.9)
 - `make test` failed consistently until specific fix applied (confidence: 0.85)
 
-**Persistence:** Eligible for instruction-file or memory updates. Still check scope and duplicates first.
+**Persistence:** Eligible for the best durable surface after scope, duplicate, and target checks.
 
 ### Probable (0.5 - 0.79)
 
@@ -26,7 +26,7 @@ Single strong signal or logical inference from solid evidence.
 - User implied preference but didn't state it explicitly (confidence: 0.55)
 - Documentation gap found — behavior differs from what docs suggest (confidence: 0.65)
 
-**Persistence:** Save to memory, or propose an instruction-file edit for user review.
+**Persistence:** Save to memory, or propose a durable-surface edit for user review.
 
 ### Uncertain (0.2 - 0.49)
 
@@ -80,6 +80,18 @@ Each learning has a validity window:
 | **until-next-refactor** | True for current architecture, may change with redesign | Major refactoring |
 | **version-specific** | Tied to specific library/tool version | Dependency update |
 | **session-specific** | Only relevant to this debugging session | Do NOT persist |
+
+## Target Confidence
+
+Score the learning and the target separately.
+
+| Target Confidence | Meaning |
+|---|---|
+| High | Evidence clearly implies this surface, e.g. a repeated missed command should become a hook/test |
+| Medium | Surface is plausible but nearby targets could also fit; propose before editing |
+| Low | Learning may be true, but target is unclear; use memory or report only |
+
+Example: "A smoke command left generated files dirty" may be confirmed, but "add a pre-push hook" may be only medium until the cost and flakiness are known.
 
 When reviewing existing instruction-file entries during reflection:
 - Flag entries whose referenced code/files no longer exist

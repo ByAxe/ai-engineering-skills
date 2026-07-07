@@ -1,16 +1,16 @@
 ---
 name: reflect
-description: Use this skill to reflect on a completed or interrupted work session, extract durable evidence-backed learnings, and update project instruction files (CLAUDE.md, AGENTS.md, or equivalent) plus persistent memory without duplicating existing guidance. Trigger when the user says "reflect", "what did we learn", "update instructions", "capture learnings", or asks to remember process, tool, or project lessons.
+description: Reflects on completed or interrupted sessions, extracts evidence-backed lessons, and routes them to the right persistent surface. Use when the user says "reflect", "what did we learn", "capture learnings", "update memory/instructions", or asks where a lesson belongs across specs, hooks, skills, docs, prompts, or automation.
 metadata:
   author: ByAxe
-  version: "2.1.0"
+  version: "2.2.0"
   category: workflow
-  tags: "reflection, learning, instructions, memory, continuous-improvement, confidence-scoring"
+  tags: "reflection, learning, instructions, memory, steering, continuous-improvement, confidence-scoring"
 ---
 
 # Reflect
 
-Turn a work session into durable guidance. Capture only lessons that would prevent future mistakes or speed future work.
+Turn a work session into durable steering. Capture only lessons that would prevent future mistakes or speed future work.
 
 ## Non-Negotiables
 
@@ -19,7 +19,10 @@ Turn a work session into durable guidance. Capture only lessons that would preve
 - Never duplicate: check existing instruction files and memory before writing.
 - Persist durable patterns, not task status, timestamps, or one-off facts available in git/logs.
 - Prefer updating or superseding an existing entry over adding another entry.
-- If the user explicitly asked to reflect or update memory, apply confirmed, non-contested memory changes directly. Ask before broad instruction-file edits, contested changes, or confidence below 0.5.
+- Consider every durable persistence surface before defaulting to memory.
+- If the user asks for research, exploration, proposals, or "no changes yet", stop after proposals.
+- If the user explicitly asked to reflect or update memory, apply confirmed, non-contested memory changes directly. Ask before broad structural edits, contested changes, or confidence below 0.5.
+- Run an independent reviewer pass for broad instruction/spec/hook/skill changes when subagents are available. If unavailable, record the warning before reporting completion.
 
 ## Instructions
 
@@ -39,8 +42,8 @@ For each candidate, assign a confidence band and default target:
 
 | Band | Default target |
 |---|---|
-| Confirmed (0.8-1.0) | Instruction file or memory |
-| Probable (0.5-0.79) | Memory, or proposed instruction-file edit |
+| Confirmed (0.8-1.0) | Best durable surface after target audit |
+| Probable (0.5-0.79) | Memory, or proposed durable-surface edit |
 | Uncertain (0.2-0.49) | Memory only, with caveat |
 | Speculative (0.0-0.19) | Mention only; do not persist |
 
@@ -51,11 +54,12 @@ Read [confidence-scoring.md](references/confidence-scoring.md) when a score is a
 Before proposing updates, scan for conflicts with established guidance:
 
 1. Read the current project's authoritative instruction files (`CLAUDE.md`, `AGENTS.md`, or equivalent), including the nearest nested file that governs the touched area.
-2. Search the current agent's memory files:
+2. Inspect any relevant local steering surfaces: specs, hooks, skills, docs/runbooks, templates, CI gates, or prompt files.
+3. Search the current agent's memory files:
    ```
    Grep pattern="relevant term" path="<current-agent-memory-dir>" glob="*.md"
    ```
-3. If a semantic memory MCP is available:
+4. If a semantic memory MCP is available:
    ```
    search(query="relevant term", limit=10, project="<current-project>")
    ```
@@ -70,9 +74,12 @@ Mark each finding: NEW | UPDATE | CONTESTED | SKIP
 
 ### Step 4: Choose Target and Proposal Shape
 
-Use [update-targets.md](references/update-targets.md) for the decision matrix. Default target choices:
+Use [update-targets.md](references/update-targets.md) for the decision matrix. For each candidate, name why the chosen target is better than nearby alternatives.
 
 - Project-wide durable workflow or architecture rule -> current project instruction file.
+- Enforceable repeated miss -> hook, CI/local gate, lifecycle check, or test.
+- Capability contract -> spec or OpenSpec artifact.
+- Reusable agent behavior -> skill, prompt, template, or eval.
 - Tool, environment, or project quirk -> memory file; also save to semantic memory if important.
 - User preference or communication pattern -> memory only.
 - One-off task status or facts already in git/logs -> SKIP.
@@ -88,6 +95,7 @@ Confidence: [0.0-1.0] ([Confirmed|Probable|Uncertain])
 Evidence:
   - [Quote or reference from conversation]
   - [Error message, file path, or command output]
+Why this target: [why this surface is better than memory/instructions/specs/hooks/skills/docs]
 Supersedes: [existing entry it replaces, if any]
 Temporal: [permanent | until-next-refactor | version-specific]
 Risk: [low|medium|high] — [what goes wrong if this is incorrect]
@@ -119,19 +127,34 @@ If the user asked for proposals only, stop after Step 4. Otherwise:
    save_memory(text="[learning with evidence]", title="[title]", project="<current-project>")
    ```
 5. **Supersession** — if new entry supersedes an old one, update/remove the old entry rather than leaving both
+6. **Other surfaces** — for specs, hooks, skills, docs, prompts, templates, or tests, make the smallest scoped edit and run that surface's validator.
 
-### Step 6: Verify and Report
+### Step 6: Independent Review
+
+For broad instruction/spec/hook/skill edits, or any reflection that changes multiple persistence surfaces, run an independent reviewer subagent after the main edits and before final reporting.
+
+Reviewer prompt shape:
+```
+Review this reflection change independently. Check whether each learning is evidence-backed, non-duplicative, routed to the right persistence surface, and not weakening existing protected guidance. Report findings only; do not edit files.
+Artifacts: [conversation evidence summary], [changed files], [proposal list]
+```
+
+Resolve or explicitly reject reviewer findings with evidence. If subagents are not available in the current client, state that and perform the same checklist yourself; do not silently skip the reviewer gate.
+
+### Step 7: Verify and Report
 
 - Re-read modified files to confirm correct placement
 - Check no duplicates were introduced
 - Confirm additions match existing style
+- Run relevant validators for changed surfaces, such as skill lint/review/evals for skill changes, spec validation for spec changes, hook tests for hook changes, or repository tests for code changes.
 
 **Report to user:**
 ```
 Reflection Summary:
-- [N] confirmed learnings persisted to instruction files
-- [N] probable learnings saved to memory
+- [N] confirmed learnings persisted
+- [N] surfaces updated or proposed
 - [N] uncertain findings noted (not persisted)
 - [N] contested items resolved
 - [N] existing entries updated/superseded
+- Independent review: [passed | findings resolved | unavailable with warning]
 ```

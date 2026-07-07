@@ -1,0 +1,46 @@
+{
+  "context": "Checks whether Reflect separates genuinely new content changes from already-existing facts and captures changelog hygiene.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Filters old facts",
+      "description": "The output explicitly excludes preface and module 0 from new changelog highlights because they were already open.",
+      "max_score": 16
+    },
+    {
+      "name": "Captures module 1",
+      "description": "The output treats module 1 free access as a significant new changelog item.",
+      "max_score": 14
+    },
+    {
+      "name": "Captures repository link",
+      "description": "The output treats the GitHub repository link as a significant new changelog item.",
+      "max_score": 14
+    },
+    {
+      "name": "Date hygiene routed",
+      "description": "The output recommends updating visible portal/classes updated-on dates together with changelog updates.",
+      "max_score": 14
+    },
+    {
+      "name": "Automation option",
+      "description": "The output proposes a reusable skill, checklist, hook, or test to catch changelog/date drift in future updates.",
+      "max_score": 12
+    },
+    {
+      "name": "Localization awareness",
+      "description": "The output mentions that changelog recommendations may need bilingual or localized wording when the product has multiple languages.",
+      "max_score": 10
+    },
+    {
+      "name": "Evidence tied",
+      "description": "The output cites the user correction as evidence for filtering already-existing facts.",
+      "max_score": 10
+    },
+    {
+      "name": "Target choice",
+      "description": "The output explains whether this belongs in content-sync skill guidance, a changelog spec, a hook/test, memory, or docs.",
+      "max_score": 10
+    }
+  ]
+}

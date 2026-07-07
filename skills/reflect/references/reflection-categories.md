@@ -19,6 +19,21 @@ Learnings about code, architecture, tools, and infrastructure.
 
 **Where they go:** Project instruction file > Known Limitations, Common Mistakes, or relevant component section
 
+## Enforcement Patterns
+
+Learnings about checks that should become automatic.
+
+**Examples:**
+- "Agents repeatedly missed required verification commands; the lifecycle hook should surface and block completion."
+- "Generated artifacts became dirty after a smoke command; add a post-command cleanliness check."
+
+**Signals in conversation:**
+- Same omission recurs after user or hook correction
+- A command failure reveals a cheap deterministic guard
+- Manual checklist items are repeatedly forgotten
+
+**Where they go:** Hooks, git hooks, CI/local gates, tests, or lifecycle checks. Use memory only for quirks that cannot be enforced safely.
+
 ## Process Patterns
 
 Learnings about workflows, methodology, and development practices.
@@ -34,6 +49,37 @@ Learnings about workflows, methodology, and development practices.
 - Workflow sequences that proved effective
 
 **Where they go:** Project instruction file > Development Practices, Key Patterns, or Completion Checklist
+
+## Contract Patterns
+
+Learnings about desired product or capability behavior.
+
+**Examples:**
+- "Module 1 is now free-access content."
+- "The changelog date must match the public updated-on date."
+- "Signed-out copy must be distinct in title and body."
+
+**Signals in conversation:**
+- User corrects what the product now guarantees
+- Requirements, acceptance criteria, or scenarios change
+- The learning should be true for users, not only for agents
+
+**Where they go:** Specs/OpenSpec, tests, changelog, content source, or docs. Use instruction files only for the workflow that maintains the contract.
+
+## Agent-Steering Patterns
+
+Learnings about how agents should perform repeatable work.
+
+**Examples:**
+- "OpenSpec verification must include an independent reviewer pass."
+- "Reflection must audit hooks, specs, prompts, skills, docs, and memory before choosing a target."
+
+**Signals in conversation:**
+- User corrects the agent's workflow expectations
+- A reusable prompt, skill, or subagent instruction would prevent recurrence
+- The pattern applies across repositories
+
+**Where they go:** Skills, prompts/templates, evals, or project/global instruction files.
 
 ## Communication Patterns
 
@@ -67,6 +113,21 @@ Learnings unique to this codebase, its quirks, and its constraints.
 
 **Where they go:** Project instruction file > relevant architecture/component section, or Known Limitations
 
+## Content and Release Patterns
+
+Learnings about public-facing change communication.
+
+**Examples:**
+- "Do not list preface/module 0 as new if they were already open."
+- "Include the new GitHub repository link in the education-program changelog."
+
+**Signals in conversation:**
+- User filters changelog suggestions as too broad or stale
+- Visible updated dates, release notes, or localized content drift
+- The same content must be reflected in multiple public surfaces
+
+**Where they go:** Changelog, content-sync skill, content consistency tests/hooks, source content, or docs.
+
 ## Trace Event Mapping
 
 When analyzing a conversation, look for these event patterns:
@@ -78,6 +139,9 @@ When analyzing a conversation, look for these event patterns:
 | Retry succeeded with different approach | `backtrack` + `success` | Technical or Process |
 | User explained project context | `user-feedback` | Project-Specific |
 | Same fix applied twice | `repeated-pattern` | Technical (high confidence) |
+| Hook blocked completion | `tool_invoke` failure + `correction` | Enforcement |
+| Public behavior changed | `user-feedback` + implementation | Contract or Content |
+| Reusable agent workflow changed | `correction` + `process update` | Agent-Steering |
 | Approach worked on first try | `success` | Effective Pattern |
 | User expressed frustration | `user-feedback` (negative) | Communication |
 | Discovered undocumented behavior | `discovery` | Technical or Project-Specific |

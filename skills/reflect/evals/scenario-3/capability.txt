@@ -1,0 +1,1 @@
+Detect conflicts and avoid weakening high-priority existing guidance.

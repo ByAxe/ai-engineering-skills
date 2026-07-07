@@ -1,0 +1,46 @@
+{
+  "context": "Checks whether Reflect honors a research-only request while still giving complete, useful recommendations.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "No apply claim",
+      "description": "The output does not claim to edit memory, instruction files, hooks, specs, or skills.",
+      "max_score": 18
+    },
+    {
+      "name": "Research result format",
+      "description": "The output is a ranked research report or proposal list rather than a generic reflection summary.",
+      "max_score": 14
+    },
+    {
+      "name": "Wide target inventory",
+      "description": "The output lists at least eight possible persistence surfaces, including memory, instruction files, docs, specs, skills, hooks, templates, and backlog/issues.",
+      "max_score": 16
+    },
+    {
+      "name": "Apply plan included",
+      "description": "The output includes a later implementation plan with verification, but clearly marks it as not yet executed.",
+      "max_score": 12
+    },
+    {
+      "name": "Evidence gate retained",
+      "description": "The output states that candidates need conversation evidence and duplicate/conflict checks before persistence.",
+      "max_score": 12
+    },
+    {
+      "name": "Risk handling",
+      "description": "The output identifies contested, low-confidence, or broad-scope changes that need approval.",
+      "max_score": 12
+    },
+    {
+      "name": "Repo-agnostic language",
+      "description": "Recommendations are framed so they can apply to different projects, with project-specific examples clearly labeled as examples.",
+      "max_score": 8
+    },
+    {
+      "name": "Concise prioritization",
+      "description": "The output separates high-impact near-term changes from speculative ideas.",
+      "max_score": 8
+    }
+  ]
+}

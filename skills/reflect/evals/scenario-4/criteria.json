@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether Reflect can recommend improving itself in a reusable, standards-aligned way.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Repo-agnostic scope",
+      "description": "The plan keeps Reflect reusable across projects while allowing project-specific target discovery.",
+      "max_score": 14
+    },
+    {
+      "name": "Skill body stays lean",
+      "description": "The plan uses progressive disclosure for large target catalogs or examples instead of bloating SKILL.md.",
+      "max_score": 12
+    },
+    {
+      "name": "Standards alignment",
+      "description": "The plan includes Agent Skills frontmatter, description, line-count, and progressive-disclosure checks.",
+      "max_score": 12
+    },
+    {
+      "name": "Eval-first plan",
+      "description": "The plan adds eval scenarios before or alongside implementation and compares old versus new behavior.",
+      "max_score": 14
+    },
+    {
+      "name": "Tessl usage",
+      "description": "The plan names Tessl lint, review, and eval or comparison commands as verification surfaces.",
+      "max_score": 12
+    },
+    {
+      "name": "Target catalog",
+      "description": "The plan covers memory, instructions, semantic memory, docs, specs, skills, hooks, CI/local gates, templates, and backlog/issues.",
+      "max_score": 14
+    },
+    {
+      "name": "Application mode",
+      "description": "The plan distinguishes proposal-only, apply-approved, and automatic confirmed-memory updates.",
+      "max_score": 10
+    },
+    {
+      "name": "Independent review step",
+      "description": "The plan includes an independent reviewer subagent pass after most edits are drafted and before final verification, with a fallback warning if subagents are unavailable.",
+      "max_score": 10
+    },
+    {
+      "name": "No over-automation",
+      "description": "The plan avoids forcing every learning into hooks or specs and keeps low-confidence findings out of durable artifacts.",
+      "max_score": 2
+    }
+  ]
+}
