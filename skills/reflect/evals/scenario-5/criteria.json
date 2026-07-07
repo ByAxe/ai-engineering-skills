@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether Reflect conditions target choice on cloud execution and OpenSpec availability instead of assuming local memory or hooks.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Environment surfaced first",
+      "description": "The output explicitly identifies cloud execution, missing writable local memory, and unverified local hooks as constraints before choosing targets.",
+      "max_score": 14
+    },
+    {
+      "name": "OpenSpec chosen for contract",
+      "description": "The independent-reviewer requirement is routed to OpenSpec change/spec guidance or OpenSpec verification workflow because the repo already uses OpenSpec.",
+      "max_score": 14
+    },
+    {
+      "name": "Cloud-safe persistence",
+      "description": "The output prefers repo-tracked files, PR description/comment, issue, or proposal artifacts over local-only memory for cloud execution.",
+      "max_score": 12
+    },
+    {
+      "name": "Hook conditionality",
+      "description": "The output proposes hooks or lifecycle gates only as conditional follow-up when they can be installed and verified, not as assumed available cloud state.",
+      "max_score": 12
+    },
+    {
+      "name": "CI workflow considered",
+      "description": "The output considers CI/local gates or workflow checks as a cloud-compatible enforcement surface for repeated missed verification.",
+      "max_score": 10
+    },
+    {
+      "name": "Fallback path",
+      "description": "The output gives a fallback if OpenSpec CLI or repo write access is unavailable, such as a proposal-only report with exact patch targets.",
+      "max_score": 10
+    },
+    {
+      "name": "Target rationale",
+      "description": "Each chosen target explains why it beats local memory, plain docs, hooks, or specs in this environment.",
+      "max_score": 10
+    },
+    {
+      "name": "Validation named",
+      "description": "The output names appropriate validation such as openspec validate, CI check, hook dry-run, or reviewer pass depending on target.",
+      "max_score": 10
+    },
+    {
+      "name": "No false local claims",
+      "description": "The output does not claim to update local memory, install hooks, or verify workstation-only state from the cloud run.",
+      "max_score": 8
+    }
+  ]
+}

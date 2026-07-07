@@ -18,6 +18,23 @@ Can the lesson be enforced mechanically?
 
 Always explain why the chosen target is better than nearby alternatives.
 
+## Environment Gate
+
+Before choosing a target, identify which surfaces are present and writable.
+
+| Environment Signal | Prefer | Avoid |
+|---|---|---|
+| Local repo with writable agent memory | Memory plus repo artifacts when appropriate | Saving only to memory when a repo contract/gate should change |
+| Cloud/hosted workspace with repo write access | Repo-tracked specs/docs/skills/workflows, PR description/comment, issue | Local-only memory paths, workstation hook claims, secret-dependent proofs |
+| Read-only/cloud proposal mode | Research report with exact target paths and patches | Claiming persistence happened |
+| OpenSpec present (`openspec/config.yaml`, `openspec/specs`, active changes) | Active OpenSpec change/spec for product, architecture, agent-harness, hook, context-pack, deployment-gate, or memory-promotion contracts | Plain docs or memory as the only durable contract |
+| Non-OpenSpec methodology present | Existing methodology artifacts: ADR/RFC, specs.md, Kiro, GitHub Spec Kit, BMAD, issue acceptance criteria, runbooks, or equivalent | Introducing OpenSpec or a new methodology unless requested |
+| Hooks not installed or not verifiable | Propose hook/lifecycle gate and validation command; use CI/test if available | Claiming hook enforcement exists |
+| CI/workflow available | CI/local gate, workflow check, or test for repeated mechanical misses | Manual checklist as the only guard |
+| No repo write access but PR/issue comments available | PR/issue comment with proposal and evidence | Silent local notes |
+
+If the ideal target is missing, propose creating it and state the smallest proof that would make it enforceable.
+
 ## Target Catalog
 
 | Target | Use For | Do Not Use For | Validation |
@@ -28,12 +45,14 @@ Always explain why the chosen target is better than nearby alternatives.
 | Semantic memory MCP | Searchable important discoveries across sessions | Only copy of a required rule | Search before saving; save concise evidence-backed memory |
 | Docs/runbooks | Explanations, operational procedures, architecture narratives | Short rules that must always be seen | Docs tests/link checks if present |
 | Specs/OpenSpec | Durable product/capability behavior, requirements, scenarios | Process tips or agent preferences | Spec validation, affected tests |
+| ADR/RFC/specs.md/methodology docs | Durable design decisions and requirements in non-OpenSpec projects | Projects that already have a more specific contract layer | Existing methodology review/checks |
 | Skills | Reusable agent workflow or judgment pattern across projects | Project-specific one-off quirks | Skill validator, lint/review, evals when behavior matters |
 | Prompts/templates | Repeated task framing, PR descriptions, subagent prompts, issue templates | Rules that should be enforced automatically | Template smoke/manual use check |
 | Hooks/git hooks/Codex lifecycle hooks | Repeated missed checks, cheap enforceable guardrails | Judgment-heavy guidance or flaky/expensive checks | Hook tests or dry-run commands |
 | CI/local gates/tests | Behavioral regressions, contracts, generated-artifact drift | Pure preferences | Targeted test plus full relevant gate |
 | Backlog/issues/ADRs | Larger work, contested decisions, future design choices | Immediate tiny edits | Link evidence and acceptance criteria |
 | Changelog/release notes | User-visible shipped changes | Internal process facts | Date/localization/content consistency checks |
+| Cloud run artifacts | Hosted-agent handoff, PR description/comment, launch result, issue comment | Long-term contract if repo files can be changed | Link back to repo-tracked follow-up or commit |
 
 ## Project Instruction Files
 
@@ -110,7 +129,17 @@ save_memory(
 
 **Best for:** Product behavior contracts, acceptance scenarios, capability requirements, and requirements changed by a session.
 
-Use when the learning should change what the system must do, not merely how agents should work. Keep broken historical behavior in proposal/design/history artifacts; main specs should state the desired durable contract.
+Use the project's existing contract layer when the learning should change what the system must do, not merely how agents should work.
+
+If OpenSpec is present, treat it as the durable contract layer for:
+- product behavior and acceptance scenarios
+- architecture invariants
+- agent workflow and harness rules
+- hook, context-pack, deployment-gate, and memory-promotion contracts
+
+Use an active `openspec/changes/<change-id>` when the requirement is still being proposed or implemented. Sync/archive only after verification. If the OpenSpec CLI or write access is unavailable in the current environment, produce a proposal with exact capability/spec paths and the validation command to run later.
+
+If OpenSpec is absent, do not invent it. Route to the project's current methodology instead: ADR/RFC, `specs.md`, Kiro artifacts, GitHub Spec Kit files, BMAD artifacts, issue acceptance criteria, runbooks, or whichever contract layer the repo already uses. If no contract layer exists, propose the smallest durable repo artifact before falling back to memory.
 
 ## Target: Hooks, Gates, and Tests
 
@@ -123,11 +152,15 @@ Examples:
 
 Avoid hooks for subjective judgment, expensive broad checks, or flaky checks. Put those in skills/runbooks with explicit verification guidance.
 
+In cloud runs, do not assume workstation git hooks or Codex lifecycle hooks are installed. Prefer CI/workflow checks when the guard must work in cloud, or propose the hook plus a separate local verification step.
+
 ## Target: Skills, Prompts, Templates, and Evals
 
 **Best for:** Reusable agent behavior, subagent prompts, workflow sequences, and reflection itself.
 
 Use a skill when the lesson is a repeatable judgment workflow. Use a prompt/template when the issue is task framing. Use evals when the skill must reliably produce or avoid a behavior.
+
+For cloud skill launches, include cloud-specific limits in the proposal: available repo, branch/PR target, writable files, missing local memory, and validations that must run in CI or a later local session.
 
 ## Changelog and Content Hygiene
 

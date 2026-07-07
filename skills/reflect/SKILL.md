@@ -3,7 +3,7 @@ name: reflect
 description: Reflects on completed or interrupted sessions, extracts evidence-backed lessons, and routes them to the right persistent surface. Use when the user says "reflect", "what did we learn", "capture learnings", "update memory/instructions", or asks where a lesson belongs across specs, hooks, skills, docs, prompts, or automation.
 metadata:
   author: ByAxe
-  version: "2.2.0"
+  version: "2.3.0"
   category: workflow
   tags: "reflection, learning, instructions, memory, steering, continuous-improvement, confidence-scoring"
 ---
@@ -20,6 +20,7 @@ Turn a work session into durable steering. Capture only lessons that would preve
 - Persist durable patterns, not task status, timestamps, or one-off facts available in git/logs.
 - Prefer updating or superseding an existing entry over adding another entry.
 - Consider every durable persistence surface before defaulting to memory.
+- Condition target choice on the actual environment and methodology: local vs cloud, writable vs read-only, OpenSpec vs another contract layer, hooks installed vs merely possible.
 - If the user asks for research, exploration, proposals, or "no changes yet", stop after proposals.
 - If the user explicitly asked to reflect or update memory, apply confirmed, non-contested memory changes directly. Ask before broad structural edits, contested changes, or confidence below 0.5.
 - Run an independent reviewer pass for broad instruction/spec/hook/skill changes when subagents are available. If unavailable, record the warning before reporting completion.
@@ -55,11 +56,18 @@ Before proposing updates, scan for conflicts with established guidance:
 
 1. Read the current project's authoritative instruction files (`CLAUDE.md`, `AGENTS.md`, or equivalent), including the nearest nested file that governs the touched area.
 2. Inspect any relevant local steering surfaces: specs, hooks, skills, docs/runbooks, templates, CI gates, or prompt files.
-3. Search the current agent's memory files:
+3. Detect environment constraints before picking targets:
+   - local or cloud/hosted workspace
+   - writable repo, writable agent memory, or proposal-only
+   - project methodology or contract layer: OpenSpec, ADR/RFC, specs.md, Kiro, GitHub Spec Kit, BMAD, issue acceptance criteria, runbooks, or none
+   - hooks/lifecycle checks installed and verifiable, or only possible as a proposal
+   - CI/workflow, PR, issue, or cloud-run artifact surfaces available
+4. Search the current agent's memory files when they are readable:
    ```
    Grep pattern="relevant term" path="<current-agent-memory-dir>" glob="*.md"
    ```
-4. If a semantic memory MCP is available:
+   If memory is read-only or unavailable, use it only for duplicate/conflict checks and route persistence elsewhere.
+5. If a semantic memory MCP is available:
    ```
    search(query="relevant term", limit=10, project="<current-project>")
    ```
@@ -78,7 +86,10 @@ Use [update-targets.md](references/update-targets.md) for the decision matrix. F
 
 - Project-wide durable workflow or architecture rule -> current project instruction file.
 - Enforceable repeated miss -> hook, CI/local gate, lifecycle check, or test.
-- Capability contract -> spec or OpenSpec artifact.
+- Capability contract -> the project's existing contract layer.
+- OpenSpec project contract or agent-harness rule -> active OpenSpec change/spec before docs or memory.
+- Non-OpenSpec methodology -> ADR/RFC/specs.md/issue acceptance criteria/runbook, matching current project practice.
+- Cloud/hosted run without writable memory or hook proof -> repo-tracked artifact, PR/issue/comment, or proposal with exact target paths.
 - Reusable agent behavior -> skill, prompt, template, or eval.
 - Tool, environment, or project quirk -> memory file; also save to semantic memory if important.
 - User preference or communication pattern -> memory only.
@@ -95,7 +106,9 @@ Confidence: [0.0-1.0] ([Confirmed|Probable|Uncertain])
 Evidence:
   - [Quote or reference from conversation]
   - [Error message, file path, or command output]
+Environment: [local|cloud|readonly|OpenSpec|non-OpenSpec|unknown, plus writable surfaces]
 Why this target: [why this surface is better than memory/instructions/specs/hooks/skills/docs]
+Fallback if unavailable: [proposal-only target or next-best durable surface]
 Supersedes: [existing entry it replaces, if any]
 Temporal: [permanent | until-next-refactor | version-specific]
 Risk: [low|medium|high] — [what goes wrong if this is incorrect]
@@ -128,6 +141,7 @@ If the user asked for proposals only, stop after Step 4. Otherwise:
    ```
 5. **Supersession** — if new entry supersedes an old one, update/remove the old entry rather than leaving both
 6. **Other surfaces** — for specs, hooks, skills, docs, prompts, templates, or tests, make the smallest scoped edit and run that surface's validator.
+7. **Cloud constraints** — if the chosen surface is unavailable in the current hosted run, do not fake persistence. Record the exact patch/proposal, PR/issue/comment target, or validation command needed in an environment that can apply it.
 
 ### Step 6: Independent Review
 

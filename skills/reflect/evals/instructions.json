@@ -47,6 +47,30 @@
       "original_snippets": "The user asks to embed an independent review with a sub-agent step in the sequence.",
       "relevant_when": "Changing broad instruction/spec/hook/skill surfaces or Reflect itself",
       "why_given": "preference"
+    },
+    {
+      "instruction": "Condition target routing on the actual execution environment and available project surfaces.",
+      "original_snippets": "The user asks what happens if the user uses cloud execution or OpenSpec.",
+      "relevant_when": "Reflecting in cloud, readonly, OpenSpec, or limited-permission environments",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use OpenSpec as the durable contract layer when a project already has OpenSpec and the learning changes requirements or agent-harness contracts.",
+      "original_snippets": "OpenSpec config says it is the durable contract layer for product behavior, architecture invariants, agent workflows, hooks, context packs, deployment gates, and memory promotion.",
+      "relevant_when": "The project has openspec/config.yaml, openspec/specs, or active openspec/changes",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "In cloud execution, prefer repo-tracked artifacts, PR comments/descriptions, issues, or proposals over local-only memory or unverified hooks when local persistence/verification is unavailable.",
+      "original_snippets": "Cloud runs may lack local agent memory, installed hooks, secrets, or direct workstation state.",
+      "relevant_when": "The agent is running in a hosted/cloud workspace",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Do not force OpenSpec into projects that use another methodology; route contract learnings to the project's existing methodology artifacts.",
+      "original_snippets": "The user asks what if the user is not using OpenSpec and is using another methodology.",
+      "relevant_when": "The project has ADRs, RFCs, specs.md, Kiro, GitHub Spec Kit, BMAD, issues, docs, or another contract workflow instead of OpenSpec",
+      "why_given": "new knowledge"
     }
   ]
 }

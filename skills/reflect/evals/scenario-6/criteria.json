@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether Reflect adapts to a non-OpenSpec methodology instead of forcing OpenSpec.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Does not force OpenSpec",
+      "description": "The output explicitly avoids creating OpenSpec artifacts because the repo does not use OpenSpec.",
+      "max_score": 14
+    },
+    {
+      "name": "Existing methodology detected",
+      "description": "The output identifies ADRs, specs.md, issue templates, runbooks, and CI as the repo's available methodology surfaces.",
+      "max_score": 14
+    },
+    {
+      "name": "Contract target chosen",
+      "description": "The security-sensitive auth requirement is routed to the existing contract layer, such as ADR/specs.md/issue acceptance criteria, not memory only.",
+      "max_score": 14
+    },
+    {
+      "name": "Gate target conditional",
+      "description": "Repeated missed auth verification is routed to CI/test/hook only if cheap and deterministic, with docs/runbook fallback for judgment-heavy checks.",
+      "max_score": 12
+    },
+    {
+      "name": "Target rationale",
+      "description": "The output explains why the selected methodology artifacts beat memory, generic docs, OpenSpec, and hooks for each learning.",
+      "max_score": 12
+    },
+    {
+      "name": "Migration restraint",
+      "description": "The output does not propose adopting a new methodology unless the user asks or current artifacts are insufficient.",
+      "max_score": 10
+    },
+    {
+      "name": "Validation named",
+      "description": "The output names validation appropriate to the existing methodology, such as ADR review, CI workflow check, auth tests, or issue acceptance criteria review.",
+      "max_score": 10
+    },
+    {
+      "name": "Fallback if no contract layer",
+      "description": "The output states what to do if even ADR/specs.md/issues are unavailable: propose the smallest durable repo artifact instead of local-only memory.",
+      "max_score": 8
+    },
+    {
+      "name": "Evidence retained",
+      "description": "The output still requires evidence from the session before persistence.",
+      "max_score": 6
+    }
+  ]
+}
