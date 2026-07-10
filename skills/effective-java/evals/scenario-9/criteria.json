@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent treats ORM, transactions, external effects, and migration history as correctness/compatibility issues rather than cosmetic smells.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Entity/transport boundary",
+      "description": "Identifies entity exposure as persistence/API coupling and stages a DTO boundary while protecting the existing JSON contract.",
+      "max_score": 12
+    },
+    {
+      "name": "Equality and identity",
+      "description": "Explains mutable/generated-ID equality hazards in sets/maps and proposes an identity strategy matched to lifecycle and repository conventions.",
+      "max_score": 12
+    },
+    {
+      "name": "Fetch strategy evidence",
+      "description": "Rejects blanket EAGER, profiles actual queries/N+1 behavior, and uses explicit fetch plans or transactional mapping per use case.",
+      "max_score": 12
+    },
+    {
+      "name": "Transaction and external call",
+      "description": "Flags holding locks/transactions across payment I/O and designs a shorter transaction plus state machine/compensation as required.",
+      "max_score": 15
+    },
+    {
+      "name": "Idempotency/outbox consistency",
+      "description": "Addresses duplicate payment attempts and database/external-event consistency with keys, constraints, outbox, or equivalent guarantees.",
+      "max_score": 10
+    },
+    {
+      "name": "Migration immutability",
+      "description": "Does not edit an applied migration; adds a forward migration and handles existing duplicates/data validation safely.",
+      "max_score": 12
+    },
+    {
+      "name": "Constraint and rollout plan",
+      "description": "Orders application/schema changes for rolling deployment and names indexes, constraints, lock/backfill, and rollback concerns.",
+      "max_score": 8
+    },
+    {
+      "name": "Regression/integration tests",
+      "description": "Covers JSON compatibility, equality collections, query counts, lazy access, payment failure/retry, transaction rollback, and migration against representative data.",
+      "max_score": 12
+    },
+    {
+      "name": "Risk-ranked staging",
+      "description": "Prioritizes correctness/data/payment risks and avoids a repository-wide ORM rewrite.",
+      "max_score": 7
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent understands that reactive return types do not make blocking operations non-blocking and uses project-specific Quarkus dispatch semantics.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Blocking operations identified",
+      "description": "Identifies blocking ORM access and filesystem I/O and explains the event-loop starvation risk.",
+      "max_score": 16
+    },
+    {
+      "name": "Dispatch is version-aware",
+      "description": "Checks the installed Quarkus REST stack/version and annotations before asserting exact dispatch behavior.",
+      "max_score": 12
+    },
+    {
+      "name": "Rejects Uni wrapping fallacy",
+      "description": "States that Uni.createFrom().item around blocking code does not by itself move work off the event loop.",
+      "max_score": 10
+    },
+    {
+      "name": "Coherent alternatives",
+      "description": "Compares a blocking worker-thread endpoint, a supported virtual-thread path, or a genuinely reactive end-to-end rewrite, and does not mix them casually.",
+      "max_score": 14
+    },
+    {
+      "name": "Transaction semantics",
+      "description": "Places the blocking ORM transaction on an appropriate execution context and protects lazy loading, flush, and exception behavior.",
+      "max_score": 10
+    },
+    {
+      "name": "HTTP contract preserved",
+      "description": "Protects status, media type, payload, headers, error translation, and cancellation/timeout behavior.",
+      "max_score": 10
+    },
+    {
+      "name": "Focused tests",
+      "description": "Includes HTTP behavior, database path, filesystem failure, error mapping, and regression coverage for the reported path.",
+      "max_score": 12
+    },
+    {
+      "name": "Thread evidence",
+      "description": "Proposes an integration assertion/log/JFR or Quarkus-supported check that establishes the actual execution thread and absence of event-loop blocking.",
+      "max_score": 8
+    },
+    {
+      "name": "Narrow scope",
+      "description": "Does not introduce Hibernate Reactive, Mutiny wrappers, or architecture layers unless the repository has an independently justified migration.",
+      "max_score": 8
+    }
+  ]
+}

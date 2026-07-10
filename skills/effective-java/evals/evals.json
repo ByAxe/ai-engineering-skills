@@ -1,0 +1,149 @@
+{
+  "skill_name": "effective-java",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use $effective-java. Review a Java 21 change that replaces a value class with `record Digest(byte[] bytes)` and `record SearchResult(List<String> hits)`. Existing behavior requires content equality and forbids caller mutation from changing stored state. Produce `record-semantics-review.md`; do not edit code.",
+      "expected_output": "An evidence-ranked review that identifies array reference equality and shallow mutability, checks collection ownership/null behavior, recommends the smallest compatible model, and specifies focused equality/aliasing/serialization tests.",
+      "assertions": [
+        "Explains that generated record equality compares arrays by reference.",
+        "Explains that record accessors expose mutable array/collection components unless copied.",
+        "Does not recommend records mechanically for entities or identity-bearing objects.",
+        "Names tests for distinct equal arrays, constructor aliasing, accessor aliasing, and wire compatibility.",
+        "Separates confirmed contract violations from preferences."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Use $effective-java. A refactor changed `collect(Collectors.toList())` to `stream.toList()` and the result is later sorted and appended to. Write `stream-mutability-plan.md` with the smallest behavior-preserving fix and tests.",
+      "expected_output": "A plan that treats result mutability as a contract, identifies the runtime failure, chooses a mutable collector/copy or removes mutation based on ownership, and protects ordering, duplicates, null behavior, and call sites.",
+      "assertions": [
+        "States that Stream.toList returns an unmodifiable list.",
+        "Does not describe the change as style-only.",
+        "Preserves ordering and duplicate policy.",
+        "Adds a focused mutation regression test.",
+        "Avoids unrelated stream modernization."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Use $effective-java. Assess a Java 21 Quarkus service that puts every endpoint on virtual threads, performs CPU-heavy hashing, keeps 2 MB ThreadLocal buffers, uses a 20-connection database pool, and blocks inside synchronized code. Produce `virtual-thread-assessment.md`.",
+      "expected_output": "A JDK-specific assessment separating I/O and CPU work, rejecting virtual-thread pooling/unbounded concurrency, bounding database access, reviewing ThreadLocal allocation and Java 21\u201323 pinning, and proposing JFR/load verification without claiming universal speedup.",
+      "assertions": [
+        "Distinguishes I/O-bound from CPU-bound work.",
+        "States that virtual threads do not remove downstream pool limits.",
+        "Reviews ThreadLocal memory amplification.",
+        "Makes synchronized pinning advice specific to Java 21\u201323 and does not blindly rewrite locks.",
+        "Requires measurement/JFR/load evidence."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Use $effective-java. A Quarkus REST method returns `Uni<Response>`, is annotated `@NonBlocking`, calls Hibernate ORM Panache `Person.listAll()`, and reads a local file before returning. Write `event-loop-fix-plan.md` preserving the HTTP contract.",
+      "expected_output": "A plan that proves the blocking/event-loop mismatch, chooses a consistent blocking worker or supported virtual-thread path (or a truly reactive stack), preserves transactions and HTTP mapping, and adds a Quarkus integration test plus thread/blocking evidence.",
+      "assertions": [
+        "Identifies Hibernate ORM and file I/O as blocking operations.",
+        "Does not fix the issue merely by wrapping values in Uni.",
+        "Names the project Quarkus version/dispatch rules as a prerequisite.",
+        "Preserves status/body/error/transaction behavior.",
+        "Specifies a framework-level verification path."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Use $effective-java. Diagnose a Quarkus ArC startup failure: two producers of the same type use `@Named(\"fast\")` and `@Named(\"safe\")`, a default injection point is ambiguous, and another bean from a dependency is not discovered. Programmatic lookup also disappears in native mode. Produce `arc-diagnosis.md`.",
+      "expected_output": "A diagnosis covering @Named/@Default ambiguity, type-safe qualifiers or Identifier, Jandex/index-dependency/producer discovery, programmatic lookup and unused-bean removal, and precise augmentation/native tests without globally disabling removal.",
+      "assertions": [
+        "Explains the @Named default-qualifier ambiguity in Quarkus CDI.",
+        "Recommends a type-safe qualifier or supported Identifier for internal selection.",
+        "Checks dependency indexing/bean-defining annotations.",
+        "Checks unused-bean removal visibility for programmatic lookup.",
+        "Avoids global bean-removal disable as the first fix."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Use $effective-java. Review Hibernate Reactive Panache code using Jakarta `@Transactional`, calling `.await().indefinitely()`, and publishing a message in `invoke()` before commit. Write `reactive-transaction-review.md`.",
+      "expected_output": "A review that identifies the reactive transaction model, removes blocking waits, composes terminal completion, analyzes commit-before-publication and idempotency/outbox choices, and defines rollback/cancellation/redelivery tests.",
+      "assertions": [
+        "Uses the project-supported reactive transaction API such as @WithTransaction rather than assuming Jakarta @Transactional.",
+        "Rejects await/blocking on the reactive path.",
+        "Explains that side effects before commit can be inconsistent.",
+        "Considers outbox/idempotency rather than claiming Java transaction atomicity with the broker.",
+        "Tests asynchronous success, failure, rollback, and cancellation."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Use $effective-java. A Quarkus app works on the JVM but fails native: it constructs classes from configuration with `Class.forName`, loads `templates/invoice.html`, and has static fields initialized from `Instant.now()` and a random secret. Produce `native-readiness-plan.md`.",
+      "expected_output": "A precise native plan that identifies dynamic reachability, resource inclusion, and build-time static initialization; favors explicit factories/extension metadata and precise registration; removes secret/time capture; and requires a native integration test.",
+      "assertions": [
+        "Does not register an entire package for reflection without evidence.",
+        "Handles the class-loading design rather than only adding metadata.",
+        "Adds the exact resource and verifies packaged/native loading.",
+        "Moves time/random/secret initialization to runtime-owned dependencies.",
+        "Names native build/run verification separately from JVM tests."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Use $effective-java. Assess a Quarkus endpoint whose feature toggle is build-time fixed but operations expect to change it with a runtime env var; the endpoint logs bearer tokens, checks only a role but not account ownership, and tags metrics by account ID. Produce `security-config-observability-review.md`.",
+      "expected_output": "An evidence-ranked review covering configuration phase/package testing, secret redaction/rotation, separate authn/authz ownership checks, bounded metric cardinality, and integration tests for denial and runtime behavior.",
+      "assertions": [
+        "Distinguishes build-time and runtime configuration.",
+        "Requires packaged-mode proof for the override.",
+        "Treats bearer-token logging as a security issue and mentions rotation if exposed.",
+        "Tests cross-account authorization, not just roles.",
+        "Removes unbounded account-ID metric labels."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Use $effective-java. Review a Quarkus ORM refactor that returns entities from REST, generated equals/hashCode over all fields, changes a relation to EAGER to fix lazy loading, calls a payment API inside `@Transactional`, and edits an already-deployed Flyway migration. Produce `persistence-risk-assessment.md`.",
+      "expected_output": "A staged, severity-ranked assessment protecting entity identity, HTTP DTO boundaries, query count, transaction/external side effects, constraints/idempotency, and immutable migration history with concrete database and HTTP tests.",
+      "assertions": [
+        "Rejects entity-as-REST coupling with a focused response model.",
+        "Analyzes mutable entity equality and hash stability.",
+        "Does not accept global EAGER as the default lazy-load fix.",
+        "Analyzes payment call atomicity/idempotency outside database transaction semantics.",
+        "Requires a new migration rather than rewriting deployed history."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Use $effective-java. A repository targets Java 17 and an older Quarkus BOM. A proposed cleanup uses Java 21 record patterns, a config key from current Quarkus docs, and adds an independently versioned extension to make imports compile. Write `version-safety-review.md`.",
+      "expected_output": "A review that treats repository toolchain/BOM/effective dependencies as source of truth, rejects accidental upgrades and invented dependencies, offers Java 17/project-version alternatives, and defines compile/consumer gates.",
+      "assertions": [
+        "Does not force Java 21 because the skill has a Java 21 baseline.",
+        "Checks effective Maven/Gradle and Quarkus platform versions.",
+        "Rejects adding a random dependency to satisfy a guessed API.",
+        "Separates an intentional upgrade into its own change.",
+        "Uses repository wrapper and affected-module/dependent compilation."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Use $effective-java. Review an agent patch for a three-line bug: it adds six interfaces, two builders, a mapper dependency, reformats 80 files, upgrades plugins, deletes the failing test, and adds interaction-only mock tests. Produce `patch-scope-review.md`.",
+      "expected_output": "An adversarial scope review that restores the regression test, isolates the root-cause fix, removes abstraction/dependency/format churn, demands outcome-based proof, and uses diff/build gates without declaring scanner matches defects.",
+      "assertions": [
+        "Flags test deletion as high risk.",
+        "Rejects abstraction inflation without a variation/boundary.",
+        "Separates build upgrades and formatting from the bugfix.",
+        "Requires defect, fix, and unchanged-behavior proof.",
+        "Prefers outcome/state assertions over mock-interaction theater."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Use $effective-java to produce `java-quarkus-assessment.md` for a mixed Java 21 Quarkus service. You can inspect files but cannot run Docker or native builds. Classify every finding by evidence/confidence, propose staged changes, and report exact unrun gates honestly.",
+      "expected_output": "A concise assessment using a project profile, evidence-backed top risks, a minimal target shape, dependency-aware batches, exact wrapper commands, explicit Docker/native limitations, and no claims that unavailable gates passed.",
+      "assertions": [
+        "Profiles Java, build tool, Quarkus BOM/extensions, execution and persistence models.",
+        "Uses severity and confidence and separates candidates/preferences from defects.",
+        "Gives a verification command or proof for each batch.",
+        "States Docker/native gates were not run and limits claims accordingly.",
+        "Avoids broad framework or architecture rewrites without evidence."
+      ]
+    }
+  ]
+}

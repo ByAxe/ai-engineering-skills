@@ -1,0 +1,1 @@
+Reviews AI-generated Java patches for root-cause focus, abstraction inflation, dependency/build churn, test theater, generated files, and exact verification evidence.

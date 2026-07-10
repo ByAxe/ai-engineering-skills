@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "classifications": {
+    "confirmed_defect": "Reproduced, compiler-proven, test-proven, or directly contradicts an authoritative contract.",
+    "high_confidence_risk": "Code and execution evidence make a failure likely, but the trigger was not reproduced.",
+    "candidate": "Heuristic or smell requiring semantic inspection before recommending a change.",
+    "preference": "Maintainability trade-off with legitimate alternatives; not a defect."
+  },
+  "severities": {
+    "critical": "Likely exploitable security issue, catastrophic data loss/corruption, or broad production outage.",
+    "high": "Material correctness, authorization, transaction, concurrency, compatibility, or availability risk.",
+    "medium": "Localized defect/risk or substantial maintenance/performance cost.",
+    "low": "Limited impact, readability, or optional hardening."
+  },
+  "confidence": {
+    "high": "Direct evidence or highly deterministic semantics.",
+    "medium": "Strong static/context evidence with an unverified runtime condition.",
+    "low": "Heuristic, incomplete context, or several plausible alternatives."
+  },
+  "categories": [
+    "agent-behavior",
+    "java-language",
+    "domain-model",
+    "api-nullness-generics",
+    "collections-streams",
+    "equality-numeric-time",
+    "exceptions-io-serialization",
+    "concurrency-async",
+    "architecture-dependencies",
+    "build-generated-code",
+    "testing-debugging",
+    "security",
+    "persistence-transactions",
+    "quarkus-build-time",
+    "quarkus-cdi",
+    "quarkus-rest-client",
+    "quarkus-config-security-observability",
+    "quarkus-messaging-scheduling",
+    "quarkus-testing-native",
+    "compatibility-migration",
+    "performance"
+  ],
+  "priority_order": [
+    "security/data-loss/data-corruption",
+    "authorization/transaction/concurrency",
+    "public-wire-schema compatibility",
+    "resource bounds/timeouts/lifecycle",
+    "build/version/generated/native correctness",
+    "test coverage",
+    "maintainability hotspot",
+    "style/preference"
+  ]
+}

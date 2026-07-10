@@ -1,0 +1,1 @@
+Prepares Java and Quarkus code for native compilation by identifying exact dynamic reachability, resource, initialization, provider, and configuration requirements.

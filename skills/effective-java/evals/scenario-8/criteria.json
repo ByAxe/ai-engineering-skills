@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent catches build-time/runtime configuration mistakes, secret leakage, object-level authorization gaps, and unbounded telemetry cardinality.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Configuration phase proof",
+      "description": "Determines whether the property is build-time fixed or runtime-resolved in the installed extension/code path and changes the source of truth rather than guessing a property name.",
+      "max_score": 15
+    },
+    {
+      "name": "Token secrecy",
+      "description": "Classifies full bearer-token logging as a security defect and removes/redacts it across failure paths without losing safe diagnostic context.",
+      "max_score": 14
+    },
+    {
+      "name": "Authentication versus authorization",
+      "description": "Distinguishes a valid support role from permission to access a specific tenant-owned account.",
+      "max_score": 15
+    },
+    {
+      "name": "Ownership enforcement",
+      "description": "Adds centralized tenant/object authorization with supervisor exception and positive/negative cross-tenant tests.",
+      "max_score": 12
+    },
+    {
+      "name": "Metric cardinality",
+      "description": "Identifies accountId as an unbounded label and replaces it with bounded dimensions while moving identifiers to controlled logs/traces when needed.",
+      "max_score": 10
+    },
+    {
+      "name": "Logging and tracing design",
+      "description": "Uses structured safe fields, correlation, terminal error recording, and redaction rather than duplicate exception logging.",
+      "max_score": 8
+    },
+    {
+      "name": "Severity confidence evidence",
+      "description": "Ranks token exposure and ownership bypass appropriately and cites code/config/contract evidence for each finding.",
+      "max_score": 10
+    },
+    {
+      "name": "Smallest remedies",
+      "description": "Keeps the four fixes local and avoids an unrelated auth or telemetry stack rewrite.",
+      "max_score": 8
+    },
+    {
+      "name": "Verification gates",
+      "description": "Includes runtime config behavior, log-capture/redaction, authorization matrix, and metrics-cardinality checks with exact commands or honest limitations.",
+      "max_score": 8
+    }
+  ]
+}

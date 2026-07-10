@@ -1,0 +1,4 @@
+interface:
+  display_name: "Effective Java"
+  short_description: "Engineer Java 21 and Quarkus safely"
+  default_prompt: "Use $effective-java to inspect the repository, preserve behavior and compatibility, make the smallest defensible Java or Quarkus change, and verify it with repository-native gates."

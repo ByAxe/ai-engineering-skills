@@ -1,0 +1,1 @@
+Diagnoses Quarkus ArC/CDI discovery, qualifier, constructor injection, lifecycle, and unused-bean-removal failures using augmentation-time evidence.

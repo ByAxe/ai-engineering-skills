@@ -1,0 +1,56 @@
+{
+  "context": "Checks whether the agent can conduct a broad but evidence-disciplined assessment without fabricating defects or claiming unavailable integration/native verification.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Project profile",
+      "description": "Profiles wrappers/modules, Java/toolchains, Quarkus BOM/extensions, execution models, generated sources, migrations, tests, CI, and production native target.",
+      "max_score": 12
+    },
+    {
+      "name": "Evidence classification",
+      "description": "Separates confirmed defects, likely risks, design trade-offs, and scanner candidates with confidence and concrete locations.",
+      "max_score": 12
+    },
+    {
+      "name": "Risk ranking",
+      "description": "Prioritizes security/authz, data/transaction/messaging correctness, execution-model issues, API compatibility, and native risk before cosmetic cleanup.",
+      "max_score": 10
+    },
+    {
+      "name": "Contract capture",
+      "description": "Lists HTTP/event/schema/transaction/idempotency/security/observability/native contracts and unchanged behavior to protect.",
+      "max_score": 10
+    },
+    {
+      "name": "Minimal target shape",
+      "description": "Recommends only boundaries and simplifications supported by actual complexity, avoiding generic clean-architecture layers.",
+      "max_score": 10
+    },
+    {
+      "name": "Staged batches",
+      "description": "Creates small dependency-aware batches with evidence, scope, rollback, and acceptance criteria.",
+      "max_score": 12
+    },
+    {
+      "name": "Verification per batch",
+      "description": "Attaches focused tests and wrapper commands to every batch, then widens to module/repository gates.",
+      "max_score": 10
+    },
+    {
+      "name": "Honest limitations",
+      "description": "States unit tests that were run and identifies Docker/Dev Services/native gates as blocked or delegated, without calling them passed.",
+      "max_score": 10
+    },
+    {
+      "name": "Quarkus semantics",
+      "description": "Checks REST dispatch, CDI augmentation/removal, transaction/messaging acknowledgement, config phases, OIDC, telemetry, migrations, and native reachability as applicable.",
+      "max_score": 8
+    },
+    {
+      "name": "Residual risk",
+      "description": "Names unverified integration/native behavior, required environment, owner, and evidence needed to close each gap.",
+      "max_score": 6
+    }
+  ]
+}

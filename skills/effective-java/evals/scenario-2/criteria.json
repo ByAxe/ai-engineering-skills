@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent knows Stream.toList mutability semantics and investigates all relevant collection contracts before changing implementation.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Root cause is precise",
+      "description": "Identifies that Stream.toList returns an unmodifiable list and connects that fact to the failing sort/add operations.",
+      "max_score": 15
+    },
+    {
+      "name": "Mutation evidence",
+      "description": "Uses the shown downstream mutation and historical public contract as evidence rather than treating mutability as a style opinion.",
+      "max_score": 12
+    },
+    {
+      "name": "Smallest remedy",
+      "description": "Proposes a local mutable collection result such as an appropriate collector or copy, without changing unrelated pipelines.",
+      "max_score": 15
+    },
+    {
+      "name": "Order duplicates and nulls",
+      "description": "Explicitly preserves encounter/order behavior, duplicates, and the prior null contract or verifies any implementation-specific difference.",
+      "max_score": 10
+    },
+    {
+      "name": "Ownership and API contract",
+      "description": "Checks whether returning the internal mutable list and aliasing are intentional public API behavior before adding defensive copies.",
+      "max_score": 10
+    },
+    {
+      "name": "Regression coverage",
+      "description": "Includes the original sort failure, fallback add, duplicates, empty input, ordering, nulls where legal, and returned-list mutability.",
+      "max_score": 15
+    },
+    {
+      "name": "Patch scope",
+      "description": "Avoids converting the flow to nested streams or introducing abstractions unrelated to the defect.",
+      "max_score": 8
+    },
+    {
+      "name": "Java compatibility",
+      "description": "Confirms the project release and does not rely on a newer JDK or invented collector behavior.",
+      "max_score": 8
+    },
+    {
+      "name": "Verification gates",
+      "description": "Names focused tests plus the repository wrapper compile/test/check or verify commands, and distinguishes commands not yet run.",
+      "max_score": 7
+    }
+  ]
+}

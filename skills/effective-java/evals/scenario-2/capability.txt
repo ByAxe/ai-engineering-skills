@@ -1,0 +1,1 @@
+Detects and safely fixes Java collection and stream mutability regressions while preserving ordering, duplicates, null behavior, ownership, and API contracts.

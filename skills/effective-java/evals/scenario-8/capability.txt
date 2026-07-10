@@ -1,0 +1,1 @@
+Reviews Quarkus configuration phases, secrets, authorization, ownership checks, logging, tracing, and metric cardinality as separate operational contracts.

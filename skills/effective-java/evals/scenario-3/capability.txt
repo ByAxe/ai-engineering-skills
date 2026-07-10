@@ -1,0 +1,1 @@
+Assesses virtual-thread adoption in Java and Quarkus using workload, downstream capacity, context, cancellation, pinning, and version-specific evidence.

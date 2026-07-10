@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ByAxe/ai-engineering-skills/main/skills/effective-java/schemas/project-profile.schema.json",
+  "title": "Effective Java Project Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "root",
+    "build_systems",
+    "source_counts",
+    "signals",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "root": {
+      "type": "string"
+    },
+    "build_systems": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "maven",
+          "gradle"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "wrappers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "java": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "release_candidates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "toolchain_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "preview_enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "quarkus": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "detected": {
+          "type": "boolean"
+        },
+        "version_candidates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "source_counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "quality_tools": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "generated_paths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "config_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

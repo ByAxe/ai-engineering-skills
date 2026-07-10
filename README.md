@@ -73,8 +73,7 @@ tessl eval skills/reflect/evals --context skills/reflect --runs 1 --label reflec
 
 | Skill | Description |
 |---|---|
-| **java-refactoring** | Review Java code for maintainability issues, code smells, and SOLID violations. Creates behavior-preserving refactoring plans. |
-| **java-21-refactor-assessor** | Assesses and refactors Java 21 codebases into idiomatic, maintainable Java. Removes Pythonic anti-patterns, improves architecture, concurrency, testing, and error handling. |
+| **effective-java** | Evidence-first Java 21 and Quarkus implementation, review, debugging, refactoring, modernization, testing, security, performance, and native-readiness |
 
 ### Kotlin / JVM
 
@@ -129,15 +128,17 @@ skills/
 │   └── assets/        (report template)
 │
 │ # Java
-├── java-refactoring/
+├── effective-java/
 │   ├── SKILL.md
-│   └── references/
-│       ├── code-smells-catalog.md
-│       └── solid-principles.md
-├── java-21-refactor-assessor/
-│   ├── SKILL.md
-│   └── references/
-│       └── java-21-best-practices.md
+│   ├── agents/
+│   ├── references/    (focused Java and Quarkus guidance)
+│   ├── scripts/       (profiling, risk, diff, gates, validation)
+│   ├── assets/        (assessment, plan, implementation templates)
+│   ├── schemas/
+│   ├── examples/
+│   ├── evals/         (activation, Agent Skills, Tessl scenarios)
+│   ├── tests/
+│   └── migration/
 │
 │ # Kotlin / JVM
 ├── quarkus-kotlin-cleanup-assessor/
@@ -196,7 +197,7 @@ npx skills add ByAxe/ai-engineering-skills
 To update a single skill:
 
 ```bash
-npx skills add ByAxe/ai-engineering-skills --skill java-refactoring
+npx skills add ByAxe/ai-engineering-skills --skill effective-java
 ```
 
 ### Manual update
