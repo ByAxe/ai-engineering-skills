@@ -1,0 +1,245 @@
+{
+  "skill_name": "effective-java",
+  "cases": [
+    {
+      "id": "p01",
+      "prompt": "Refactor this Java 21 service while preserving equality, mutability, ordering, and exception contracts.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p02",
+      "prompt": "Review this Maven Java backend for code smells introduced by an AI coding agent.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p03",
+      "prompt": "Diagnose why this Quarkus REST endpoint blocks the event loop.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p04",
+      "prompt": "Modernize these Java 17 classes only within the project's configured release.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p05",
+      "prompt": "Assess records, sealed interfaces, and pattern switches in this Java 21 module.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p06",
+      "prompt": "Fix this BigDecimal rounding and scale bug in a payment service.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p07",
+      "prompt": "Review CompletableFuture, executor ownership, and cancellation in this Java server.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p08",
+      "prompt": "Should this Quarkus endpoint use @RunOnVirtualThread?",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p09",
+      "prompt": "Clean up CDI injection, scopes, qualifiers, and startup lifecycle in this Quarkus app.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p10",
+      "prompt": "Review Hibernate ORM Panache transactions and entity/DTO boundaries.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p11",
+      "prompt": "Fix a Hibernate Reactive Panache transaction and Mutiny failure chain.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p12",
+      "prompt": "Make this Quarkus application native-ready without broad reflection registration.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p13",
+      "prompt": "Audit a Spring-to-Quarkus migration for semantic gaps.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p14",
+      "prompt": "Review Maven toolchains, annotation processing, generated code, and module gates.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p15",
+      "prompt": "Design tests for a Java refactor, including characterization and unchanged behavior.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p16",
+      "prompt": "Audit this Java path handling, outbound URL validation, and secret logging.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p17",
+      "prompt": "Investigate an N+1 query and transaction boundary in a Quarkus REST request.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p18",
+      "prompt": "Review a large AI-generated Java patch for overengineering and fake verification.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p19",
+      "prompt": "Create an evidence-backed Java/Quarkus assessment with exact build commands.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p20",
+      "prompt": "Check Stream.toList, List.copyOf, duplicate keys, and collection ownership.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p21",
+      "prompt": "Review Java time zones, Clock use, locale, and default charset behavior.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p22",
+      "prompt": "Assess Quarkus config mappings, build-time properties, OIDC, and OpenTelemetry.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p23",
+      "prompt": "Review Quarkus messaging acknowledgment, retries, and scheduler overlap.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "p24",
+      "prompt": "Run a scoped Java diff review and repository-native quality gates.",
+      "should_activate": true,
+      "reason": "Java/Quarkus repository engineering, review, refactoring, or verification is central."
+    },
+    {
+      "id": "n01",
+      "prompt": "Refactor this Rust crate and improve borrow-checker ergonomics.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n02",
+      "prompt": "Write a Kotlin-only Ktor server.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n03",
+      "prompt": "Fix an Android Jetpack Compose layout.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n04",
+      "prompt": "Explain Java syntax to a beginner without reviewing or changing a repository.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n05",
+      "prompt": "Create a Python pandas data-cleaning script.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n06",
+      "prompt": "Review a TypeScript React component.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n07",
+      "prompt": "Set up a generic Kubernetes deployment; no Java application changes are involved.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n08",
+      "prompt": "Summarize this article about the history of Java.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n09",
+      "prompt": "Design a PostgreSQL schema with no Java or Quarkus code.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n10",
+      "prompt": "Write Gradle Kotlin DSL for a Kotlin Multiplatform mobile project.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n11",
+      "prompt": "Tune a standalone Nginx configuration.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n12",
+      "prompt": "Review a Spring Boot Kotlin service; all production code is Kotlin.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n13",
+      "prompt": "Generate SQL queries only, with no Java persistence layer.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n14",
+      "prompt": "Create a general software architecture diagram for a Go service.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n15",
+      "prompt": "Translate this Java error message into Lithuanian.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    },
+    {
+      "id": "n16",
+      "prompt": "Build a JavaScript Node.js API with Express.",
+      "should_activate": false,
+      "reason": "The task is outside Java/Quarkus production engineering or is non-coding informational work."
+    }
+  ]
+}

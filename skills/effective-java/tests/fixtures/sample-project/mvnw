@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Offline test fixture. The bundle tests use --dry-run and never invoke Maven.
+printf '%s\n' 'fixture mvnw should only appear in a dry-run command'
+exit 0

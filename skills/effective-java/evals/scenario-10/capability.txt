@@ -1,0 +1,1 @@
+Keeps Java and Quarkus recommendations compatible with the target repository release, BOM, wrappers, effective dependency graph, and migration scope.

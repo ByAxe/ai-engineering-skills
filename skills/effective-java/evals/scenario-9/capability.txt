@@ -1,0 +1,1 @@
+Assesses JPA/Hibernate persistence boundaries, entity identity, fetching, transaction duration, external side effects, migrations, constraints, and rollout safety.

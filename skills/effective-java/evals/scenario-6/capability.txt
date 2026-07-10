@@ -1,0 +1,1 @@
+Reviews Hibernate Reactive Panache transaction chains, non-blocking composition, commit/event consistency, cancellation, retries, and idempotency.

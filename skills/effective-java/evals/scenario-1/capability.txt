@@ -1,0 +1,1 @@
+Reviews Java record adoption for value semantics, defensive ownership, equality, serialization compatibility, and the smallest behavior-preserving remedy.

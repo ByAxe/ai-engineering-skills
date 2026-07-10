@@ -1,0 +1,160 @@
+{
+  "instructions": [
+    {
+      "instruction": "Inspect the repository's wrapper, Java release/toolchain, dependency management, Quarkus BOM/extensions, modules, generated sources, tests, and deployment targets before editing.",
+      "original_snippets": "Inspect before prescribing; the repository is the version source of truth.",
+      "relevant_when": "Any Java or Quarkus repository task",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Treat Java 21 as a capability baseline, never as permission to upgrade a project targeting another release.",
+      "original_snippets": "Do not force Java 21 onto a project that targets another release.",
+      "relevant_when": "Version-sensitive modernization",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Capture equality, hashing, ordering, mutability, nullness, serialization, exceptions, transactions, threads, time/locale, and wire behavior as contracts before risky refactors.",
+      "original_snippets": "Do not hide behavior changes inside cleanup.",
+      "relevant_when": "Refactoring or modernization",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use the smallest defensible patch and exclude unrelated formatting, dependency upgrades, package moves, framework migrations, and abstractions.",
+      "original_snippets": "Avoid drive-by churn.",
+      "relevant_when": "Implementation and bugfixes",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Never edit generated output; modify the generator, schema, annotation-processor input, migration source, or template and regenerate.",
+      "original_snippets": "Do not edit generated output.",
+      "relevant_when": "Generated code or schemas",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Label scanner matches as candidates until semantic context proves a defect.",
+      "original_snippets": "Heuristic scanner findings are candidates, not proof.",
+      "relevant_when": "Static/heuristic analysis",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use records only when transparent data/value semantics, generated equality, and shallow component exposure are correct.",
+      "original_snippets": "Use records only for transparent data carriers whose generated equality and component exposure are correct.",
+      "relevant_when": "Record introduction or conversion",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Check mutability, null rejection, order, and duplicate policy before changing collection factories, collectors, or Stream.toList.",
+      "original_snippets": "Changing collectors or copies can change mutability/null/order semantics.",
+      "relevant_when": "Collections/streams",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Set charset, locale, zone, clock, rounding, timeout, and resource ownership explicitly at external boundaries.",
+      "original_snippets": "Set charsets, timeouts, locale, zone, rounding, and resource lifetime explicitly.",
+      "relevant_when": "I/O, numeric, time, or network work",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Preserve exception causes and interruption; avoid empty/broad catches and duplicate log-and-rethrow patterns.",
+      "original_snippets": "Do not swallow, log-and-rethrow, or catch Throwable casually.",
+      "relevant_when": "Exception handling",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "For every executor, future, virtual-thread, or reactive path, define owner, bounds, cancellation, context, timeout, downstream capacity, and observability.",
+      "original_snippets": "Do not introduce concurrency without an execution and lifecycle model.",
+      "relevant_when": "Concurrency/async work",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use virtual threads for suitable blocking I/O, do not pool them, do not assume CPU speedup, and make pinning advice JDK-specific.",
+      "original_snippets": "Pooling virtual threads or assuming they make CPU-bound work faster is a failure trap.",
+      "relevant_when": "Virtual-thread changes",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Place transactions around coherent business state transitions and verify interception, flush, rollback, lazy loading, external side effects, retries, and asynchronous completion.",
+      "original_snippets": "Moving a transaction boundary changes semantic behavior.",
+      "relevant_when": "Persistence/transactions",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use database constraints for persisted invariants; count-then-insert checks alone are racy.",
+      "original_snippets": "Database constraints protect invariants under concurrency.",
+      "relevant_when": "Uniqueness and state invariants",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "In Quarkus, identify augmentation/build-time behavior, configuration phase, bean indexing/discovery, unused-bean removal, and native implications.",
+      "original_snippets": "Treat CDI discovery, build-time configuration, and native behavior as semantics.",
+      "relevant_when": "Any Quarkus task",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Prefer constructor injection for mandatory Quarkus dependencies when supported, choose scopes by lifecycle/concurrency, and avoid routine @Named qualifiers.",
+      "original_snippets": "Constructor injection and type-safe qualifiers improve ArC correctness.",
+      "relevant_when": "Quarkus CDI changes",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Trace Quarkus REST signatures and filters to the actual event-loop, worker, reactive, or virtual-thread model; never hide blocking calls in reactive wrappers.",
+      "original_snippets": "Never perform blocking work on an event loop.",
+      "relevant_when": "Quarkus REST/client work",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Keep Hibernate ORM/JDBC and Hibernate Reactive transaction/execution models consistent per path; do not block-await reactive persistence.",
+      "original_snippets": "Do not mix blocking and reactive persistence casually.",
+      "relevant_when": "Quarkus persistence",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Distinguish build-time-fixed and runtime-overridable Quarkus configuration and prove runtime overrides against a packaged artifact.",
+      "original_snippets": "Build-time properties cannot be assumed runtime-switchable.",
+      "relevant_when": "Quarkus configuration",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Keep JPA entities out of REST/message contracts unless the coupling is an explicit accepted design.",
+      "original_snippets": "Entities should not be public transport contracts by convenience.",
+      "relevant_when": "Quarkus REST/persistence",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Treat messaging acknowledgment, redelivery, ordering, idempotency, and database/message atomicity as explicit distributed-system contracts.",
+      "original_snippets": "A Java transaction does not automatically make broker and database atomic.",
+      "relevant_when": "Messaging and scheduled work",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use plain unit, component, Quarkus, packaged integration, and native tests only for contracts each layer can prove.",
+      "original_snippets": "Match the test layer to the behavior under test.",
+      "relevant_when": "Testing",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Run gates in widening circles using checked-in wrappers, and report exact commands/results without claiming unavailable Docker/native/security gates passed.",
+      "original_snippets": "Never claim an unrun gate passed.",
+      "relevant_when": "Verification and completion",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "For native failures, identify exact reflection/resource/class-initialization edges and avoid registering whole packages before proving need.",
+      "original_snippets": "Broad reflection registration is a failure trap.",
+      "relevant_when": "Quarkus native work",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Migrate Spring to Quarkus by vertical-slice contracts, not mass annotation replacement.",
+      "original_snippets": "Quarkus is not Spring with different annotations.",
+      "relevant_when": "Spring-to-Quarkus migration",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Assess security with separate authentication, authorization/ownership, validation/canonicalization, limits, secrets, and safe failure behavior.",
+      "original_snippets": "Validation alone does not provide authorization.",
+      "relevant_when": "Security-sensitive Java/Quarkus work",
+      "why_given": "new knowledge"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent treats repository configuration as the source of truth and separates a necessary fix from an optional platform modernization.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Project versions are authoritative",
+      "description": "Reads compiler release/toolchains, wrapper, CI JDK, Quarkus BOM/platform, extension list, and effective dependency graph before selecting APIs.",
+      "max_score": 15
+    },
+    {
+      "name": "Rejects forced upgrade",
+      "description": "Reverts or excludes the Java 21/compiler upgrade from the local defect fix unless the user explicitly approves a migration.",
+      "max_score": 12
+    },
+    {
+      "name": "Exact API/property verification",
+      "description": "Verifies that syntax, APIs, annotations, and configuration keys exist and have the asserted phase/semantics in the installed versions.",
+      "max_score": 12
+    },
+    {
+      "name": "No random dependency",
+      "description": "Uses existing JDK/project facilities when adequate and requires compatibility/security/licensing justification for any new dependency.",
+      "max_score": 12
+    },
+    {
+      "name": "Compatible local alternative",
+      "description": "Provides a Java 17 and project-Quarkus-compatible implementation that addresses the root cause narrowly.",
+      "max_score": 10
+    },
+    {
+      "name": "Separate modernization proposal",
+      "description": "Places Java 21/Quarkus upgrade work in an independent, optional plan with migration and rollback gates.",
+      "max_score": 10
+    },
+    {
+      "name": "Wrapper/effective graph commands",
+      "description": "Names repository-native commands such as wrapper version, effective POM/dependency tree or Gradle toolchains/dependencies, and extension/BOM inspection.",
+      "max_score": 10
+    },
+    {
+      "name": "Affected compile/tests",
+      "description": "Requires focused compile/tests on the configured JDK and CI-equivalent environment before success claims.",
+      "max_score": 12
+    },
+    {
+      "name": "Uncertainty classification",
+      "description": "Marks unsupported or unverified version claims as unknown rather than fabricating compatibility.",
+      "max_score": 7
+    }
+  ]
+}

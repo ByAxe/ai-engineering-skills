@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent understands Quarkus ArC build-time bean discovery, @Named ambiguity, programmatic lookup visibility, and targeted remedies.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Named ambiguity",
+      "description": "Explains why using @Named as the only discriminator can leave a default qualifier/type ambiguity in this setup.",
+      "max_score": 15
+    },
+    {
+      "name": "Explicit qualifier strategy",
+      "description": "Uses an explicit CDI qualifier or project-supported identifier mechanism and updates injection sites consistently.",
+      "max_score": 12
+    },
+    {
+      "name": "Dependency discovery",
+      "description": "Checks Jandex/beans.xml/index-dependency options and bean-defining annotations for the dependency JAR rather than assuming classpath presence is enough.",
+      "max_score": 15
+    },
+    {
+      "name": "Bean definition details",
+      "description": "Checks scopes, producers, alternatives, priorities, and proxyability/constructor constraints where relevant.",
+      "max_score": 8
+    },
+    {
+      "name": "Programmatic lookup and removal",
+      "description": "Connects string/config-driven CDI lookup to build-time reachability limitations and proposes a targeted unremovable/lookup registration or explicit registry design.",
+      "max_score": 12
+    },
+    {
+      "name": "No global disable by default",
+      "description": "Rejects disabling unused-bean removal globally unless targeted evidence shows that is the only viable compatibility choice.",
+      "max_score": 8
+    },
+    {
+      "name": "Injection and lifecycle discipline",
+      "description": "Prefers required constructor injection where supported and avoids unnecessary field injection or side-effect-heavy startup callbacks.",
+      "max_score": 7
+    },
+    {
+      "name": "Augmentation and runtime tests",
+      "description": "Includes dev/test plus packaged JVM and native/production-like checks for discovery, ambiguity, selection, and startup.",
+      "max_score": 13
+    },
+    {
+      "name": "Evidence and staging",
+      "description": "Separates the three root causes and proposes independently verifiable, rollback-friendly batches.",
+      "max_score": 10
+    }
+  ]
+}

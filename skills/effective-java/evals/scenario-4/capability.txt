@@ -1,0 +1,1 @@
+Diagnoses Quarkus REST execution-model violations and chooses a coherent blocking, worker, reactive, or virtual-thread design without hiding blocking work.

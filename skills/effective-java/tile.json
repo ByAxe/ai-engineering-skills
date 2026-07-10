@@ -1,0 +1,11 @@
+{
+  "name": "byaxe/effective-java",
+  "version": "1.0.0",
+  "summary": "Evidence-first Java 21 and Quarkus engineering for coding agents",
+  "private": true,
+  "skills": {
+    "effective-java": {
+      "path": "SKILL.md"
+    }
+  }
+}

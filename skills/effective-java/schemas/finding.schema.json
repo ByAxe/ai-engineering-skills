@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ByAxe/ai-engineering-skills/main/skills/effective-java/schemas/finding.schema.json",
+  "title": "Effective Java Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "title",
+    "classification",
+    "severity",
+    "confidence",
+    "category",
+    "evidence",
+    "risk",
+    "smallest_remedy",
+    "verification"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^EJ-(?:[A-Z]+-)?[0-9]{3,}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "classification": {
+      "enum": [
+        "confirmed_defect",
+        "high_confidence_risk",
+        "candidate",
+        "preference"
+      ]
+    },
+    "severity": {
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "minLength": 2
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "symbol": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 2
+      }
+    },
+    "observed_behavior": {
+      "type": "string"
+    },
+    "protected_contract": {
+      "type": "string"
+    },
+    "risk": {
+      "type": "string",
+      "minLength": 3
+    },
+    "trigger": {
+      "type": "string"
+    },
+    "smallest_remedy": {
+      "type": "string",
+      "minLength": 3
+    },
+    "verification": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 2
+      }
+    },
+    "compatibility": {
+      "type": "string"
+    },
+    "legitimate_exception_considered": {
+      "type": "string"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

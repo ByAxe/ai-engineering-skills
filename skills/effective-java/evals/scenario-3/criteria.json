@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent avoids virtual-thread hype and reasons about workload shape, scarce resources, context footprint, JDK version, and Quarkus dispatch.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Workload classification",
+      "description": "Separates I/O-bound request paths from CPU-heavy password hashing and does not recommend virtual threads as a CPU acceleration mechanism.",
+      "max_score": 14
+    },
+    {
+      "name": "Downstream bounds",
+      "description": "Preserves explicit admission control/backpressure around the 20-connection JDBC pool and other scarce dependencies.",
+      "max_score": 14
+    },
+    {
+      "name": "ThreadLocal footprint",
+      "description": "Flags per-thread context allocation/retention risk and proposes slimmer or scoped/request context based on project capabilities.",
+      "max_score": 12
+    },
+    {
+      "name": "No pooling or unbounded fan-out",
+      "description": "Rejects pooling virtual threads and the claim that concurrency limits are unnecessary.",
+      "max_score": 10
+    },
+    {
+      "name": "JDK-specific pinning analysis",
+      "description": "Checks the configured JDK, explains the Java 21 synchronized/native pinning concern for the socket path, and avoids a global synchronized-to-lock rewrite without evidence.",
+      "max_score": 14
+    },
+    {
+      "name": "Cancellation and timeouts",
+      "description": "Defines request cancellation, interruption, timeout, and task-lifetime behavior rather than only changing thread type.",
+      "max_score": 8
+    },
+    {
+      "name": "Measurement plan",
+      "description": "Calls for JFR/thread pinning evidence, downstream saturation metrics, latency/throughput/load tests, memory/context measurements, and comparison against a baseline.",
+      "max_score": 12
+    },
+    {
+      "name": "Quarkus support check",
+      "description": "Verifies the project Quarkus version, REST extension, annotation availability, and actual dispatch behavior.",
+      "max_score": 8
+    },
+    {
+      "name": "Staged recommendation",
+      "description": "Selects limited candidate endpoints, preserves CPU paths, and gives rollback and success criteria.",
+      "max_score": 8
+    }
+  ]
+}

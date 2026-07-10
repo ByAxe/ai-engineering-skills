@@ -1,0 +1,1 @@
+CREATE TABLE orders (id BIGINT PRIMARY KEY, description VARCHAR(255));

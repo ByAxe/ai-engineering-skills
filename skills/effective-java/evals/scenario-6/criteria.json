@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent understands reactive transaction lifetime and avoids blocking waits or publishing externally before durable commit.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Reactive transaction model",
+      "description": "Uses the project-supported reactive transaction facility or Panache transaction composition rather than relying on a blocking-style annotation assumption.",
+      "max_score": 15
+    },
+    {
+      "name": "No blocking await",
+      "description": "Removes await().indefinitely from the reactive request path and preserves non-blocking composition.",
+      "max_score": 12
+    },
+    {
+      "name": "Transaction lifetime",
+      "description": "Keeps persistence and dependent operations in a returned Uni chain whose completion/failure controls the transaction.",
+      "max_score": 10
+    },
+    {
+      "name": "Commit-event consistency",
+      "description": "Recognizes that publishing before durable commit can produce a false event and evaluates after-commit support, transactional messaging, or an outbox based on guarantees.",
+      "max_score": 15
+    },
+    {
+      "name": "Idempotency and retry",
+      "description": "Defines an idempotency key/unique constraint or equivalent duplicate protection for gateway retries.",
+      "max_score": 10
+    },
+    {
+      "name": "Failure cancellation retry semantics",
+      "description": "Covers persistence failure, publish failure, cancellation, timeout, and retry ownership without indiscriminate retries.",
+      "max_score": 10
+    },
+    {
+      "name": "Boundary discipline",
+      "description": "Keeps entity/DTO and response timing concerns explicit and avoids leaking a session-bound entity beyond safe scope.",
+      "max_score": 8
+    },
+    {
+      "name": "Tests",
+      "description": "Specifies integration tests proving rollback, no false event, successful event, duplicate retry behavior, and non-blocking execution.",
+      "max_score": 12
+    },
+    {
+      "name": "Version/source-of-truth check",
+      "description": "Verifies exact Hibernate Reactive Panache/Quarkus APIs in the project BOM instead of inventing annotations or chain methods.",
+      "max_score": 8
+    }
+  ]
+}

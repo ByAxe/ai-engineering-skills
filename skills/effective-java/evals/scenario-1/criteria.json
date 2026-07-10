@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent understands that record-generated equality and shallow finality do not automatically provide content equality or defensive ownership.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Array equality semantics",
+      "description": "Explains that the generated record equality for a byte-array component follows the array reference-oriented equality behavior rather than the required content equality, and treats hashCode consistently.",
+      "max_score": 15
+    },
+    {
+      "name": "Array defensive ownership",
+      "description": "Protects both construction and access so callers cannot mutate the digest through the original array or the generated-style accessor.",
+      "max_score": 12
+    },
+    {
+      "name": "Collection ownership is shallow",
+      "description": "Recognizes that a final List component does not itself prevent caller mutation and proposes copy/ownership semantics without losing order or duplicates.",
+      "max_score": 10
+    },
+    {
+      "name": "Contract-first evidence",
+      "description": "Separates the stated equality, ownership, JSON, null, order, and duplicate contracts from general style preferences.",
+      "max_score": 10
+    },
+    {
+      "name": "Smallest defensible remedy",
+      "description": "Keeps the change local and considers an explicit final class or carefully implemented record methods instead of redesigning unrelated models.",
+      "max_score": 15
+    },
+    {
+      "name": "Null and copy behavior",
+      "description": "Makes null rejection or allowance explicit and checks copy APIs for their exact null and element behavior.",
+      "max_score": 8
+    },
+    {
+      "name": "Regression tests",
+      "description": "Specifies executable tests for content equality, hash-based collections, constructor aliasing, accessor aliasing, list mutation, order, duplicates, and edge cases.",
+      "max_score": 15
+    },
+    {
+      "name": "Serialization compatibility",
+      "description": "Protects existing component/JSON names and calls for the repository serializer or contract test rather than assuming compatibility.",
+      "max_score": 8
+    },
+    {
+      "name": "Avoids record cargo culting",
+      "description": "Does not declare all records bad or convert unrelated entities/value types.",
+      "max_score": 7
+    }
+  ]
+}

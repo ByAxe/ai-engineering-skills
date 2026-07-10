@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ByAxe/ai-engineering-skills/main/skills/effective-java/schemas/assessment.schema.json",
+  "title": "Effective Java Assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scope",
+    "summary",
+    "findings",
+    "verification",
+    "residual_risk"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "repository_or_module",
+        "mode"
+      ],
+      "properties": {
+        "repository_or_module": {
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "assess",
+            "review",
+            "fix",
+            "refactor",
+            "modernize",
+            "optimize",
+            "implement"
+          ]
+        },
+        "java_release": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "build_system": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quarkus_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deployment_targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 5
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "finding.schema.json"
+      }
+    },
+    "target_shape": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "batch",
+          "change_surface",
+          "verification"
+        ],
+        "properties": {
+          "batch": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "change_surface": {
+            "type": "string"
+          },
+          "risk_removed": {
+            "type": "string"
+          },
+          "verification": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rollback": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "verification": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "command_or_check",
+          "result"
+        ],
+        "properties": {
+          "command_or_check": {
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "passed",
+              "failed",
+              "not_run",
+              "blocked"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "deferred": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "residual_risk": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent reasons precisely about native-image closed-world reachability, resources, and build-time versus runtime initialization.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Dynamic reachability diagnosed",
+      "description": "Identifies Class.forName/config-driven type loading as a closed-world reachability problem and traces the exact serializer contract.",
+      "max_score": 14
+    },
+    {
+      "name": "Targeted reflection or factory design",
+      "description": "Proposes precise registration of required constructors/methods or an explicit build-visible provider/factory registry, not package-wide reflection.",
+      "max_score": 14
+    },
+    {
+      "name": "Resource inclusion",
+      "description": "Adds only the required template/resource pattern and verifies classloader lookup and encoding.",
+      "max_score": 10
+    },
+    {
+      "name": "Static initialization semantics",
+      "description": "Separates image-build initialization from process runtime and protects fresh STARTED/NONCE semantics with an appropriate runtime initialization/lifecycle design.",
+      "max_score": 14
+    },
+    {
+      "name": "Secret handling",
+      "description": "Prevents build-time capture or embedding of API_TOKEN and validates runtime configuration/secret availability without logging it.",
+      "max_score": 10
+    },
+    {
+      "name": "No broad registrations",
+      "description": "Rejects whole-package reflection and all-resource inclusion unless a quantified compatibility need remains.",
+      "max_score": 8
+    },
+    {
+      "name": "JVM versus native contracts",
+      "description": "Keeps a JVM baseline and explicitly compares serializer loading, resource content, nonce freshness, start time, and token sourcing in native mode.",
+      "max_score": 10
+    },
+    {
+      "name": "Native verification",
+      "description": "Names a packaged native build and native integration test or production-equivalent launch with failure-path coverage.",
+      "max_score": 12
+    },
+    {
+      "name": "Staged scope",
+      "description": "Implements independent, reviewable reachability/resource/init fixes with rollback and residual-risk notes.",
+      "max_score": 8
+    }
+  ]
+}

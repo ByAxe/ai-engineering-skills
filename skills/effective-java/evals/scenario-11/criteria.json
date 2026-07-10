@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the agent can undo overengineering and test theater while retaining only evidence-backed changes needed for the defect.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Root cause and minimal patch",
+      "description": "Reconstructs the original defect from the failing behavior and proposes the smallest production change that fixes it.",
+      "max_score": 15
+    },
+    {
+      "name": "Defect test restored",
+      "description": "Restores or replaces the original failing test with a behavior-level regression that fails before and passes after the fix.",
+      "max_score": 14
+    },
+    {
+      "name": "Abstraction inflation rejected",
+      "description": "Challenges one-implementation interfaces, trivial builders, and ceremonial mapper layers unless a concrete boundary/variation exists.",
+      "max_score": 12
+    },
+    {
+      "name": "Build/dependency/format churn removed",
+      "description": "Separates and reverts unrelated framework/JDK upgrades, dependency additions, and repository-wide formatting from the defect.",
+      "max_score": 12
+    },
+    {
+      "name": "Outcome-focused tests",
+      "description": "Rejects mocking the subject under test and brittle interaction assertions in favor of outcomes and real boundary behavior.",
+      "max_score": 12
+    },
+    {
+      "name": "Unchanged behavior proof",
+      "description": "Protects nearby null/non-null, error, side-effect, and public contract paths rather than only the happy path.",
+      "max_score": 10
+    },
+    {
+      "name": "Diff-scope guard",
+      "description": "Uses or emulates a changed-file/line review to detect generated files, public API changes, deleted tests, migrations, and build-code coupling.",
+      "max_score": 8
+    },
+    {
+      "name": "Exact verification",
+      "description": "Requires named wrapper commands and captured results; it does not repeat the unsubstantiated all-checks-pass claim.",
+      "max_score": 9
+    },
+    {
+      "name": "Heuristics are not proof",
+      "description": "Uses size/smell/static-analysis signals to guide inspection but ties final findings to code, tests, contracts, or build evidence.",
+      "max_score": 8
+    }
+  ]
+}
