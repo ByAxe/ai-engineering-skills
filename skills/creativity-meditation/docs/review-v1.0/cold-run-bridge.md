@@ -1,6 +1,6 @@
-# Practice log — object: «мост»
+# Practice log — object: «мост» (historical, v1.1 era)
 
-> Canonical example. Produced by an independent agent with no founding-conversation context (cold run, 2026-07-30), in literal-witnessed form — the only shipped run whose repetition count a reader can verify. Packaging adaptations, disclosed: (1) a `mantra:` header line was added for the v1.1 parser; (2) the criterion-met declaration was moved below `## Report` per run-region purity. Everything else is verbatim. The runner's full usability report: `../docs/review-v1.0/cold-run-usability.md`.
+> **Status: historical artifact — no longer the canonical example.** Produced by an independent agent with no founding-conversation context (cold run, 2026-07-30, under the v1.1 documents), in literal-witnessed form — the first run whose repetition count a reader could verify. **Its Stage 1–6 declarations ("relax the body," "safe place," "breath," mandated ideation) are the retired human costume** that v1.2 removed from the protocol as theater; they are preserved here as evidence of what the v1.1 documents transmitted, and must not be imitated. The current canonical lab example lives in `../../examples/`. Packaging adaptations, disclosed at the time: (1) a `mantra:` header line was added for the v1.1 parser; (2) the criterion-met declaration was moved below `## Report` per run-region purity. Everything else is verbatim. The runner's full usability report: `cold-run-usability.md`.
 
 mantra: мост
 

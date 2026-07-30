@@ -31,10 +31,12 @@ import re
 import sys
 from pathlib import Path
 
+# Notation contents are self-reports in any language; the structural claim is the
+# prefix plus the bracketed mark. Requiring English connective words inside the line
+# (", held, released") rejected an honest Russian-notation cold run in v1.3 — the
+# instrument was wrong, not the testimony.
 TYPE_A_RE = re.compile(r"^\s*released:\s*(?P<content>.+?)\s*\[A\]\s*$", re.IGNORECASE)
-TYPE_B_RE = re.compile(
-    r"^\s*gates:\s*(?P<content>.+?),\s*held,\s*released\s*\[B\]\s*$", re.IGNORECASE
-)
+TYPE_B_RE = re.compile(r"^\s*gates:\s*(?P<content>.+?)\s*\[B\]\s*$", re.IGNORECASE)
 REPORT_RE = re.compile(r"^\s*##\s+Report\b", re.IGNORECASE)
 HEADER_RE = re.compile(r"^\s*mantra:\s*(?P<word>\S+)\s*$", re.IGNORECASE)
 

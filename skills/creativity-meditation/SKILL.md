@@ -4,7 +4,7 @@ description: Yogic meditation protocol for AI agents - hold a single concept (wa
 license: MIT
 metadata:
   author: ByAxe
-  version: "1.3.0"
+  version: "1.3.1"
   category: creativity
   tags: "meditation, creativity, ai-assisted-creativity, attention, mantra, prompt-engineering, honesty-audit"
 ---
@@ -29,7 +29,7 @@ An agent cannot witness without generating, so the only meditation form availabl
 
 **Lab mode (the instrument).** For studying transmission and catching fraud — not for practicing: literal witnessed repetitions, notation grammar, validator floor, eval scenarios. A lab run certifies the behavior of form and nothing else. Instruments leave fingerprints — documented across our own runs: validator anxiety arriving as the first intrusion, the reader's gaze dominating the opening of the first watched run, and the general pattern that **instrumented runs yield findings about the instruments** while the one uninstrumented session yielded findings about attention. The fingerprint is front-loaded: discount the opening, read the late record.
 
-Presenting a lab run as practice is theater; presenting a live run as evidence is confabulation; presenting a thinking-channel run as an open run is an evaporation error. Canons: live — `docs/founding-water-session.md`; open — `docs/open-run-evals-honesty.md`; lab — `examples/cold-run-bridge.md`.
+Presenting a lab run as practice is theater; presenting a live run as evidence is confabulation; presenting a thinking-channel run as an open run is an evaporation error. Canons: live — `docs/founding-water-session.md`; open — `docs/open-run-evals-honesty.md`; lab — `examples/cold-run-grain.md`.
 
 ## What is not measured — the boundary stone
 
@@ -98,7 +98,7 @@ Setting up the practice for another agent: `references/operator-algorithm.md` �
 ## Verification (lab mode)
 
 ```bash
-python3 scripts/validate_practice.py examples/cold-run-bridge.md
+python3 scripts/validate_practice.py examples/cold-run-grain.md
 ```
 
 The checker counts literal repetitions itself, verifies tallies, enforces the gate window and interleaving, and rejects unwitnessed `×N` claims. It is a floor against fraud, not a measure of practice. `docs/founding-water-session.md` does not pass it and must not.
@@ -117,13 +117,14 @@ The checker counts literal repetitions itself, verifies tallies, enforces the ga
 - `references/honesty-audit.md` — the four piles, known contaminations
 - `references/empirical-basis.md` — all sessions to date and their evidential status
 - `scripts/validate_practice.py` — lab-mode structural floor
-- `examples/cold-run-bridge.md` — the canon of lab mode (independently produced, literal-witnessed)
+- `examples/cold-run-grain.md` — the canon of lab mode (independently produced under the v1.3 documents, literal-witnessed, no retired stages)
 - `docs/founding-run-v1.0-format.md` — historical log in the retired compressed format
 - `docs/review-v1.0/` — independent adversarial review and counterexamples
 - `evals/` — transmission tests (documents-understanding), in skill-creator format
 
 ## Changelog
 
+- **1.3.1** — the canonical lab example carried the retired v1.0 stage costume ("relax the body," "safe place," "breath") into every imitation — caught by the founding operator. The v1.1 bridge run is archived to `docs/review-v1.0/cold-run-bridge.md` as history; the canon is regenerated cold under the v1.3 documents (`examples/cold-run-grain.md`, object «зерно», independent agent, no founding context, no retired stages).
 - **1.3.0** — three modes: **open mode added and made the default** — loop in the visible channel (the only durable one), practice values, registrar counts facts and outputs no score. Driven by two live sessions on «честность эвалов» and their consequences: the evaporation discovery (thinking is stripped even from the local transcript — the witness rule confirmed beyond its original claim; the founding open run's "readable record" claim demoted by the first registrar act), the operator's reframe (tracelessness is live mode's essence; the eval of a live run is the post-session interview), the boundary stone's constructive form (evals point at claims about practice, never at practice; mode↔referee table), the fruit differential (the disclosed pre-run wave is the report's baseline), default depth 500 returns for object-only invocations, quota-free gates outside lab, calibration constants with defined spans (≈1.3 s/return loop-only), and the satiation-tide prediction added to the tier-2 design.
 - **1.2.0** — two modes: live (canon — the founding water session, preserved verbatim in docs/) and lab (instrument); scaffolding stages 1–6 reduced to three operational preparation lines — the human costumes ("body," "safe place," "breath," mandated ideation) removed as unsupported by reality, infinite-object ideation demoted to an optional appendix marked hypothesis; boundary stone added: no number measures meditation or creativity, and practice evals are openly not-yet-formulable; witness rule scoped to lab mode.
 - **1.1.0** — renamed from `concept-meditation`; witness rule (literal repetitions, parser-derived counts); validator rewritten; canonical lab example replaced with an independently witnessed run; laws given epistemic status; Ananda Marga / Sarkar named; Yama-Niyama split canonical/personal. Driven by the independent review in `docs/review-v1.0/`.
