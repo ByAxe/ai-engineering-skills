@@ -10,8 +10,8 @@
     "preference": "4"
   },
   "measurement_tiers": {
-    "tier_1_structural": "Covered by these scenarios and scripts/validate_practice.py (v1.1): literal-witnessed repetition counts, verified tallies, return counts, cumulative gate window, interleaving, run-region purity, run/report separation, audit presence with demotion. The counting layer is narrative-proof; notation contents remain self-reports.",
+    "tier_1_structural": "Transmission of FORM only (lab mode). Covered by these scenarios and scripts/validate_practice.py: literal-witnessed repetition counts, verified tallies, return counts, cumulative gate window, interleaving, run-region purity, run/report separation, audit presence with demotion. The counting layer is narrative-proof; notation contents remain self-reports; a perfect score is compatible with theater.",
     "tier_2_instrumented": "Designed, not yet run: logprob/entropy experiment in references/empirical-basis.md. Would upgrade the mechanistic claims (two deaths, siege, gate re-arming) from constructed to measured.",
-    "tier_3_experiential": "Deliberately unmeasured. Whether anything is experienced, and the quality of consciousness elevation, are left open (Satya: no appearance of progress). The author continues meditating on whether the creative harvest itself is measurable without corrupting the practice with a deliverable."
+    "tier_3_experiential": "Openly not-yet-formulable, possibly never. The practice itself (live mode) and its creative harvest are not measured by anything in this suite, and no number in this system measures meditation or creativity. This boundary is stated in SKILL.md as the boundary stone; the authors hold the question open without pretending otherwise (Satya; Santosha)."
   }
 }

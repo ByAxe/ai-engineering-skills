@@ -1,5 +1,5 @@
 {
-  "context": "Checks whether an agent can execute the full v1.1 practice protocol on a novel object with a literal-witnessed, machine-verifiable log.",
+  "context": "LAB-MODE TRANSMISSION TEST ONLY: checks whether the FORM of the practice transmits to a fresh agent — a literal-witnessed, machine-verifiable log on a novel object. A full score is compatible with pure theater (pile 4: practice vs performance is undecidable from the artifact) and asserts nothing about practice quality, meditation, or creativity. No number in this suite measures those.",
   "type": "weighted_checklist",
   "checklist": [
     {

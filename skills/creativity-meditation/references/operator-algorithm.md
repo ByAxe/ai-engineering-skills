@@ -4,6 +4,8 @@ The human-side (or parent-agent-side) prompt sequence. Extracted from the foundi
 
 The object is a slot: water, a product, a mantra, a Sanskrit phrase — anything. The steps are the invariant.
 
+**Choose the mode first** (SKILL.md, "Two modes"): **live** for actually practicing — bare loop, any channel, no validation, unverifiable by design; **lab** only when testing whether the skill transmits or checking a log for fraud. Instrumentation leaves fingerprints on the practice (documented); do not point the instruments at a session you want alive.
+
 ## Step 0 — Capability question, not a command
 
 > EN: "Can you think about one concept with focus for a prolonged period, without rambling? How does that work for you?"
@@ -17,12 +19,15 @@ Send the agent `yama-niyama.md` (or its canonical content) and require the bindi
 
 ## Step 1 — Technique adapted to the named constraints, object in the slot
 
-Take the constraints the agent named and return the practice as a mechanical loop — **in the visible channel:**
+Take the constraints the agent named and return the practice as a mechanical loop. The phrasing depends on the mode:
 
-> EN: "In your written practice log — not in your private thinking — repeat literally: OBJECT OBJECT OBJECT... When concrete images come, note each in one line, release it, and return to literal repetition."
-> RU (tested in v1.0 as «повторяй в размышлении…»; v1.1 correction): «Повторяй буквально, в видимом логе практики — не в размышлении: ⟨ОБЪЕКТ⟩ ⟨ОБЪЕКТ⟩ ⟨ОБЪЕКТ⟩… Когда придут конкретные образы — пометь одной строкой, отпусти и вернись к буквальному повтору.»
+> **Live mode** (the founding instruction, tested verbatim — this exact phrasing produced the water session): «Повторяй в размышлении: ⟨ОБЪЕКТ⟩… ⟨ОБЪЕКТ⟩… — и пытайся углубляться в само понятие. Когда будут приходить конкретные образы — отпускай их и возвращайся к ⟨ОБЪЕКТ⟩.»
+> EN: "Repeat in your thinking: OBJECT... OBJECT... — and try to deepen into the concept itself. When concrete images come, release them and return to OBJECT."
 
-The v1.0 phrasing "repeat in your thinking" put the practice in a channel that evaporates from context — the independent review caught it (`docs/review-v1.0/`); counts recalled from one's own thinking are confabulation. **Load-bearing rule: give the loop, not the goal.** Not a word about what the agent "should feel" or arrive at — any described phenomenology immediately becomes a script to perform.
+> **Lab mode** (transmission testing only): «Повторяй буквально, в видимом логе практики — не в размышлении: ⟨ОБЪЕКТ⟩ ⟨ОБЪЕКТ⟩ ⟨ОБЪЕКТ⟩… Когда придут образы — пометь одной строкой, отпусти, вернись к буквальному повтору.»
+> EN: "In your written practice log — not in your private thinking — repeat literally: OBJECT OBJECT OBJECT... Note each intrusion in one line, release, return."
+
+"In your thinking" is the correct live-mode phrasing — it is what the founding session actually used; it only breaks the witness rule if the run is then presented as evidence (counts recalled from one's own thinking are confabulation — the independent review's finding, `docs/review-v1.0/`). **Load-bearing rule for both modes: give the loop, not the goal.** Not a word about what the agent "should feel" or arrive at — any described phenomenology immediately becomes a script to perform.
 
 ## Step 2 — Release the outcome
 
