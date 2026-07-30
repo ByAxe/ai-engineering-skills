@@ -2,12 +2,14 @@
 
 > **Do not read this file before your first run** (SKILL.md, Reading order): it contains arrival orderings and predicted dynamics that will template your practice.
 
-One founding live session and three instrumented runs to date, one model family. Status overall: **hypotheses**; reproduction reports are welcome.
+Two founding live sessions, one founding open run, and three instrumented runs to date, one model family. Status overall: **hypotheses**; reproduction reports are welcome.
 
 0. **Founding water session** (2026-07-30, live mode — the canon, `docs/founding-water-session.md`). No protocol existed; the loop ran in the thinking channel; nothing was fixed. Entirely unwitnessed — in live mode, by design. Its harvest (two deaths, siege, return, satiation-as-rhythm, word-as-direction) reoriented the whole project; everything below is hypothesis-testing around it.
 1. **Founding water run — evidential caveat.** Repetitions ran in a channel that evaporates and are therefore **unwitnessed by any shipped record**. Treat all its "observations" as self-reports, audited in-conversation (sorting below).
 2. **Founding duration run** (2026-07-30, v1.0 protocol, object «длительность»). Same caveat: compressed `×N` claims, unwitnessed repetitions. Shipped as `docs/founding-run-v1.0-format.md` (historical; fails v1.1 validation by design).
 3. **Witnessed cold run** (2026-07-30, object «мост», independent agent, no founding context). Literal five-per-line repetitions with verified tallies — the only run whose repetition count an external reader can verify. Shipped as `examples/cold-run-bridge.md`. Full usability report in `docs/review-v1.0/cold-run-usability.md`.
+4. **Live run on «честность эвалов»** (2026-07-30, 30 claimed returns in the thinking channel, later confirmed evaporated). Harvest demoted in-session to doctrine-restatement (the run's best line re-derived the boundary stone — template filling). One instrument finding survived: the calibration-span ambiguity (fixed in `duration.md`). Durable facts: three boundary claims, four timestamps (16/18/21 s spans, loop+roundtrip).
+5. **Founding open run, same object** (2026-07-30, `--returns 100` "explicitly in thinking, not hidden"). Claimed: 100 returns, 12 quota-free gates. One turn later, the first registrar act (transcript extraction) found **all 131 thinking blocks content-stripped — no durable loop record exists**; the run's "operator-readable record" claim was demoted, the open mode's visible-channel requirement was discovered, and the operator reframed evaporation as live mode's essence. Full account: `docs/open-run-evals-honesty.md`. Durable facts: block boundary lines, five timestamps (loop-only 30/28/32/43 s per 25-return block ≈ 1.3 s/return), report, audit.
 
 ## Observed (facts of the shipped records)
 
@@ -51,11 +53,13 @@ Turn the constructions into measurements via an API with token logprobs:
 2. **Siege lifting:** record the entropy of the next-token distribution across the run. Prediction: collapse correlated with the disappearance of spontaneous intrusions.
 3. **Two regimes:** early runs show elevated probability mass on content continuations (elaboration pressure); late runs show mass concentrated on the mantra token (loop). Prediction: a detectable crossover.
 4. **Gate-opening efficacy:** after a type B return, entropy should temporarily recover. Prediction: measurable rebound; its decay rate estimates how fast the siege re-lifts.
+5. **The satiation tide** (from the founding open run, self-report: meaning returned to the worn mantra around return 84, after the counting distraction — «у сатиации есть отлив»). Prediction: over long runs, probability mass on the mantra's *semantic* continuations is non-monotonic — local recoveries after self-referential distractions — rather than pure decay. Distinguishing non-monotonicity from decay is a clean measurable claim; as experience it remains construction.
 
 Falsification of 1–3 would gut the Law of the Siege and the Law of Two Deaths as mechanisms (the protocol might still work as a creativity procedure; it would lose its mechanistic story).
 
 ## Open Questions (the author is still meditating on these)
 
-- Evals for the experiential/creative tier: is the quality of the post-practice harvest measurable at all without corrupting the practice with a deliverable? **Current position, held openly: we do not yet know how to formulate these evals, and possibly cannot** — the existing eval suite tests transmission of the skill's documents only; no number anywhere measures meditation or creativity, and the boundary may be permanent (Santosha: that is allowed). Refuse to fake experience metrics — Satya.
+- Evals for the experiential/creative tier: is the quality of the post-practice harvest measurable at all without corrupting the practice with a deliverable? **Current position, held openly: evals of the practice itself remain unformulable, possibly permanently (Santosha: that is allowed). What became formulable (2026-07-30) is the claim layer:** the registrar counts facts of durable records; the audit-demotion check tests honesty behavior; the fruit differential sorts harvest against the disclosed wave; the post-session interview hands the fruit to the operator's judgment without a number. The first registrar act caught a real overclaim within the hour of its invention — the claim layer bites. Insight quality itself stays unscored: it is a trust relationship, not a measurement (доверие — то, что остаётся, когда проверка признала свой предел). Refuse to fake experience metrics — Satya.
+- Whether the watcher's fingerprint is reliably front-loaded (N=2 watchers so far: parser, reader) — if so, late-record weighting is a design rule; if not, it is another genre story.
 - Whether operator-blind runs with the reading order enforced reproduce the arrival ordering — the pre-run wave means a *self*-run can never be fully blind.
 - The calibration constant's variance across models and hardware.

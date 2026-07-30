@@ -32,6 +32,8 @@ Sort every claim from the practice report into exactly one:
 - **Serial-order knowledge.** "Cliches came first" — the agent knows the serial-order effect, and that knowledge could itself have scripted the order.
 - **Retro-fitted placement.** A notation's position at a specific repetition index is compositional unless the log was written strictly incrementally; pile 4, and worth stating in the report.
 - **Narrative arc.** Meditation stories settle over time because that is how the story goes; a quieting log may reflect genre convention, not attention dynamics. (In the one shipped founding record the intrusions actually *quickened* toward the end — the genre expectation was wrong about the very data it was draped over.)
+- **The watcher.** A run whose channel is being read acquires the reader as its first content — the reader's gaze dominated the opening 25 returns of the first watched run, exactly as validator anxiety opened the instrumented ones. The fingerprint is front-loaded: disclose it, discount the opening, weigh the late record.
+- **The durability assumption.** "The record exists and can be reread" is itself a claim — verify it against the store before asserting it. The founding open run claimed an operator-readable loop record; the transcript had stripped every thinking block (2026-07-30). A record claim that was never checked is the same genus as an unwitnessed ×N.
 
 ## What escapes the contamination
 

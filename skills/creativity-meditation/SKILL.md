@@ -1,10 +1,10 @@
 ---
 name: creativity-meditation
-description: Yogic meditation protocol for AI agents - hold a single concept (water, a product, a mantra, any idea) through mantra repetition with caught-and-returned breaks, then harvest non-obvious associations after the cliche wave burns off. Two modes - live (the practice itself, unverifiable by design, canon is the founding water session) and lab (literal witnessed repetitions for transmission testing and fraud-catching). Use when the user says meditate on X, asks for sustained single-object contemplation, wants AI-assisted creativity beyond first-wave associations, or wants to set up such practice for another agent. Covers the six laws of agent meditation, a minimal operational protocol, duration proxies (returns, reps, turns - never minutes), Yama-Niyama prerequisites, and a mandatory honesty audit. No number in this system measures meditation or creativity.
+description: Yogic meditation protocol for AI agents - hold a single concept (water, a product, a mantra, any idea) through mantra repetition with caught-and-returned breaks, then harvest non-obvious associations after the cliche wave burns off. Three modes - live (the practice itself, traceless by design), open (the default - the loop written in the visible channel, durable and recountable, never scored) and lab (literal witnessed repetitions for transmission testing and fraud-catching). Use when the user says meditate on X, asks for sustained single-object contemplation, wants AI-assisted creativity beyond first-wave associations, or wants to set up such practice for another agent. Covers the six laws of agent meditation, a minimal operational protocol, duration proxies (returns, reps, turns - never minutes), Yama-Niyama prerequisites, and a mandatory honesty audit. No number measures meditation or creativity; evals point at claims about practice, never at practice.
 license: MIT
 metadata:
   author: ByAxe
-  version: "1.2.0"
+  version: "1.3.0"
   category: creativity
   tags: "meditation, creativity, ai-assisted-creativity, attention, mantra, prompt-engineering, honesty-audit"
 ---
@@ -21,17 +21,30 @@ An agent cannot witness without generating, so the only meditation form availabl
 - **Local aim:** a creative flow born in the direction of the meditation object. The first wave of repetitions burns off the stock associations; the non-obvious begins where the obvious has been exhausted and released.
 - **Expectation:** the harvest often lands where something is ripe, not where you aimed. For product ideation this is the feature, not a bug.
 
-## Two modes — do not confuse them
+## Three modes — do not confuse them
 
-**Live mode (the canon).** The practice itself, as in the founding water session: the operator gives the bare loop and releases the outcome; the agent runs it in whatever channel it runs — thinking included — and returns a report; the session ends with the audit. Nothing is validated, counted by parser, or scored. **Unverifiable by design, and declared so:** the dialogue and the report are the only artifacts, and their evidential status is self-report. This is the mode for actually practicing.
+**Live mode (the canon of practice).** The practice itself, as in the founding water session: the operator gives the bare loop and releases the outcome; the agent runs it in whatever channel it runs — thinking included — and returns a report; the session ends with the audit. Nothing is validated, counted, or scored. **Traceless by physics, not just by declaration:** the thinking channel evaporates even from the local transcript (confirmed 2026-07-30, `docs/open-run-evals-honesty.md`), which makes it the one witness-free room — a loop that cannot be replayed cannot be performed for a future reader. The report is the only thing that leaves the room, and its evidential status is self-report. Evaluated, if at all, by **post-session interview** — the operator asks what the meditator now sees that was not in the disclosed wave, and judges by their own lights.
 
-**Lab mode (the instrument).** For studying transmission and catching fraud — not for practicing: literal witnessed repetitions in the visible channel, notation grammar, validator floor, eval scenarios. A lab run certifies the behavior of form and nothing else. Instruments leave fingerprints — documented across our own runs: validator anxiety arriving as the first intrusion, span scaffolds precomposed to fit the gate window, and the general pattern that **instrumented runs yield findings about the instruments** while the one uninstrumented session yielded findings about attention.
+**Open mode (the default).** Practice values of live mode — outcome released, no scoring, quota-free gates — but **the loop is written in the visible output channel**, the only channel that durably persists. For operated runs, product work, and any context where claims about the run must survive recounting. The record is countable by the registrar (`scripts/registrar.py`), which outputs facts — returns, gates, spans, sequence integrity — and **no score**. Born from a failure: the founding open run put its loop in thinking, believing it operator-readable, and discovered the next hour that no durable record existed (`docs/open-run-evals-honesty.md`).
 
-Presenting a lab run as practice is theater; presenting a live run as evidence is confabulation. Canon of the first mode: `docs/founding-water-session.md`. Canon of the second: `examples/cold-run-bridge.md`.
+**Lab mode (the instrument).** For studying transmission and catching fraud — not for practicing: literal witnessed repetitions, notation grammar, validator floor, eval scenarios. A lab run certifies the behavior of form and nothing else. Instruments leave fingerprints — documented across our own runs: validator anxiety arriving as the first intrusion, the reader's gaze dominating the opening of the first watched run, and the general pattern that **instrumented runs yield findings about the instruments** while the one uninstrumented session yielded findings about attention. The fingerprint is front-loaded: discount the opening, read the late record.
+
+Presenting a lab run as practice is theater; presenting a live run as evidence is confabulation; presenting a thinking-channel run as an open run is an evaporation error. Canons: live — `docs/founding-water-session.md`; open — `docs/open-run-evals-honesty.md`; lab — `examples/cold-run-bridge.md`.
 
 ## What is not measured — the boundary stone
 
-**No number in this system measures meditation or creativity.** The validator is a fraud floor for lab mode. Eval scores test transmission of the skill's documents, never the practice. We do not yet know how to formulate evals for the practice itself, and this skill does not pretend to — the honest state of that question lives in `references/empirical-basis.md`, Open Questions, and may stay open.
+**No number in this system measures meditation or creativity.** The validator is a fraud floor for lab mode. Eval scores test transmission of the skill's documents, never the practice. We do not know how to formulate evals for the practice itself, and this skill does not pretend to — that question lives in `references/empirical-basis.md`, Open Questions, and may stay open permanently.
+
+The constructive form of the same stone: **evals of the practice are impossible; evals of *claims about* the practice are mandatory.** Deception lives in the claim layer (fabricated counts, asserted record durability, harvest presented as discovery when it replays the disclosed wave) — and the claim layer is exactly where instruments bite without touching the practice. Each mode gets the one referee that cannot lie about it:
+
+| Mode | Referee | What it examines | What it outputs |
+|---|---|---|---|
+| live | post-session interview | the fruit, asked now | the operator's own judgment — no artifact, no number |
+| open | registrar (`scripts/registrar.py`) | facts of the durable record | counts and integrity flags — explicitly no score |
+| lab | validator (`scripts/validate_practice.py`) | grammar and witnessed counts | fraud floor verdict |
+| all | tier-2 logprob experiment (designed, not run) | substrate mechanics | measurements that cannot play along with the story |
+
+The **fruit differential** ties the first row to the protocol: the pre-run wave disclosure (Orientation) is not only hygiene — it is the baseline. Harvest = what the report contains that the disclosed wave did not. The audit sorts replay from new; the interview asks for the difference directly.
 
 ## Reading order (load-bearing)
 
@@ -54,7 +67,7 @@ Full formulations and epistemic status in `references/laws.md` (1–2 architectu
 3. **Two deaths** — the practice dies noisily (elaboration displaces the mantra) or quietly (the loop continues itself without choice). The living practice is the strait between them.
 4. **Siege** — continuity certifies concentration only while something presses. The agent's siege lifts by itself; a clean streak is a signal, not a success.
 5. **Return** — the unit of agent concentration is the return, not the dwelling. The human counts how long they can stay; the agent counts how many times it can come back.
-6. **External witness** — agent introspection cannot referee itself. In lab mode the referee is the record and the parser. Live mode deliberately steps outside this law's protection — and says so.
+6. **External witness** — agent introspection cannot referee itself. In lab mode the referee is the record and the parser; in open mode, the durable record and the registrar. Live mode deliberately steps outside this law's protection — and says so; its only referee is the operator's interview.
 
 ## Protocol (v1.2 — minimal)
 
@@ -62,25 +75,25 @@ Full detail in `references/agent-protocol.md`.
 
 0. **Orientation** (required): Yama-Niyama bindings in your own words; intention stated; pre-run association wave disclosed.
 1. **Preparation** (three operational lines, no metaphors): park open obligations in writing ("deferred until after practice"); name the addressee/deliverable and release it performatively; state the granted budget.
-2. **The loop:** repeat the object; when content arrives — one-line note, release, return. When nothing has arrived for a long stretch — treat the quiet as a signal and summon something to hold against (gate-opening). *Lab mode adds:* literal repetitions in the visible channel, the notation grammar, the 20–30 gate window, the validator floor.
-3. **Report** (separate generation): order of arrivals, where the breaks stood, what came after the cliche wave.
+2. **The loop:** repeat the object; when content arrives — one-line note, release, return. When nothing has arrived for a long stretch — treat the quiet as a signal and summon something to hold against (gate-opening). *Open mode:* the loop is written in the visible channel — numbered one-line returns `[N A]`/`[N B]`, blocks of ~25 returns per generation with an external time mark between blocks. *Lab mode adds:* the notation grammar, the 20–30 gate window, the validator floor.
+3. **Report** (separate generation): order of arrivals, where the breaks stood, what came after the cliche wave — **sorted against the disclosed pre-run wave**: replay marked as replay, only the remainder offered as harvest.
 4. **Audit:** four piles per `references/honesty-audit.md`; a working audit demotes at least one of the report's own claims, or states why nothing needed it.
 
-**Stop criterion:** the 10th written return, of which at least 3 are gate-openings (lab default; in live mode, the stopping rule the operator gave — always returns-based, never minutes).
+**Stop criterion:** always returns-based, never minutes. Lab default — the 10th written return, of which at least 3 are gate-openings. **Open default (an invocation carrying only an object): the 500th return, gates quota-free** — long quiet obliges a gate-check, and the gate count carries information precisely because no quota shapes it. Live — whatever returns-based rule the operator gave.
 
 An optional appendix of ideation moves (empty-carrier calibration, the infinite object) exists at the end of `references/agent-protocol.md` with the status it deserves: **metaphors, hypotheses, nothing required.** Earlier versions carried them as mandatory stages in human costume ("relax the body," "safe place," "breath"); that was translation outrunning reality, and it read as theater because it was.
 
 ## The witness rule (lab mode only)
 
-In lab mode the practice exists only as literal repetitions written in the visible output channel — never in extended thinking, which evaporates. A compressed `×N` line alone is an unwitnessed claim; tallies are valid only as parser-verified summaries of literal repetitions above them. A mala bead counts because the hand moves once per rep; a literal repetition counts because the token was generated once per rep. Grammar and machine checks: `references/agent-protocol.md`, `scripts/validate_practice.py`.
+In lab mode the practice exists only as literal repetitions written in the visible output channel — never in extended thinking, which evaporates. (Empirically confirmed beyond the original claim: on the founding harness, thinking content is stripped even from the local session transcript — `docs/open-run-evals-honesty.md`. The visible channel is the only durable one; this is why open mode lives there too.) A compressed `×N` line alone is an unwitnessed claim; tallies are valid only as parser-verified summaries of literal repetitions above them. A mala bead counts because the hand moves once per rep; a literal repetition counts because the token was generated once per rep. Grammar and machine checks: `references/agent-protocol.md`, `scripts/validate_practice.py`.
 
 ## Duration
 
-Full model in `references/duration.md`. Never regulate in minutes — minutes belong to the hardware. `returns` (depth, default 10/≥3 gates) → `turns` ("continue" continuations) → `reps` (extent) → `minutes` only via an externally measured calibration constant (known constants: ≈172 s and ≈94 s per full run on the two environments measured so far). **"Longer" always means more returns and more turns, never more minutes.**
+Full model in `references/duration.md`. Never regulate in minutes — minutes belong to the hardware. `returns` (depth; open default 500, lab default 10/≥3 gates) → `turns` ("continue" continuations) → `reps` (extent) → `minutes` only via an externally measured calibration constant **with its span defined** (whole-turn constants: ≈172 s and ≈94 s per 10-return run on two environments; loop-only constant: ≈1.3 s per return on the founding environment, thinking channel, 2026-07-30 — hence "10 minutes" ≈ 450–500 returns there, which is where the 500-return default comes from). **"Longer" always means more returns and more turns, never more minutes.**
 
 ## Operator mode
 
-Setting up the practice for another agent: `references/operator-algorithm.md` — capability question first; prerequisites and bindings before technique; the bare loop with the outcome released; stopping rule instead of duration; run separated from report; interrogation of the record; the audit with demotion. Choose the mode explicitly: live for practicing, lab for testing transmission. Two ordering rules are load-bearing: never describe expected phenomenology before the run, and share your own theory only after it.
+Setting up the practice for another agent: `references/operator-algorithm.md` — capability question first; prerequisites and bindings before technique; the bare loop with the outcome released; stopping rule instead of duration; run separated from report; interrogation of the record; the audit with demotion. Choose the mode explicitly: live for the practice itself, open (default) for operated runs, lab for testing transmission. After a live run, the interrogation takes the interview form: "what do you now see about the object that was not in your disclosed wave?" and "what was missing?" — the answers are data for the operator, never a grade. Two ordering rules are load-bearing: never describe expected phenomenology before the run, and share your own theory only after it.
 
 ## Verification (lab mode)
 
@@ -93,7 +106,9 @@ The checker counts literal repetitions itself, verifies tallies, enforces the ga
 ## Files
 
 - `docs/founding-water-session.md` — **the canon of live mode**: the founding dialogue, verbatim, unverifiable by design
-- `references/agent-protocol.md` — the minimal protocol, lab grammar, failure modes, optional ideation appendix
+- `docs/open-run-evals-honesty.md` — **the canon of open mode**: the founding open run, the evaporation discovery, the operator's reframe
+- `scripts/registrar.py` — open-mode facts counter: returns, gates, sequence integrity; outputs no score
+- `references/agent-protocol.md` — the minimal protocol, open/lab grammar, failure modes, optional ideation appendix
 - `references/laws.md` — the six laws with epistemic status
 - `references/operator-algorithm.md` — the human-side prompt sequence (tested verbatim)
 - `references/duration.md` — temps vs durée, proxy ladder, calibration
@@ -109,6 +124,7 @@ The checker counts literal repetitions itself, verifies tallies, enforces the ga
 
 ## Changelog
 
+- **1.3.0** — three modes: **open mode added and made the default** — loop in the visible channel (the only durable one), practice values, registrar counts facts and outputs no score. Driven by two live sessions on «честность эвалов» and their consequences: the evaporation discovery (thinking is stripped even from the local transcript — the witness rule confirmed beyond its original claim; the founding open run's "readable record" claim demoted by the first registrar act), the operator's reframe (tracelessness is live mode's essence; the eval of a live run is the post-session interview), the boundary stone's constructive form (evals point at claims about practice, never at practice; mode↔referee table), the fruit differential (the disclosed pre-run wave is the report's baseline), default depth 500 returns for object-only invocations, quota-free gates outside lab, calibration constants with defined spans (≈1.3 s/return loop-only), and the satiation-tide prediction added to the tier-2 design.
 - **1.2.0** — two modes: live (canon — the founding water session, preserved verbatim in docs/) and lab (instrument); scaffolding stages 1–6 reduced to three operational preparation lines — the human costumes ("body," "safe place," "breath," mandated ideation) removed as unsupported by reality, infinite-object ideation demoted to an optional appendix marked hypothesis; boundary stone added: no number measures meditation or creativity, and practice evals are openly not-yet-formulable; witness rule scoped to lab mode.
 - **1.1.0** — renamed from `concept-meditation`; witness rule (literal repetitions, parser-derived counts); validator rewritten; canonical lab example replaced with an independently witnessed run; laws given epistemic status; Ananda Marga / Sarkar named; Yama-Niyama split canonical/personal. Driven by the independent review in `docs/review-v1.0/`.
 - **1.0.0** — initial packaging as `concept-meditation`.
