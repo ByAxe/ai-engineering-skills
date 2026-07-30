@@ -1,0 +1,12 @@
+{
+  "log": "/private/tmp/claude-501/-Users-alekseilitvinau/66faf8a9-9d34-4acf-996f-e3ecf6329895/scratchpad/cold-run/practice-log.md",
+  "compliant": true,
+  "returns_total": 10,
+  "returns_type_a": 7,
+  "returns_type_b": 3,
+  "repetitions_total": 185,
+  "longest_run": 25,
+  "report_separated": true,
+  "violations": [],
+  "note": "Structural compliance only. A compliant log certifies the behavior of attention, not experience; a clean streak would fail, not pass."
+}

@@ -1,0 +1,11 @@
+{
+  "name": "byaxe/creativity-meditation",
+  "version": "1.1.0",
+  "summary": "Yogic meditation protocol for AI agents - literal witnessed mantra practice with return-counting, duration proxies, and a mandatory honesty audit",
+  "private": true,
+  "skills": {
+    "creativity-meditation": {
+      "path": "SKILL.md"
+    }
+  }
+}

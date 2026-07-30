@@ -1,0 +1,1 @@
+Translate wall-clock duration requests into native practice units via the proxy ladder and calibration constant.

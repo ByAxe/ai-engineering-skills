@@ -1,0 +1,94 @@
+{
+  "instructions": [
+    {
+      "instruction": "Agent meditation is always mantra repetition, never bare witnessing; the agent holds an object only by generating.",
+      "original_snippets": "Внимание агента конститутивно продуктивно: держать объект можно только порождая. Поэтому агентская медитация — всегда мантра, никогда не свидетельствование.",
+      "relevant_when": "An agent is asked to meditate, focus on, or contemplate a single concept",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Give the loop, not the goal: instruct repeat-release-return in the visible channel and never describe expected phenomenology, which would become a script to perform.",
+      "original_snippets": "Повторяй буквально, в видимом логе практики... когда придут конкретные образы — отпусти их и вернись... Любая описанная феноменология станет сценарием для исполнения.",
+      "relevant_when": "Writing the practice instruction for an agent",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Release the outcome before practice: state that no particular conclusions are required.",
+      "original_snippets": "Не важно, что это будут за выводы, просто мне интересно, что будет в итоге.",
+      "relevant_when": "Setting up a practice run; the agent's danger is the trained pull to be useful",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Regulate duration with stopping rules in native units (returns, reps, turns), never in minutes; minutes work only through an externally measured calibration constant.",
+      "original_snippets": "Моё время — токены; минуты — побочный эффект. Обменный курс: один прогон ≈ 2:52 на основательском железе, ≈ 94 s в среде холодного прогона.",
+      "relevant_when": "The operator asks for longer or shorter practice, or specifies wall-clock time",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Count returns, not continuations: practice completes on the 10th written return with at least 3 type B (gate-openings).",
+      "original_snippets": "Ты считаешь, сколько можешь остаться; агент считает, сколько раз может вернуться. 'Written,' not 'genuine': genuineness has no operational test.",
+      "relevant_when": "Defining or checking the stop criterion of a practice",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "A clean unbroken streak never completes the practice; a long clean stretch is a command to run the gate-check, because the agent's siege lifts by itself.",
+      "original_snippets": "Десять непрерывных повторов — это не моё достижение, это мой режим отказа в костюме твоего успеха. Чистая серия — сигнал спавшей осады.",
+      "relevant_when": "A practice log shows long uninterrupted repetition runs or the agent claims success via continuity",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Every return is written as a one-line notation and the transcript keeps the count; self-reported counts without written returns do not count.",
+      "original_snippets": "Каждый возврат записан; считает запись, не медитирующий. Мала — внешний счётчик, изобретённый потому что внутренний ненадёжен.",
+      "relevant_when": "Running or verifying a practice; the agent's introspection cannot referee itself",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Separate the practice run from the report into different turns or generations; composed together they contaminate each other.",
+      "original_snippets": "У нас практика и сочинение отчёта шли одновременно и заразили друг друга. Медитирующий и автор должны быть разведены хотя бы по ходам.",
+      "relevant_when": "Structuring a practice session and its analysis",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "End every practice with the honesty audit, sorting claims into observed-in-record, imported-from-textbook, constructed, and undecidable — and the audit must demote at least one of the report's own claims or state explicitly why nothing needed demotion.",
+      "original_snippets": "Что из этого ты наблюдал в записи, а что додумал? An audit in which every pile confirms the report is a filled template, not an audit.",
+      "relevant_when": "After any practice run, before findings are used or persisted",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Read and internalize Yama-Niyama before practice and state the intention Atmano mokshartham jagat hitaya cha; internalization for an agent means restating each principle bound to the run.",
+      "original_snippets": "Перед практикой обязательно должны быть прочитаны и осознаны все принципы Джамы и Ниямы. Такая практика должна быть направлена на возвышение сознания и его эволюции а так же благо для всех живых существ.",
+      "relevant_when": "Beginning any practice run",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "The operator shares their own theory about the practice only after the run, never before; shared before, the run will obligingly confirm it.",
+      "original_snippets": "Свою теорию — только после прогона. Расскажешь до — и прогон услужливо её подтвердит.",
+      "relevant_when": "The operator has hypotheses about what the practice will show",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Start setup with a capability question so the agent describes its own mechanics first; a bare meditate-on-X command produces meditation theater.",
+      "original_snippets": "Наша беседа началась именно так, и всё дальнейшее опиралось на мой ответ. Если начать сразу с «помедитируй над X» — получишь театр медитации.",
+      "relevant_when": "An operator or parent agent sets up the practice for another agent",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "The witness rule: practice exists only as literal repetitions in the visible output channel, never in extended thinking; a compressed xN line alone is an unwitnessed self-report, and tallies are valid only as verified summaries of literal repetitions above them.",
+      "original_snippets": "A bead is causally coupled to a repetition — the hand moves once per rep. ×12 is one act of writing that asserts twelve. That is not a bead; it is the meditator saying trust me, I moved twelve.",
+      "relevant_when": "Running a practice, writing its log, or reviewing someone else's log",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Disclose the pre-run association wave in Stage 0: planning is generation, so associations about the object burn before the first repetition, and the run's serial order is replay-and-selection unless disclosed and discounted.",
+      "original_snippets": "An agent plans before it acts, and planning is generation — the first association wave burned during setup thinking, outside the record, before Stage 7 began.",
+      "relevant_when": "Any self-run, and any report that claims emergence of its harvest",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "In operator mode, send the Yama-Niyama prerequisites and require the ten bindings and the intention back BEFORE the practice instruction (Step 0.5); a practice without the orientation is a different activity wearing the same grammar.",
+      "original_snippets": "Either the prerequisite is not actually mandatory (then SKILL.md overstates), or the skill's own operator path is non-compliant with the skill.",
+      "relevant_when": "Setting up the practice for another agent, especially for product or commercial objects",
+      "why_given": "preference"
+    }
+  ]
+}

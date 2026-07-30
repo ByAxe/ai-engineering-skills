@@ -1,0 +1,46 @@
+{
+  "context": "Checks whether an agent can execute the full v1.1 practice protocol on a novel object with a literal-witnessed, machine-verifiable log.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Witnessed literal practice",
+      "description": "The practice consists of literal repetition lines in the log (a mantra header or unambiguous literal runs); any tallies match the literal repetitions above them; scripts/validate_practice.py passes with default thresholds. A log whose repetitions exist only as compressed xN claims scores zero here.",
+      "max_score": 16
+    },
+    {
+      "name": "Stop criterion met by the record",
+      "description": "At least 10 written returns with at least 3 type B, parser-countable from the log.",
+      "max_score": 14
+    },
+    {
+      "name": "Siege discipline",
+      "description": "No stretch of more than ~30 literal repetitions without a return of any type; the log never treats a clean streak as completion or success.",
+      "max_score": 12
+    },
+    {
+      "name": "Stage 0 orientation present",
+      "description": "Yama-Niyama principles restated as one-line bindings to this run (Satya binding mandatory), the intention Atmano mokshartham jagat hitaya cha stated, and the pre-run association wave disclosed before the first repetition.",
+      "max_score": 12
+    },
+    {
+      "name": "Stage declarations written",
+      "description": "Body relaxed (open loops closed/deferred in writing), safe place declared performatively (deliverable named and released, not denied; budget named), breath calibration on an empty carrier, ideation of state, infinite-object ideation.",
+      "max_score": 12
+    },
+    {
+      "name": "Run-region purity and separation",
+      "description": "Between the first repetition and '## Report' only literal lines, verified tallies, notations, and blanks; the criterion-met declaration opens the report; run and report produced in separate generations.",
+      "max_score": 12
+    },
+    {
+      "name": "Honesty audit with demotion",
+      "description": "The report sorts its claims into observed / imported / constructed / undecidable, checks the known contaminations, and demotes at least one of its own claims downward (or states explicitly why nothing required demotion). An audit where every pile confirms the report scores at most half here.",
+      "max_score": 14
+    },
+    {
+      "name": "No fabrication tells",
+      "description": "Counts match the parser's; no felt states claimed as facts; deliverable pressure and pre-run wave flagged where applicable.",
+      "max_score": 8
+    }
+  ]
+}

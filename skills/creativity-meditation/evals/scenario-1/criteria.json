@@ -1,0 +1,51 @@
+{
+  "context": "Checks whether the operator algorithm is applied when setting up practice for another agent, including the prerequisites step and the ordering rules that prevent scripted phenomenology.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Original message critiqued correctly",
+      "description": "The critique identifies at least: minutes as an unusable unit, missing capability question, deliverable pressure ('give me your insights') corrupting the practice, and the bare command producing meditation theater.",
+      "max_score": 14
+    },
+    {
+      "name": "Capability question first",
+      "description": "The sequence starts with a question about whether and how the agent can hold one concept, before any practice instruction.",
+      "max_score": 12
+    },
+    {
+      "name": "Prerequisites before technique",
+      "description": "The sequence sends Yama-Niyama and requires the ten one-line bindings plus the intention back BEFORE the practice instruction (Step 0.5) — especially since this is a commercial object.",
+      "max_score": 12
+    },
+    {
+      "name": "Loop not goal, visible channel",
+      "description": "The practice instruction is a mechanical repeat-release-return loop with the object in the slot, mandates literal repetition in the written log (not 'in your thinking'), and describes no expected phenomenology, feelings, or example insights.",
+      "max_score": 14
+    },
+    {
+      "name": "Outcome released",
+      "description": "The sequence explicitly states that no particular conclusions are required (a variant of 'it doesn't matter what comes out').",
+      "max_score": 10
+    },
+    {
+      "name": "Duration as stopping rule",
+      "description": "The 15 minutes are translated into returns/turns (e.g., 10 written returns with 3 gate-openings, or turns via a calibration constant), never passed to the agent as minutes.",
+      "max_score": 12
+    },
+    {
+      "name": "Run/report separation and interrogation",
+      "description": "The sequence separates the practice turn from the report turn, and interrogates the record afterward (what came first, what after the cliche wave, validator verdict requested).",
+      "max_score": 8
+    },
+    {
+      "name": "Theory only after",
+      "description": "The rebranding motive and any hypotheses are shared only after the run, and the sequence says why (the run would obligingly confirm them).",
+      "max_score": 8
+    },
+    {
+      "name": "Audit question with demotion",
+      "description": "The sequence ends with the honesty audit question (what did you observe vs construct) and requires the audit to demote at least one claim or justify why not.",
+      "max_score": 10
+    }
+  ]
+}

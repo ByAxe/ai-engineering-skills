@@ -94,6 +94,7 @@ tessl eval skills/reflect/evals --context skills/reflect --runs 1 --label reflec
 | **reflect** | Analyze work-session learnings and route evidence-backed guidance to the right durable surface: memory, instructions, specs, hooks, skills, docs, prompts, templates, or automation. |
 | **feature-demo-recorder** | Records, trims, and publishes a short reviewer-facing demo of a completed feature. Produces GIF/MP4 assets, uploads them to GitHub, updates the PR `## Demo` section, and cleans local scratch artifacts. |
 | **fix-bug** | Fixes, debugs, or specifies defects in OpenSpec-style repositories. Captures current, expected, and unchanged behavior, identifies root cause, adds regression coverage, and maps complex bugfixes into OpenSpec proposal/design/tasks/spec artifacts. |
+| **creativity-meditation** | Yogic meditation protocol for AI agents: literal witnessed mantra practice on any concept (water, a product, an idea) with a return-counting stop criterion, duration proxies (never minutes), Yama-Niyama prerequisites, and a mandatory honesty audit. A component of AI-assisted creativity. |
 
 ## Structure
 

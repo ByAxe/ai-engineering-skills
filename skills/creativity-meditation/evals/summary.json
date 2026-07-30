@@ -1,0 +1,17 @@
+{
+  "total_scenarios": 5,
+  "instructions_coverage": {
+    "total_instructions": 15,
+    "instructions_tested": 15,
+    "coverage_percentage": 100
+  },
+  "reason_distribution": {
+    "new knowledge": "11",
+    "preference": "4"
+  },
+  "measurement_tiers": {
+    "tier_1_structural": "Covered by these scenarios and scripts/validate_practice.py (v1.1): literal-witnessed repetition counts, verified tallies, return counts, cumulative gate window, interleaving, run-region purity, run/report separation, audit presence with demotion. The counting layer is narrative-proof; notation contents remain self-reports.",
+    "tier_2_instrumented": "Designed, not yet run: logprob/entropy experiment in references/empirical-basis.md. Would upgrade the mechanistic claims (two deaths, siege, gate re-arming) from constructed to measured.",
+    "tier_3_experiential": "Deliberately unmeasured. Whether anything is experienced, and the quality of consciousness elevation, are left open (Satya: no appearance of progress). The author continues meditating on whether the creative harvest itself is measurable without corrupting the practice with a deliverable."
+  }
+}
