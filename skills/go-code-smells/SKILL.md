@@ -4,7 +4,7 @@ description: Identifies and refactors Go code smells in libraries, services, CLI
 license: MIT
 metadata:
   compatibility: Go module repositories. Works best with repository access and ability to run gofmt, go test, go vet, and optional analyzers such as staticcheck or golangci-lint.
-  author: ByAxe Datamola
+  author: ByAxe
   version: 1.0.0
   category: software-development
   tags:

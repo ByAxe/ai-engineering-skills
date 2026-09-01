@@ -3,7 +3,7 @@ name: fix-bug
 description: Fix, debug, or specify defects in OpenSpec-style repositories. Use when the user reports a bug, regression, flaky behavior, failing test, security/auth/payment issue, or asks for an OpenSpec-compatible bugfix proposal/spec. The skill reproduces or characterizes the defect, identifies root cause, writes the smallest safe fix, adds regression coverage, and captures current, expected, and unchanged behavior.
 license: MIT
 metadata:
-  author: ByAxe Datamola
+  author: ByAxe
   version: 1.0.0
   category: software-development
   tags:
