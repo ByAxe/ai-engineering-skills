@@ -163,7 +163,7 @@ skills/
 │ # General
 ├── reflect/
 │   ├── SKILL.md
-│   ├── evals/        (7 reflection routing scenarios)
+│   ├── evals/        (8 reflection routing scenarios)
 │   └── references/
 │       ├── confidence-scoring.md
 │       ├── reflection-categories.md
