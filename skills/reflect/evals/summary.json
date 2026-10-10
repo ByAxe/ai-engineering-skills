@@ -1,12 +1,16 @@
 {
-  "total_scenarios": 7,
+  "total_scenarios": 8,
   "instructions_coverage": {
-    "total_instructions": 12,
-    "instructions_tested": 12,
+    "total_instructions": 15,
+    "instructions_mapped_to_scenarios": 15,
     "coverage_percentage": 100
   },
   "reason_distribution": {
-    "new knowledge": "9",
-    "preference": "3"
-  }
+    "new knowledge": "11",
+    "preference": "4"
+  },
+  "inventory_only": true,
+  "prior_execution_evidence": "Not recorded in this summary; historical scenario mapping is not a pass rate.",
+  "new_scenario_execution": "scenario-7 run with actual saved responses and independent blind grading; see receipts/2026-10-10-e5.json. Historical scenarios 0-6 were not re-executed by this reflection.",
+  "execution_receipt": "receipts/2026-10-10-e5.json"
 }

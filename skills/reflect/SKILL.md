@@ -3,7 +3,7 @@ name: reflect
 description: Reflects on completed or interrupted sessions, extracts evidence-backed lessons, and routes them to the right persistent surface. Use when the user says "reflect", "what did we learn", "capture learnings", "update memory/instructions", or asks where a lesson belongs across specs, hooks, skills, docs, prompts, or automation.
 metadata:
   author: ByAxe
-  version: "2.3.0"
+  version: "2.3.1"
   category: workflow
   tags: "reflection, learning, instructions, memory, steering, continuous-improvement, confidence-scoring"
 ---
@@ -80,6 +80,8 @@ Before proposing updates, scan for conflicts with established guidance:
 
 Mark each finding: NEW | UPDATE | CONTESTED | SKIP
 
+For a correction already covered by current guidance, distinguish a missing rule from an execution, context, specificity or authority gap. Do not assume the rule existed or was loaded at the time of failure without trace evidence. Strengthen the relevant reference, signal or regression instead of repeating the same rule across files.
+
 ### Step 4: Choose Target and Proposal Shape
 
 Use [update-targets.md](references/update-targets.md) for the decision matrix. For each candidate, name why the chosen target is better than nearby alternatives.
@@ -94,6 +96,8 @@ Use [update-targets.md](references/update-targets.md) for the decision matrix. F
 - Tool, environment, or project quirk -> memory file; also save to semantic memory if important.
 - User preference or communication pattern -> memory only.
 - One-off task status or facts already in git/logs -> SKIP.
+
+Separate engineering invariants from creative direction. Objectively checkable properties can receive contracts, tests or harness checks. Narrative depth, style, metaphor and expressive choices need intent, actual-artifact critique and room for alternatives; do not convert them into universal quotas, templates, critic-score thresholds or automated acceptance gates. For creative revisions, preserve relevant before/after versions and reasons for adopting, amending or rejecting critique; a later version does not automatically win. Preserve explicit owner constraints for their stated task. A useful prior solution is evidence for a direction, not a mandatory recipe.
 
 For items that require review, use this proposal format:
 
@@ -161,6 +165,8 @@ Resolve or explicitly reject reviewer findings with evidence. If subagents are n
 - Check no duplicates were introduced
 - Confirm additions match existing style
 - Run relevant validators for changed surfaces, such as skill lint/review/evals for skill changes, spec validation for spec changes, hook tests for hook changes, or repository tests for code changes.
+- For behavior-changing steering, rehearse the corrected decision on a representative rejected case and a nearby valid case using an independent agent when available. Preserve the input, actual response and observed result; keep the rehearsal inside authorized resources and side effects. If compared with a prior version, use equivalent inputs and report regressions as well as gains. This tests the workflow's decisions, not artistic merit.
+- Report structural validity, scenario-to-instruction coverage and executed behavioral evidence separately. An unrun eval inventory is not a passing score; a prompt edit, clean lint or critic rating cannot guarantee future adherence or creative improvement. If execution is unavailable, name the unrun check rather than claiming improvement was demonstrated.
 
 **Report to user:**
 ```

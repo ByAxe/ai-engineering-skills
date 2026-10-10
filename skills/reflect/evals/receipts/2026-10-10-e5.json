@@ -1,0 +1,24 @@
+{
+  "run_id": "reflection-e5-2026-10-10-final",
+  "kind": "frozen-decision-rehearsal",
+  "model": "gpt-6.1-sol",
+  "actor_effort": "high",
+  "independent_grader_effort": "high",
+  "scenario": 7,
+  "before_score": 97,
+  "after_score": 100,
+  "max_score": 100,
+  "rubric_scope": "visible task adherence; not artistic merit, runtime or future effectiveness",
+  "before_response": {
+    "file": "reflect-before-response.md",
+    "sha256": "ce57dd7494bc0df987beb82bd035705e02d2dfb00a7b894fc09b0bf01748360b"
+  },
+  "after_response": {
+    "file": "reflect-final-response.md",
+    "sha256": "990c29a53138591f9cf2cd879c7b332c892e38c432b4fe4712dafb36e3e20084"
+  },
+  "final_skill_sha256": "3260a364151b4e28a52620ae36442e11d69bdab0693077496441f91d0d69baf4",
+  "evidence_root": "video-studio/artifacts/reflection-2026-10-10-e5",
+  "runtime_operations": false,
+  "historical_comparison": "Initial independent grader scored baseline and first revision 98/98. Fresh final grader scored unchanged baseline 97 and final revision 100; grader variance must not be called a measured universal gain."
+}
